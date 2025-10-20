@@ -7,15 +7,20 @@ font_size = 44
 
 [node name="Main" type="Node2D"]
 
-[node name="Game" type="Node2D" parent="."]
+[node name="Game" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_o5qli")
 
 [node name="Grid" type="Node2D" parent="Game"]
 position = Vector2(0, 64)
 
 [node name="ColorRect" type="ColorRect" parent="Game"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 0
 offset_right = 576.0
 offset_bottom = 64.0
+size_flags_vertical = 0
 color = Color(0.5078125, 0.5078125, 0.5078125, 1)
 
 [node name="Label" type="Label" parent="Game/ColorRect"]
@@ -30,3 +35,16 @@ text = "Game Over"
 label_settings = SubResource("LabelSettings_o5qli")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="RestartButton" type="Button" parent="Game"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 0
+offset_top = 640.0
+offset_right = 576.0
+offset_bottom = 672.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+text = "Restart Game"
+
+[connection signal="pressed" from="Game/RestartButton" to="Game" method="_on_restart_button_pressed"]

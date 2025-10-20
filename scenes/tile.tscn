@@ -13,4 +13,4 @@ offset_bottom = 32.0
 texture_normal = SubResource("AtlasTexture_0wfyh")
 script = ExtResource("2_jy7pm")
 
-[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
