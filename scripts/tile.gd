@@ -21,7 +21,7 @@ func reveal_tile():
 			texture_normal.region = Rect2(Vector2(34, 0), tile_size)
 
 func _on_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.is_pressed():
+	if event is InputEventMouseButton and event.is_pressed() and !disabled:
 		match event.button_index:
 			MOUSE_BUTTON_LEFT:
 				if !is_flagged:

@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://wxiagu8uy4w4"]
+
+[ext_resource type="Theme" uid="uid://bhmyomirsk6vr" path="res://themes/menu.tres" id="1_yqeox"]
+[ext_resource type="Texture2D" uid="uid://8mi331kcfci" path="res://themes/CritterSweeper.png" id="2_vjb58"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_yqeox")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer"]
+layout_mode = 2
+ratio = 0.8
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/AspectRatioContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/AspectRatioContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/AspectRatioContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+texture = ExtResource("2_vjb58")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/AspectRatioContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button Container" type="VBoxContainer" parent="MarginContainer/AspectRatioContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="StartButton" type="Button" parent="MarginContainer/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container"]
+custom_minimum_size = Vector2(256, 32)
+layout_mode = 2
+size_flags_vertical = 8
+text = "Start Game"
+
+[node name="RestartButton" type="Button" parent="MarginContainer/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container"]
+visible = false
+custom_minimum_size = Vector2(256, 32)
+layout_mode = 2
+size_flags_vertical = 8
+text = "Restart Game"
+
+[node name="SettingsButton" type="Button" parent="MarginContainer/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container"]
+custom_minimum_size = Vector2(256, 32)
+layout_mode = 2
+size_flags_vertical = 8
+text = "Settings"

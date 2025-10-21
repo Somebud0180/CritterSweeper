@@ -1,0 +1,67 @@
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://bhmyomirsk6vr"]
+
+[ext_resource type="Texture2D" uid="uid://dykr4q016im2u" path="res://themes/ButtonStyle_Hover.png" id="1_pw0cd"]
+[ext_resource type="Texture2D" uid="uid://j40lxsro70gl" path="res://themes/ButtonStyle.png" id="1_xavh1"]
+[ext_resource type="Texture2D" uid="uid://bgupmpji3jfmh" path="res://themes/PanelStyle.png" id="2_6tgry"]
+[ext_resource type="Texture2D" uid="uid://07obkqtplowh" path="res://themes/ButtonStyle_Pressed.png" id="2_im3bc"]
+
+[sub_resource type="SystemFont" id="SystemFont_6tgry"]
+font_names = PackedStringArray("Chalkboard SE")
+font_weight = 575
+
+[sub_resource type="FontVariation" id="FontVariation_im3bc"]
+base_font = SubResource("SystemFont_6tgry")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0mtrw"]
+texture = ExtResource("1_pw0cd")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pw0cd"]
+texture = ExtResource("1_xavh1")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rukvw"]
+texture = ExtResource("2_im3bc")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_im3bc"]
+texture = ExtResource("2_6tgry")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 32.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[resource]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0.1953125, 0.1953125, 0.1953125, 1)
+Button/font_sizes/font_size = 24
+Button/fonts/font = SubResource("FontVariation_im3bc")
+Button/styles/hover = SubResource("StyleBoxTexture_0mtrw")
+Button/styles/normal = SubResource("StyleBoxTexture_pw0cd")
+Button/styles/pressed = SubResource("StyleBoxTexture_rukvw")
+HSeparator/constants/separation = 24
+MarginContainer/constants/margin_bottom = 44
+MarginContainer/constants/margin_left = 44
+MarginContainer/constants/margin_right = 44
+MarginContainer/constants/margin_top = 44
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_im3bc")
+VBoxContainer/constants/separation = 12
