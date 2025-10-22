@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://8mi331kcfci"
-path="res://.godot/imported/CritterSweeper.png-8eec411d184b815ca2fe4fee899481e4.ctex"
+path="res://.godot/imported/CritterSweeper.png-4efb1e72ac7e1b117b8586483e9eac2b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://themes/CritterSweeper.png"
-dest_files=["res://.godot/imported/CritterSweeper.png-8eec411d184b815ca2fe4fee899481e4.ctex"]
+source_file="res://interface/textures/CritterSweeper.png"
+dest_files=["res://.godot/imported/CritterSweeper.png-4efb1e72ac7e1b117b8586483e9eac2b.ctex"]
 
 [params]
 
