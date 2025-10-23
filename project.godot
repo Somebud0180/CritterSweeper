@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="CritterSweeper"
-run/main_scene="uid://mgkqrayegu0x"
+run/main_scene="uid://wxiagu8uy4w4"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

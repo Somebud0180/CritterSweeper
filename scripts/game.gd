@@ -7,10 +7,14 @@ const TILE_SCENE = preload("res://scenes/tile.tscn")
 @export var num_mines: int = 40
 @export var rows: int = 18 # Number of rows
 @export var columns: int = 18 # Number of columns
+@export var grid: GridContainer
+@export var grid_aspect: AspectRatioContainer
 var tiles = [] # 2D array to store tile instances
 var first_click_done = false
 
-func _ready() -> void:
+func start() -> void:
+	grid.columns = columns
+	grid_aspect.ratio = float(columns) / float(rows)
 	create_grid()
 
 func _on_tile_pressed(x: int, y: int):
@@ -42,7 +46,7 @@ func create_grid():
 			tile.position = Vector2(x, y) * tile.tile_size
 			tile.tile_pressed.connect(_on_tile_pressed.bind(x,y))
 			tiles[y].append(tile)
-			$Grid.add_child(tile)
+			grid.add_child(tile)
 	
 	calculate_adjacent_mines()
 
@@ -128,7 +132,7 @@ func game_won():
 	$ColorRect/Label.visible = true
 
 func restart_game():
-	for child in $Grid.get_children():
+	for child in grid.get_children():
 		child.queue_free()
 	tiles.clear()
 	
@@ -136,3 +140,9 @@ func restart_game():
 	$ColorRect/Label.visible = false
 	
 	create_grid()
+
+
+func _on_pause_button_pressed() -> void:
+	var animation_player = get_tree().root.get_node_or_null("MainScreen/AnimationPlayer")
+	if animation_player:
+		animation_player.play("show_main")
