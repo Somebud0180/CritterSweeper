@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://wxiagu8uy4w4"]
+[gd_scene load_steps=18 format=3 uid="uid://wxiagu8uy4w4"]
 
 [ext_resource type="Theme" uid="uid://bhmyomirsk6vr" path="res://interface/menu.tres" id="1_yqeox"]
 [ext_resource type="Script" uid="uid://xtopgpgymqh0" path="res://scripts/menu.gd" id="2_4ytvr"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://mgkqrayegu0x" path="res://scenes/main.tscn" id="3_g3eks"]
 [ext_resource type="Texture2D" uid="uid://bco4bjasej7ri" path="res://interface/textures/MusicSound.png" id="3_mhnvy"]
 [ext_resource type="Texture2D" uid="uid://rqimlliym8t8" path="res://interface/textures/UISound.png" id="4_4ytvr"]
+[ext_resource type="Script" uid="uid://d16hdx4moncic" path="res://scripts/back_button.gd" id="7_v86rl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjb58"]
 
@@ -61,8 +62,8 @@ tracks/3/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_g3eks"]
-resource_name = "show_difficulty"
+[sub_resource type="Animation" id="Animation_70i5f"]
+resource_name = "hide_difficulty"
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -74,23 +75,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false, true]
-}
-
-[sub_resource type="Animation" id="Animation_v86rl"]
-resource_name = "show_settings"
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MenuLayer/Settings:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_13sgg"]
@@ -125,8 +110,8 @@ tracks/0/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_70i5f"]
-resource_name = "hide_difficulty"
+[sub_resource type="Animation" id="Animation_g3eks"]
+resource_name = "show_difficulty"
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -138,7 +123,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false]
+"values": [true, true]
 }
 
 [sub_resource type="Animation" id="Animation_mj5lg"]
@@ -154,7 +139,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false, true]
+"values": [true, true]
 }
 
 [sub_resource type="Animation" id="Animation_ufwb2"]
@@ -170,7 +155,23 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false, true]
+"values": [true, true]
+}
+
+[sub_resource type="Animation" id="Animation_v86rl"]
+resource_name = "show_settings"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuLayer/Settings:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_13sgg"]
@@ -185,7 +186,7 @@ _data = {
 &"show_settings": SubResource("Animation_v86rl")
 }
 
-[node name="MainScreen" type="Control" node_paths=PackedStringArray("animation_player", "restart_button", "start_button")]
+[node name="MainScreen" type="Control" node_paths=PackedStringArray("animation_player", "resume_button", "restart_button", "start_button") groups=["MainScreen"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -195,6 +196,7 @@ grow_vertical = 2
 theme = ExtResource("1_yqeox")
 script = ExtResource("2_4ytvr")
 animation_player = NodePath("AnimationPlayer")
+resume_button = NodePath("MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/ResumeButton")
 restart_button = NodePath("MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/RestartButton")
 start_button = NodePath("MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/StartButton")
 
@@ -244,6 +246,13 @@ custom_minimum_size = Vector2(256, 32)
 layout_mode = 2
 size_flags_vertical = 8
 text = "Start Game"
+
+[node name="ResumeButton" type="Button" parent="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container"]
+visible = false
+custom_minimum_size = Vector2(256, 32)
+layout_mode = 2
+size_flags_vertical = 8
+text = "Resume Game"
 
 [node name="RestartButton" type="Button" parent="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container"]
 visible = false
@@ -299,6 +308,7 @@ alignment = 1
 
 [node name="Volume" type="Label" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VolumeContainer"]
 layout_mode = 2
+theme_type_variation = &"HeaderSmall"
 text = "Volume:"
 
 [node name="Sliders" type="VBoxContainer" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VolumeContainer"]
@@ -309,6 +319,7 @@ alignment = 1
 
 [node name="MusicLabel" type="Label" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VolumeContainer/Sliders"]
 layout_mode = 2
+theme_type_variation = &"TooltipLabel"
 text = "Music"
 
 [node name="MusicSlider" type="HBoxContainer" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VolumeContainer/Sliders"]
@@ -326,6 +337,10 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+max_value = 1.0
+step = 0.05
+value = 1.0
+scrollable = false
 
 [node name="HSeparator" type="HSeparator" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VolumeContainer/Sliders"]
 layout_mode = 2
@@ -334,6 +349,7 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_vjb58")
 
 [node name="SFXLabel" type="Label" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VolumeContainer/Sliders"]
 layout_mode = 2
+theme_type_variation = &"TooltipLabel"
 text = "UI Sounds"
 
 [node name="SFXSlider" type="HBoxContainer" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VolumeContainer/Sliders"]
@@ -350,10 +366,23 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+max_value = 1.0
+step = 0.05
+value = 1.0
+scrollable = false
 
 [node name="Button" type="Button" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Return"
+
+[node name="BackButton" type="Button" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer"]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("7_v86rl")
+current_menu = "settings"
+previous_menu = "main"
 
 [node name="DifficultyPicker" type="MarginContainer" parent="MenuLayer"]
 visible = false
@@ -398,14 +427,29 @@ text = "Normal  (16x16 Tiles)"
 layout_mode = 2
 text = "Difficult (30x16 Tiles)"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="BackButton" type="Button" parent="MenuLayer/DifficultyPicker/AspectRatioContainer/PanelContainer"]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("7_v86rl")
+current_menu = "difficulty"
+previous_menu = "main"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." groups=["AnimationPlayer"]]
 libraries = {
 &"": SubResource("AnimationLibrary_13sgg")
 }
 
 [connection signal="pressed" from="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="value_changed" from="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VolumeContainer/Sliders/MusicSlider/MusicVolume" to="." method="_on_music_volume_value_changed"]
+[connection signal="value_changed" from="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VolumeContainer/Sliders/SFXSlider/SFXVolume" to="." method="_on_sfx_volume_value_changed"]
+[connection signal="pressed" from="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MenuLayer/Settings/AspectRatioContainer/PanelContainer/BackButton" to="MenuLayer/Settings/AspectRatioContainer/PanelContainer/BackButton" method="_on_pressed"]
 [connection signal="pressed" from="MenuLayer/DifficultyPicker/AspectRatioContainer/PanelContainer/VBoxContainer/SimpleButton" to="." method="_on_difficulty_button_pressed" binds= [0]]
 [connection signal="pressed" from="MenuLayer/DifficultyPicker/AspectRatioContainer/PanelContainer/VBoxContainer/NormalButton" to="." method="_on_difficulty_button_pressed" binds= [1]]
 [connection signal="pressed" from="MenuLayer/DifficultyPicker/AspectRatioContainer/PanelContainer/VBoxContainer/DifficultButton" to="." method="_on_difficulty_button_pressed" binds= [2]]
+[connection signal="pressed" from="MenuLayer/DifficultyPicker/AspectRatioContainer/PanelContainer/BackButton" to="MenuLayer/DifficultyPicker/AspectRatioContainer/PanelContainer/BackButton" method="_on_pressed"]
