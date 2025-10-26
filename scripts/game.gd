@@ -7,6 +7,8 @@ const TILE_SCENE = preload("res://scenes/tile.tscn")
 @export var num_mines: int = 40
 @export var rows: int = 18 # Number of rows
 @export var columns: int = 18 # Number of columns
+@export var label: Label
+@export var toast: Panel
 @export var grid: GridContainer
 @export var grid_aspect: AspectRatioContainer
 var tiles = [] # 2D array to store tile instances
@@ -17,8 +19,9 @@ func start() -> void:
 		child.queue_free()
 	tiles.clear()
 	
-	$ColorRect/Label.text = ""
-	$ColorRect/Label.visible = false
+	label.text = ""
+	label.visible = false
+	toast.visible = false
 	
 	grid.columns = columns
 	grid_aspect.ratio = float(columns) / float(rows)
@@ -128,28 +131,31 @@ func game_over():
 			if tile.is_mine:
 				tile.reveal_tile()
 	
-	$ColorRect/Label.text = "Game Over!"
-	$ColorRect/Label.visible = true
+	label.text = "Game Over!"
+	label.visible = true
+	toast.visible = true
 	
 func game_won():
 	for row in tiles:
 		for tile in row:
 			tile.disabled = true
-	$ColorRect/Label.text = "You Won!"
-	$ColorRect/Label.visible = true
+	label.text = "You Won!"
+	label.visible = true
+	toast.visible = true
 
 func restart_game():
 	for child in grid.get_children():
 		child.queue_free()
 	tiles.clear()
 	
-	$ColorRect/Label.text = ""
-	$ColorRect/Label.visible = false
+	label.text = ""
+	label.visible = false
+	toast.visible = false
 	
 	create_grid()
 
 
 func _on_pause_button_pressed() -> void:
-	var animation_player = get_tree().root.get_node_or_null("MainScreen/AnimationPlayer")
-	if animation_player:
-		animation_player.play("show_main")
+	var main_screen = get_tree().root.get_node_or_null("MainScreen")
+	if main_screen:
+		main_screen.hide_and_show("game", "main")
