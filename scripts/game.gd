@@ -13,6 +13,13 @@ var tiles = [] # 2D array to store tile instances
 var first_click_done = false
 
 func start() -> void:
+	for child in grid.get_children():
+		child.queue_free()
+	tiles.clear()
+	
+	$ColorRect/Label.text = ""
+	$ColorRect/Label.visible = false
+	
 	grid.columns = columns
 	grid_aspect.ratio = float(columns) / float(rows)
 	create_grid()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://wxiagu8uy4w4"]
+[gd_scene load_steps=21 format=3 uid="uid://wxiagu8uy4w4"]
 
 [ext_resource type="Theme" uid="uid://bhmyomirsk6vr" path="res://interface/menu.tres" id="1_yqeox"]
 [ext_resource type="Script" uid="uid://xtopgpgymqh0" path="res://scripts/menu.gd" id="2_4ytvr"]
@@ -6,7 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://mgkqrayegu0x" path="res://scenes/main.tscn" id="3_g3eks"]
 [ext_resource type="Texture2D" uid="uid://bco4bjasej7ri" path="res://interface/textures/MusicSound.png" id="3_mhnvy"]
 [ext_resource type="Texture2D" uid="uid://rqimlliym8t8" path="res://interface/textures/UISound.png" id="4_4ytvr"]
+[ext_resource type="Texture2D" uid="uid://cratg6dd8okss" path="res://assets/sprites/foregrounds/Foreground1.png" id="4_70i5f"]
+[ext_resource type="Script" uid="uid://cm8rqrm54087" path="res://scripts/parallax_randomizer.gd" id="4_mj5lg"]
 [ext_resource type="Script" uid="uid://d16hdx4moncic" path="res://scripts/back_button.gd" id="7_v86rl"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mj5lg"]
+load_path = "res://.godot/imported/Background.png-4e7706ef682cc0d3d504c310fedc1216.ctex"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjb58"]
 
@@ -186,7 +191,7 @@ _data = {
 &"show_settings": SubResource("Animation_v86rl")
 }
 
-[node name="MainScreen" type="Control" node_paths=PackedStringArray("animation_player", "resume_button", "restart_button", "start_button") groups=["MainScreen"]]
+[node name="MainScreen" type="Control" node_paths=PackedStringArray("animation_player", "resume_button", "start_button") groups=["MainScreen"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -197,16 +202,41 @@ theme = ExtResource("1_yqeox")
 script = ExtResource("2_4ytvr")
 animation_player = NodePath("AnimationPlayer")
 resume_button = NodePath("MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/ResumeButton")
-restart_button = NodePath("MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/RestartButton")
 start_button = NodePath("MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/StartButton")
 
-[node name="GameLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 0
+
+[node name="BackgroundParallax" type="Parallax2D" parent="CanvasLayer"]
+scroll_scale = Vector2(0, 0)
+repeat_size = Vector2(1024, 1024)
+repeat_times = 4
+script = ExtResource("4_mj5lg")
+textures_folder = "res://assets/sprites/backgrounds"
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/BackgroundParallax"]
+texture = SubResource("CompressedTexture2D_mj5lg")
+centered = false
+
+[node name="ForegroundParallax" type="Parallax2D" parent="CanvasLayer"]
+scroll_scale = Vector2(0.5, 0.5)
+repeat_size = Vector2(1024, 1024)
+autoscroll = Vector2(50, 50)
+repeat_times = 4
+script = ExtResource("4_mj5lg")
+textures_folder = "res://assets/sprites/foregrounds"
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/ForegroundParallax"]
+texture = ExtResource("4_70i5f")
+centered = false
+
+[node name="GameLayer" type="CanvasLayer" parent="."]
 
 [node name="Game" parent="GameLayer" instance=ExtResource("3_g3eks")]
 visible = false
 
 [node name="MenuLayer" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="MainMenu" type="MarginContainer" parent="MenuLayer"]
 anchors_preset = 15
@@ -241,12 +271,6 @@ layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="StartButton" type="Button" parent="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container"]
-custom_minimum_size = Vector2(256, 32)
-layout_mode = 2
-size_flags_vertical = 8
-text = "Start Game"
-
 [node name="ResumeButton" type="Button" parent="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container"]
 visible = false
 custom_minimum_size = Vector2(256, 32)
@@ -254,12 +278,11 @@ layout_mode = 2
 size_flags_vertical = 8
 text = "Resume Game"
 
-[node name="RestartButton" type="Button" parent="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container"]
-visible = false
+[node name="StartButton" type="Button" parent="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container"]
 custom_minimum_size = Vector2(256, 32)
 layout_mode = 2
 size_flags_vertical = 8
-text = "Restart Game"
+text = "Start Game"
 
 [node name="SettingsButton" type="Button" parent="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container"]
 custom_minimum_size = Vector2(256, 32)
@@ -441,9 +464,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_13sgg")
 }
 
-[connection signal="pressed" from="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/ResumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="value_changed" from="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VolumeContainer/Sliders/MusicSlider/MusicVolume" to="." method="_on_music_volume_value_changed"]
 [connection signal="value_changed" from="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VolumeContainer/Sliders/SFXSlider/SFXVolume" to="." method="_on_sfx_volume_value_changed"]

@@ -13,13 +13,16 @@ config_version=5
 config/name="CritterSweeper"
 run/main_scene="uid://wxiagu8uy4w4"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/image="uid://xx3cd5k8ocov"
+config/icon="uid://xx3cd5k8ocov"
 
 [display]
 
 window/size/viewport_width=576
 window/size/viewport_height=672
 window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/handheld/orientation=1
 
 [editor_plugins]
 
