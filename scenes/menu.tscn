@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://wxiagu8uy4w4"]
+[gd_scene load_steps=24 format=3 uid="uid://wxiagu8uy4w4"]
 
 [ext_resource type="Theme" uid="uid://bhmyomirsk6vr" path="res://interface/menu.tres" id="1_yqeox"]
 [ext_resource type="Script" uid="uid://xtopgpgymqh0" path="res://scripts/menu.gd" id="2_4ytvr"]
@@ -9,12 +9,17 @@
 [ext_resource type="Script" uid="uid://cm8rqrm54087" path="res://scripts/parallax_randomizer.gd" id="4_mj5lg"]
 [ext_resource type="Texture2D" uid="uid://dpvdd4jyhas1v" path="res://assets/sprites/backgrounds/Background0.png" id="4_ufwb2"]
 [ext_resource type="Texture2D" uid="uid://bcgx7w16kxqp2" path="res://assets/sprites/foregrounds/Foreground0.png" id="5_mj5lg"]
+[ext_resource type="Script" uid="uid://dx1w2nxwnc5qs" path="res://scripts/pause_button.gd" id="7_mj5lg"]
 [ext_resource type="Script" uid="uid://d16hdx4moncic" path="res://scripts/back_button.gd" id="7_v86rl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_70i5f"]
+font_size = 44
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjb58"]
 
 [sub_resource type="Animation" id="Animation_4ytvr"]
 resource_name = "RESET"
+length = 0.001
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -55,7 +60,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("GameLayer/Game:visible")
+tracks/3/path = NodePath("GameLayer/BoardMargin:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -67,20 +72,56 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("GameLayer/Game/BoardMargin/HBoxContainer:visible")
+tracks/4/path = NodePath("MenuLayer/DifficultyPicker:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MenuLayer/DifficultyPicker:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("GameLayer/BoardMargin:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -96)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("GameLayer/BoardMargin:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.02, 1.02)]
 }
 
 [sub_resource type="Animation" id="Animation_70i5f"]
 resource_name = "hide_difficulty"
-length = 0.5
-step = 0.01
+length = 0.25
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -88,20 +129,44 @@ tracks/0/path = NodePath("MenuLayer/DifficultyPicker:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MenuLayer/DifficultyPicker:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MenuLayer/DifficultyPicker:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(2, 2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.9, 0.9)]
 }
 
 [sub_resource type="Animation" id="Animation_6cdou"]
 resource_name = "hide_game"
 length = 0.5
-step = 0.01
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("GameLayer/Game/BoardMargin/HBoxContainer:visible")
+tracks/0/path = NodePath("GameLayer/BoardMargin:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -109,6 +174,30 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GameLayer/BoardMargin:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -96)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GameLayer/BoardMargin:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.02, 1.02)]
 }
 
 [sub_resource type="Animation" id="Animation_13sgg"]
@@ -147,8 +236,8 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_g3eks"]
 resource_name = "show_difficulty"
-length = 0.5
-step = 0.01
+length = 0.25
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -156,20 +245,44 @@ tracks/0/path = NodePath("MenuLayer/DifficultyPicker:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MenuLayer/DifficultyPicker:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MenuLayer/DifficultyPicker:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(0.9, 0.9), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_mj5lg"]
 resource_name = "show_game"
 length = 0.5
-step = 0.01
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("GameLayer/Game:visible")
+tracks/0/path = NodePath("GameLayer/BoardMargin:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -181,14 +294,26 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("GameLayer/Game/BoardMargin/HBoxContainer:visible")
+tracks/1/path = NodePath("GameLayer/BoardMargin:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, true]
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(0, -96), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GameLayer/BoardMargin:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.35, 0.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(1.02, 1.02), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_ufwb2"]
@@ -281,11 +406,62 @@ centered = false
 
 [node name="GameLayer" type="CanvasLayer" parent="."]
 
-[node name="Game" parent="GameLayer" instance=ExtResource("3_g3eks")]
-visible = false
+[node name="Game" parent="GameLayer" node_paths=PackedStringArray("label", "toast") instance=ExtResource("3_g3eks")]
+pivot_offset = Vector2(288, 336)
+label = NodePath("../BoardMargin/HBoxContainer/Notif Panel/Label")
+toast = NodePath("../BoardMargin/HBoxContainer/Notif Panel")
 
-[node name="HBoxContainer" parent="GameLayer/Game/BoardMargin" index="0"]
+[node name="BoardMargin" type="MarginContainer" parent="GameLayer"]
 visible = false
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -96.0
+offset_bottom = -8.0
+grow_horizontal = 2
+scale = Vector2(1.02, 1.02)
+pivot_offset = Vector2(288, 44)
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("1_yqeox")
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameLayer/BoardMargin"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="PauseButton" type="Button" parent="GameLayer/BoardMargin/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+icon = ExtResource("4_4ytvr")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("7_mj5lg")
+
+[node name="Notif Panel" type="Panel" parent="GameLayer/BoardMargin/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="GameLayer/BoardMargin/HBoxContainer/Notif Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game Over"
+label_settings = SubResource("LabelSettings_70i5f")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MenuLayer" type="CanvasLayer" parent="."]
 layer = 2
@@ -470,6 +646,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(288, 336)
 theme = ExtResource("1_yqeox")
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="MenuLayer/DifficultyPicker"]
@@ -521,6 +698,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_13sgg")
 }
 
+[connection signal="pressed" from="GameLayer/BoardMargin/HBoxContainer/PauseButton" to="GameLayer/BoardMargin/HBoxContainer/PauseButton" method="_on_pressed"]
 [connection signal="pressed" from="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/SettingsButton" to="." method="_on_settings_button_pressed"]
