@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://wxiagu8uy4w4"]
+[gd_scene load_steps=33 format=3 uid="uid://wxiagu8uy4w4"]
 
 [ext_resource type="Theme" uid="uid://bhmyomirsk6vr" path="res://interface/menu.tres" id="1_yqeox"]
 [ext_resource type="Script" uid="uid://xtopgpgymqh0" path="res://scripts/menu.gd" id="2_4ytvr"]
@@ -15,11 +15,68 @@
 [ext_resource type="Texture2D" uid="uid://pe3hx6mhd57l" path="res://interface/textures/PauseButton/PauseButton_Pressed.png" id="8_mxgkd"]
 [ext_resource type="Texture2D" uid="uid://cqeavkhghepvt" path="res://interface/textures/PauseButton/PauseButton_Hover.png" id="9_g6gyw"]
 [ext_resource type="Texture2D" uid="uid://vfjnytyscp85" path="res://interface/textures/Settings_TitleCard.png" id="11_ufwb2"]
+[ext_resource type="Script" uid="uid://c8ywq5j56nj1o" path="res://scripts/tile_size_picker.gd" id="16_mxgkd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_70i5f"]
 font_size = 44
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjb58"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7jp70"]
+content_margin_left = 12.0
+content_margin_right = 12.0
+bg_color = Color(0.94509804, 0.8, 0.8, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mxgkd"]
+content_margin_left = 12.0
+content_margin_right = 12.0
+bg_color = Color(0.7921569, 0.6627451, 0.6627451, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.2, 0.2, 0.2, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g6gyw"]
+content_margin_left = 12.0
+content_margin_right = 12.0
+bg_color = Color(0.94509804, 0.8, 0.8, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0.6392157, 0.6392157, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3dmrc"]
+content_margin_left = 12.0
+content_margin_right = 12.0
+bg_color = Color(0.94509804, 0.8, 0.8, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0.6392157, 0.6392157, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="Animation" id="Animation_4ytvr"]
 resource_name = "RESET"
@@ -576,6 +633,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 8.0
+offset_right = 6.0
+offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_yqeox")
@@ -783,40 +844,46 @@ theme_override_constants/separation = 12
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VolumeContainer" type="VBoxContainer" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="VolumeContainer" type="VBoxContainer" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
 alignment = 1
 
-[node name="Volume" type="Label" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VolumeContainer"]
+[node name="Volume" type="Label" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer"]
 layout_mode = 2
 theme_type_variation = &"HeaderSmall"
 text = "Volume:"
 
-[node name="Sliders" type="VBoxContainer" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VolumeContainer"]
+[node name="Sliders" type="VBoxContainer" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 2
 alignment = 1
 
-[node name="MusicLabel" type="Label" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VolumeContainer/Sliders"]
+[node name="MusicLabel" type="Label" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders"]
 layout_mode = 2
 theme_type_variation = &"TooltipLabel"
 text = "Music"
 
-[node name="MusicSlider" type="HBoxContainer" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VolumeContainer/Sliders"]
+[node name="MusicSlider" type="HBoxContainer" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders"]
 layout_mode = 2
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VolumeContainer/Sliders/MusicSlider"]
+[node name="TextureRect" type="TextureRect" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider"]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 texture = ExtResource("3_mhnvy")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="MusicVolume" type="HSlider" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VolumeContainer/Sliders/MusicSlider"]
+[node name="MusicVolume" type="HSlider" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -825,27 +892,27 @@ step = 0.05
 value = 1.0
 scrollable = false
 
-[node name="HSeparator" type="HSeparator" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VolumeContainer/Sliders"]
+[node name="HSeparator" type="HSeparator" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders"]
 layout_mode = 2
 theme_override_constants/separation = 8
 theme_override_styles/separator = SubResource("StyleBoxEmpty_vjb58")
 
-[node name="SFXLabel" type="Label" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VolumeContainer/Sliders"]
+[node name="SFXLabel" type="Label" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders"]
 layout_mode = 2
 theme_type_variation = &"TooltipLabel"
 text = "UI Sounds"
 
-[node name="SFXSlider" type="HBoxContainer" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VolumeContainer/Sliders"]
+[node name="SFXSlider" type="HBoxContainer" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VolumeContainer/Sliders/SFXSlider"]
+[node name="TextureRect" type="TextureRect" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider"]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 texture = ExtResource("4_4ytvr")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="SFXVolume" type="HSlider" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VolumeContainer/Sliders/SFXSlider"]
+[node name="SFXVolume" type="HSlider" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -853,6 +920,37 @@ max_value = 1.0
 step = 0.05
 value = 1.0
 scrollable = false
+
+[node name="TileSizeContainer" type="HBoxContainer" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileSizeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "Tile Size:"
+
+[node name="TileSizePicker" type="OptionButton" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileSizeContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_7jp70")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mxgkd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_g6gyw")
+theme_override_styles/focus = SubResource("StyleBoxFlat_3dmrc")
+selected = 0
+item_count = 5
+popup/item_0/text = "Fit to Screen"
+popup/item_0/id = 0
+popup/item_1/text = "Fit to Width"
+popup/item_1/id = 1
+popup/item_2/text = "Small"
+popup/item_2/id = 2
+popup/item_3/text = "Medium"
+popup/item_3/id = 3
+popup/item_4/text = "Large"
+popup/item_4/id = 4
+script = ExtResource("16_mxgkd")
 
 [node name="Button" type="Button" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
@@ -923,8 +1021,9 @@ libraries = {
 [connection signal="pressed" from="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/BackButton" to="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/BackButton" method="_on_pressed"]
-[connection signal="value_changed" from="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VolumeContainer/Sliders/MusicSlider/MusicVolume" to="." method="_on_music_volume_value_changed"]
-[connection signal="value_changed" from="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VolumeContainer/Sliders/SFXSlider/SFXVolume" to="." method="_on_sfx_volume_value_changed"]
+[connection signal="value_changed" from="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider/MusicVolume" to="." method="_on_music_volume_value_changed"]
+[connection signal="value_changed" from="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider/SFXVolume" to="." method="_on_sfx_volume_value_changed"]
+[connection signal="item_selected" from="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileSizeContainer/TileSizePicker" to="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileSizeContainer/TileSizePicker" method="_on_item_selected"]
 [connection signal="pressed" from="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MenuLayer/DifficultyPicker/AspectRatioContainer/PanelContainer/VBoxContainer/SimpleButton" to="." method="_on_difficulty_button_pressed" binds= [0]]
 [connection signal="pressed" from="MenuLayer/DifficultyPicker/AspectRatioContainer/PanelContainer/VBoxContainer/NormalButton" to="." method="_on_difficulty_button_pressed" binds= [1]]

@@ -24,4 +24,4 @@ var music_vol: float = 1.0
 var sfx_vol: float = 1.0
 
 func _ready() -> void:
-	tile_size = 1
+	tile_size = -1
