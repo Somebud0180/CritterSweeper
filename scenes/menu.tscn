@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://wxiagu8uy4w4"]
+[gd_scene load_steps=25 format=3 uid="uid://wxiagu8uy4w4"]
 
 [ext_resource type="Theme" uid="uid://bhmyomirsk6vr" path="res://interface/menu.tres" id="1_yqeox"]
 [ext_resource type="Script" uid="uid://xtopgpgymqh0" path="res://scripts/menu.gd" id="2_4ytvr"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bcgx7w16kxqp2" path="res://assets/sprites/foregrounds/Foreground0.png" id="5_mj5lg"]
 [ext_resource type="Script" uid="uid://dx1w2nxwnc5qs" path="res://scripts/pause_button.gd" id="7_mj5lg"]
 [ext_resource type="Script" uid="uid://d16hdx4moncic" path="res://scripts/back_button.gd" id="7_v86rl"]
+[ext_resource type="Texture2D" uid="uid://vfjnytyscp85" path="res://interface/textures/Settings_TitleCard.png" id="11_ufwb2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_70i5f"]
 font_size = 44
@@ -690,10 +691,10 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 64)
+custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 texture = ExtResource("2_vjb58")
-expand_mode = 5
+expand_mode = 3
 stretch_mode = 5
 
 [node name="HSeparator" type="HSeparator" parent="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer"]
@@ -747,15 +748,26 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 64)
+[node name="BackButton" type="Button" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(44, 44)
 layout_mode = 2
-texture = ExtResource("2_vjb58")
-expand_mode = 5
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+script = ExtResource("7_v86rl")
+current_menu = "settings"
+previous_menu = "main"
+
+[node name="TextureRect" type="TextureRect" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+texture = ExtResource("11_ufwb2")
+expand_mode = 3
 stretch_mode = 5
 
 [node name="HSeparator" type="HSeparator" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 12
 
 [node name="Button Container" type="ScrollContainer" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
@@ -836,16 +848,6 @@ scrollable = false
 layout_mode = 2
 text = "Return"
 
-[node name="BackButton" type="Button" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer"]
-custom_minimum_size = Vector2(44, 44)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-mouse_default_cursor_shape = 2
-script = ExtResource("7_v86rl")
-current_menu = "settings"
-previous_menu = "main"
-
 [node name="DifficultyPicker" type="MarginContainer" parent="MenuLayer"]
 visible = false
 modulate = Color(1, 1, 1, 0)
@@ -910,10 +912,10 @@ libraries = {
 [connection signal="pressed" from="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/BackButton" to="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/BackButton" method="_on_pressed"]
 [connection signal="value_changed" from="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VolumeContainer/Sliders/MusicSlider/MusicVolume" to="." method="_on_music_volume_value_changed"]
 [connection signal="value_changed" from="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VolumeContainer/Sliders/SFXSlider/SFXVolume" to="." method="_on_sfx_volume_value_changed"]
 [connection signal="pressed" from="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MenuLayer/Settings/AspectRatioContainer/PanelContainer/BackButton" to="MenuLayer/Settings/AspectRatioContainer/PanelContainer/BackButton" method="_on_pressed"]
 [connection signal="pressed" from="MenuLayer/DifficultyPicker/AspectRatioContainer/PanelContainer/VBoxContainer/SimpleButton" to="." method="_on_difficulty_button_pressed" binds= [0]]
 [connection signal="pressed" from="MenuLayer/DifficultyPicker/AspectRatioContainer/PanelContainer/VBoxContainer/NormalButton" to="." method="_on_difficulty_button_pressed" binds= [1]]
 [connection signal="pressed" from="MenuLayer/DifficultyPicker/AspectRatioContainer/PanelContainer/VBoxContainer/DifficultButton" to="." method="_on_difficulty_button_pressed" binds= [2]]
