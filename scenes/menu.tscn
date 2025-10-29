@@ -81,11 +81,11 @@ corner_radius_bottom_left = 8
 [sub_resource type="Animation" id="Animation_4ytvr"]
 resource_name = "RESET"
 length = 0.001
-step = 0.01
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MenuLayer/MainMenu:visible")
+tracks/0/path = NodePath("MenuLayer/MainMenuContainer:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -97,7 +97,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MenuLayer/Settings:visible")
+tracks/1/path = NodePath("MenuLayer/SettingsContainer:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -109,7 +109,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MenuLayer/DifficultyPicker:visible")
+tracks/2/path = NodePath("MenuLayer/DifficultyPickerContainer:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -133,7 +133,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("MenuLayer/DifficultyPicker:modulate")
+tracks/4/path = NodePath("MenuLayer/DifficultyPickerContainer:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -145,7 +145,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("MenuLayer/DifficultyPicker:scale")
+tracks/5/path = NodePath("MenuLayer/DifficultyPickerContainer:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -181,7 +181,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("MenuLayer/Settings:modulate")
+tracks/8/path = NodePath("MenuLayer/SettingsContainer:modulate")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -193,7 +193,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("MenuLayer/Settings:scale")
+tracks/9/path = NodePath("MenuLayer/SettingsContainer:scale")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -205,7 +205,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("MenuLayer/MainMenu:scale")
+tracks/10/path = NodePath("MenuLayer/MainMenuContainer:scale")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -217,7 +217,7 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("MenuLayer/MainMenu:modulate")
+tracks/11/path = NodePath("MenuLayer/MainMenuContainer:modulate")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -229,14 +229,26 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("MenuLayer/DifficultyPicker:position")
+tracks/12/path = NodePath("MenuLayer/DifficultyPickerContainer:anchor_bottom")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [1.0]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("MenuLayer/SettingsContainer:anchor_bottom")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
 }
 
 [sub_resource type="Animation" id="Animation_70i5f"]
@@ -246,7 +258,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MenuLayer/DifficultyPicker:visible")
+tracks/0/path = NodePath("MenuLayer/DifficultyPickerContainer:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -258,7 +270,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MenuLayer/DifficultyPicker:modulate")
+tracks/1/path = NodePath("MenuLayer/DifficultyPickerContainer:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -270,7 +282,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MenuLayer/DifficultyPicker:scale")
+tracks/2/path = NodePath("MenuLayer/DifficultyPickerContainer:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -282,14 +294,14 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("MenuLayer/DifficultyPicker:position")
+tracks/3/path = NodePath("MenuLayer/DifficultyPickerContainer:anchor_bottom")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0.05, 0.25),
 "transitions": PackedFloat32Array(2, 2),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, 32)]
+"values": [1.0, 1.1]
 }
 
 [sub_resource type="Animation" id="Animation_6cdou"]
@@ -340,7 +352,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MenuLayer/MainMenu:visible")
+tracks/0/path = NodePath("MenuLayer/MainMenuContainer:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -352,7 +364,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MenuLayer/MainMenu:scale")
+tracks/1/path = NodePath("MenuLayer/MainMenuContainer:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -364,7 +376,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MenuLayer/MainMenu:modulate")
+tracks/2/path = NodePath("MenuLayer/MainMenuContainer:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -376,12 +388,12 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_i6lef"]
 resource_name = "hide_settings"
-length = 0.5
+length = 0.25
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MenuLayer/Settings:visible")
+tracks/0/path = NodePath("MenuLayer/SettingsContainer:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -393,7 +405,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MenuLayer/Settings:modulate")
+tracks/1/path = NodePath("MenuLayer/SettingsContainer:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -405,7 +417,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MenuLayer/Settings:scale")
+tracks/2/path = NodePath("MenuLayer/SettingsContainer:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -417,14 +429,14 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("MenuLayer/Settings:position")
+tracks/3/path = NodePath("MenuLayer/SettingsContainer:anchor_bottom")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.049999997, 0.2),
+"times": PackedFloat32Array(0.05, 0.25),
 "transitions": PackedFloat32Array(2, 2),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, 32)]
+"values": [1.0, 1.1]
 }
 
 [sub_resource type="Animation" id="Animation_g3eks"]
@@ -434,7 +446,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MenuLayer/DifficultyPicker:visible")
+tracks/0/path = NodePath("MenuLayer/DifficultyPickerContainer:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -446,7 +458,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MenuLayer/DifficultyPicker:modulate")
+tracks/1/path = NodePath("MenuLayer/DifficultyPickerContainer:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -458,7 +470,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MenuLayer/DifficultyPicker:scale")
+tracks/2/path = NodePath("MenuLayer/DifficultyPickerContainer:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -470,14 +482,14 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("MenuLayer/DifficultyPicker:position")
+tracks/3/path = NodePath("MenuLayer/DifficultyPickerContainer:anchor_bottom")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(2, 2),
+"transitions": PackedFloat32Array(0.5, 0.5),
 "update": 0,
-"values": [Vector2(0, 32), Vector2(0, 0)]
+"values": [1.1, 1.0]
 }
 
 [sub_resource type="Animation" id="Animation_mj5lg"]
@@ -528,7 +540,7 @@ step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MenuLayer/MainMenu:visible")
+tracks/0/path = NodePath("MenuLayer/MainMenuContainer:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -540,7 +552,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MenuLayer/MainMenu:scale")
+tracks/1/path = NodePath("MenuLayer/MainMenuContainer:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -552,7 +564,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MenuLayer/MainMenu:modulate")
+tracks/2/path = NodePath("MenuLayer/MainMenuContainer:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -569,7 +581,7 @@ step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MenuLayer/Settings:visible")
+tracks/0/path = NodePath("MenuLayer/SettingsContainer:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -581,7 +593,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MenuLayer/Settings:modulate")
+tracks/1/path = NodePath("MenuLayer/SettingsContainer:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -593,7 +605,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MenuLayer/Settings:scale")
+tracks/2/path = NodePath("MenuLayer/SettingsContainer:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -605,14 +617,14 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("MenuLayer/Settings:position")
+tracks/3/path = NodePath("MenuLayer/SettingsContainer:anchor_bottom")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(2, 2),
+"transitions": PackedFloat32Array(0.5, 0.5),
 "update": 0,
-"values": [Vector2(0, 32), Vector2(0, 0)]
+"values": [1.1, 1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_13sgg"]
@@ -642,8 +654,8 @@ grow_vertical = 2
 theme = ExtResource("1_yqeox")
 script = ExtResource("2_4ytvr")
 animation_player = NodePath("AnimationPlayer")
-resume_button = NodePath("MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/ResumeButton")
-start_button = NodePath("MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/StartButton")
+resume_button = NodePath("MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer/Button Container/ResumeButton")
+start_button = NodePath("MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer/Button Container/StartButton")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 0
@@ -742,41 +754,42 @@ vertical_alignment = 1
 [node name="MenuLayer" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="MainMenu" type="MarginContainer" parent="MenuLayer"]
-anchors_preset = 15
+[node name="MainMenuContainer" type="AspectRatioContainer" parent="MenuLayer"]
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(288, 336)
 theme = ExtResource("1_yqeox")
-
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MenuLayer/MainMenu"]
-layout_mode = 2
 ratio = 0.8
 
-[node name="PanelContainer" type="PanelContainer" parent="MenuLayer/MainMenu/AspectRatioContainer"]
+[node name="MainMenu" type="MarginContainer" parent="MenuLayer/MainMenuContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuLayer/MainMenuContainer/MainMenu"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/MainMenuContainer/MainMenu/PanelContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 texture = ExtResource("2_vjb58")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="HSeparator" type="HSeparator" parent="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Button Container" type="VBoxContainer" parent="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer"]
+[node name="Button Container" type="VBoxContainer" parent="MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="ResumeButton" type="Button" parent="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container"]
+[node name="ResumeButton" type="Button" parent="MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer/Button Container"]
 visible = false
 custom_minimum_size = Vector2(256, 32)
 layout_mode = 2
@@ -784,42 +797,43 @@ size_flags_vertical = 8
 mouse_default_cursor_shape = 2
 text = "Resume Game"
 
-[node name="StartButton" type="Button" parent="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container"]
+[node name="StartButton" type="Button" parent="MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer/Button Container"]
 custom_minimum_size = Vector2(256, 32)
 layout_mode = 2
 size_flags_vertical = 8
 mouse_default_cursor_shape = 2
 text = "Start Game"
 
-[node name="SettingsButton" type="Button" parent="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container"]
+[node name="SettingsButton" type="Button" parent="MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer/Button Container"]
 custom_minimum_size = Vector2(256, 32)
 layout_mode = 2
 size_flags_vertical = 8
 mouse_default_cursor_shape = 2
 text = "Settings"
 
-[node name="Settings" type="MarginContainer" parent="MenuLayer"]
+[node name="SettingsContainer" type="AspectRatioContainer" parent="MenuLayer"]
 visible = false
 modulate = Color(1, 1, 1, 0)
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(288, 336)
 theme = ExtResource("1_yqeox")
-
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MenuLayer/Settings"]
-layout_mode = 2
 ratio = 0.8
 
-[node name="PanelContainer" type="PanelContainer" parent="MenuLayer/Settings/AspectRatioContainer"]
+[node name="Settings" type="MarginContainer" parent="MenuLayer/SettingsContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuLayer/SettingsContainer/Settings"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer"]
 layout_mode = 2
 
-[node name="BackButton" type="Button" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer"]
+[node name="BackButton" type="Button" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(44, 44)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -829,61 +843,61 @@ script = ExtResource("7_v86rl")
 current_menu = "settings"
 previous_menu = "main"
 
-[node name="TextureRect" type="TextureRect" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 texture = ExtResource("11_ufwb2")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="HSeparator" type="HSeparator" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Button Container" type="ScrollContainer" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer"]
+[node name="Button Container" type="ScrollContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 12
 
-[node name="VolumeContainer" type="VBoxContainer" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer"]
+[node name="VolumeContainer" type="VBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 alignment = 1
 
-[node name="Volume" type="Label" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer"]
+[node name="Volume" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer"]
 layout_mode = 2
 theme_type_variation = &"HeaderSmall"
 text = "Volume:"
 
-[node name="Sliders" type="VBoxContainer" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer"]
+[node name="Sliders" type="VBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 2
 alignment = 1
 
-[node name="MusicLabel" type="Label" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders"]
+[node name="MusicLabel" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders"]
 layout_mode = 2
 theme_type_variation = &"TooltipLabel"
 text = "Music"
 
-[node name="MusicSlider" type="HBoxContainer" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders"]
+[node name="MusicSlider" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders"]
 layout_mode = 2
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider"]
+[node name="TextureRect" type="TextureRect" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider"]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 texture = ExtResource("3_mhnvy")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="MusicVolume" type="HSlider" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider"]
+[node name="MusicVolume" type="HSlider" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -892,27 +906,27 @@ step = 0.05
 value = 1.0
 scrollable = false
 
-[node name="HSeparator" type="HSeparator" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders"]
+[node name="HSeparator" type="HSeparator" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders"]
 layout_mode = 2
 theme_override_constants/separation = 8
 theme_override_styles/separator = SubResource("StyleBoxEmpty_vjb58")
 
-[node name="SFXLabel" type="Label" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders"]
+[node name="SFXLabel" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders"]
 layout_mode = 2
 theme_type_variation = &"TooltipLabel"
 text = "UI Sounds"
 
-[node name="SFXSlider" type="HBoxContainer" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders"]
+[node name="SFXSlider" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider"]
+[node name="TextureRect" type="TextureRect" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider"]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 texture = ExtResource("4_4ytvr")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="SFXVolume" type="HSlider" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider"]
+[node name="SFXVolume" type="HSlider" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -921,17 +935,17 @@ step = 0.05
 value = 1.0
 scrollable = false
 
-[node name="TileSizeContainer" type="HBoxContainer" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer"]
+[node name="TileSizeContainer" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer"]
 custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileSizeContainer"]
+[node name="Label" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileSizeContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
 text = "Tile Size:"
 
-[node name="TileSizePicker" type="OptionButton" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileSizeContainer"]
+[node name="TileSizePicker" type="OptionButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileSizeContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_7jp70")
@@ -952,32 +966,35 @@ popup/item_4/text = "Large"
 popup/item_4/id = 4
 script = ExtResource("16_mxgkd")
 
-[node name="Button" type="Button" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Return"
 
-[node name="DifficultyPicker" type="MarginContainer" parent="MenuLayer"]
+[node name="DifficultyPickerContainer" type="AspectRatioContainer" parent="MenuLayer"]
 visible = false
 modulate = Color(1, 1, 1, 0)
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(288, 336)
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme = ExtResource("1_yqeox")
+ratio = 0.8
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MenuLayer/DifficultyPicker"]
+[node name="DifficultyPicker" type="MarginContainer" parent="MenuLayer/DifficultyPickerContainer"]
 layout_mode = 2
-ratio = 1.4
+mouse_filter = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="MenuLayer/DifficultyPicker/AspectRatioContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/DifficultyPicker/AspectRatioContainer/PanelContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MenuLayer/DifficultyPicker/AspectRatioContainer/PanelContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 size_flags_vertical = 6
@@ -986,22 +1003,22 @@ text = "Pick a difficulty"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="MenuLayer/DifficultyPicker/AspectRatioContainer/PanelContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="SimpleButton" type="Button" parent="MenuLayer/DifficultyPicker/AspectRatioContainer/PanelContainer/VBoxContainer"]
+[node name="SimpleButton" type="Button" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Simple (9x9 Tiles)"
 
-[node name="NormalButton" type="Button" parent="MenuLayer/DifficultyPicker/AspectRatioContainer/PanelContainer/VBoxContainer"]
+[node name="NormalButton" type="Button" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Normal  (16x16 Tiles)"
 
-[node name="DifficultButton" type="Button" parent="MenuLayer/DifficultyPicker/AspectRatioContainer/PanelContainer/VBoxContainer"]
+[node name="DifficultButton" type="Button" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Difficult (30x16 Tiles)"
 
-[node name="BackButton" type="Button" parent="MenuLayer/DifficultyPicker/AspectRatioContainer/PanelContainer"]
+[node name="BackButton" type="Button" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/PanelContainer"]
 custom_minimum_size = Vector2(44, 44)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -1017,15 +1034,15 @@ libraries = {
 }
 
 [connection signal="pressed" from="GameLayer/GameOverlay/HBoxContainer/PauseButton" to="GameLayer/GameOverlay/HBoxContainer/PauseButton" method="_on_pressed"]
-[connection signal="pressed" from="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/ResumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/BackButton" to="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/BackButton" method="_on_pressed"]
-[connection signal="value_changed" from="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider/MusicVolume" to="." method="_on_music_volume_value_changed"]
-[connection signal="value_changed" from="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider/SFXVolume" to="." method="_on_sfx_volume_value_changed"]
-[connection signal="item_selected" from="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileSizeContainer/TileSizePicker" to="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileSizeContainer/TileSizePicker" method="_on_item_selected"]
-[connection signal="pressed" from="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MenuLayer/DifficultyPicker/AspectRatioContainer/PanelContainer/VBoxContainer/SimpleButton" to="." method="_on_difficulty_button_pressed" binds= [0]]
-[connection signal="pressed" from="MenuLayer/DifficultyPicker/AspectRatioContainer/PanelContainer/VBoxContainer/NormalButton" to="." method="_on_difficulty_button_pressed" binds= [1]]
-[connection signal="pressed" from="MenuLayer/DifficultyPicker/AspectRatioContainer/PanelContainer/VBoxContainer/DifficultButton" to="." method="_on_difficulty_button_pressed" binds= [2]]
-[connection signal="pressed" from="MenuLayer/DifficultyPicker/AspectRatioContainer/PanelContainer/BackButton" to="MenuLayer/DifficultyPicker/AspectRatioContainer/PanelContainer/BackButton" method="_on_pressed"]
+[connection signal="pressed" from="MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer/Button Container/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer/Button Container/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer/Button Container/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/BackButton" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/BackButton" method="_on_pressed"]
+[connection signal="value_changed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider/MusicVolume" to="." method="_on_music_volume_value_changed"]
+[connection signal="value_changed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider/SFXVolume" to="." method="_on_sfx_volume_value_changed"]
+[connection signal="item_selected" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileSizeContainer/TileSizePicker" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileSizeContainer/TileSizePicker" method="_on_item_selected"]
+[connection signal="pressed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/PanelContainer/VBoxContainer/SimpleButton" to="." method="_on_difficulty_button_pressed" binds= [0]]
+[connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/PanelContainer/VBoxContainer/NormalButton" to="." method="_on_difficulty_button_pressed" binds= [1]]
+[connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/PanelContainer/VBoxContainer/DifficultButton" to="." method="_on_difficulty_button_pressed" binds= [2]]
+[connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/PanelContainer/BackButton" to="MenuLayer/DifficultyPickerContainer/DifficultyPicker/PanelContainer/BackButton" method="_on_pressed"]
