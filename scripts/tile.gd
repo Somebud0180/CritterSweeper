@@ -11,8 +11,19 @@ func _ready() -> void:
 	texture_normal = texture_normal.duplicate()
 	set_tile_size()
 
-func set_tile_size() -> void:
-	custom_minimum_size = Vector2(Globals.TILE_SIZES[Globals.tile_size], Globals.TILE_SIZES[Globals.tile_size])
+func set_tile_size(custom_size: float = 0) -> void:
+	if custom_size != 0:
+		# Size specified by game.gd for dynamic sizing
+		custom_minimum_size = Vector2(custom_size, custom_size)
+	else:
+		var tile_size_setting = Globals.tile_size
+		# Don't set a size when using dynamic sizing (-1, 0)
+		if tile_size_setting <= 0:
+			return
+		else:
+			# Use predefined tile size
+			var custom_tile_size = Globals.TILE_SIZES[tile_size_setting]
+			custom_minimum_size = Vector2(custom_tile_size, custom_tile_size)
 
 func reveal_tile():
 	is_revealed = true

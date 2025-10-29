@@ -11,6 +11,8 @@ const TILE_SCENE = preload("res://scenes/tile.tscn")
 @export var toast: Panel
 @export var grid: GridContainer
 @export var grid_aspect: AspectRatioContainer
+@export var center_container: CenterContainer
+@export var scroll_container: ScrollContainer
 var tiles = [] # 2D array to store tile instances
 var first_click_done = false
 
@@ -48,6 +50,30 @@ func _on_restart_button_pressed() -> void:
 	first_click_done = false;
 	restart_game()
 
+func update_tile_sizes():
+	# Calculate dynamic tile size if needed
+	var tile_size_setting = Globals.tile_size
+	var calculated_tile_size: float = 0
+	
+	if tile_size_setting <= 0:
+		var viewport_size = center_container.size
+		
+		if tile_size_setting == -1:
+			# Fit to screen (both width and height)
+			var size_by_height = scroll_container.size.y / rows
+			calculated_tile_size = min(size_by_height, size_by_height)
+		else: # tile_size_setting == 0
+			# Fit to screen width only
+			calculated_tile_size = viewport_size.x / columns
+	
+	# Apply tile size to all existing tiles
+	for row in tiles:
+		for tile in row:
+			if calculated_tile_size > 0:
+				tile.set_tile_size(calculated_tile_size)
+			else:
+				tile.set_tile_size() # Use predefined size from Globals
+
 func create_grid():
 	for y in range(rows):
 		tiles.append([])
@@ -58,6 +84,7 @@ func create_grid():
 			tiles[y].append(tile)
 			grid.add_child(tile)
 	
+	update_tile_sizes()
 	calculate_adjacent_mines()
 
 func generate_mine_positions(first_click_position: Vector2i) -> Array:
