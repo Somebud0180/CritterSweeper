@@ -615,6 +615,7 @@ centered = false
 [node name="GameLayer" type="CanvasLayer" parent="."]
 
 [node name="Game" parent="GameLayer" node_paths=PackedStringArray("label", "toast") instance=ExtResource("3_g3eks")]
+anchors_preset = 15
 pivot_offset = Vector2(288, 336)
 size_flags_horizontal = 3
 size_flags_vertical = 3

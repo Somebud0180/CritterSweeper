@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/image="uid://xx3cd5k8ocov"
 config/icon="uid://xx3cd5k8ocov"
 
+[autoload]
+
+Globals="*res://scripts/globals.gd"
+
 [display]
 
 window/size/viewport_width=576
@@ -32,6 +36,7 @@ enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 
 AnimationPlayer=""
 MainScreen=""
+Tiles=""
 
 [rendering]
 

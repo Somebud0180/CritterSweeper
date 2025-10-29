@@ -9,6 +9,10 @@ var tile_size: Vector2 = Vector2(32, 32)
 
 func _ready() -> void:
 	texture_normal = texture_normal.duplicate()
+	set_tile_size()
+
+func set_tile_size() -> void:
+	custom_minimum_size = Vector2(Globals.TILE_SIZES[Globals.tile_size], Globals.TILE_SIZES[Globals.tile_size])
 
 func reveal_tile():
 	is_revealed = true

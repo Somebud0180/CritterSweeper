@@ -7,7 +7,7 @@
 atlas = ExtResource("1_ywnoi")
 region = Rect2(0, 0, 32, 32)
 
-[node name="Tile" type="TextureButton"]
+[node name="Tile" type="TextureButton" groups=["Tiles"]]
 custom_minimum_size = Vector2(44, 44)
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,7 +20,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_default_cursor_shape = 2
 texture_normal = SubResource("AtlasTexture_0wfyh")
-stretch_mode = 4
+stretch_mode = 6
 script = ExtResource("2_jy7pm")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
