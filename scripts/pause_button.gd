@@ -1,4 +1,4 @@
-extends Button
+extends TextureButton
 
 func _on_pressed() -> void:
 	var main_screen = get_tree().root.get_node_or_null("MainScreen")

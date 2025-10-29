@@ -1,16 +1,19 @@
-[gd_scene load_steps=25 format=3 uid="uid://wxiagu8uy4w4"]
+[gd_scene load_steps=28 format=3 uid="uid://wxiagu8uy4w4"]
 
 [ext_resource type="Theme" uid="uid://bhmyomirsk6vr" path="res://interface/menu.tres" id="1_yqeox"]
 [ext_resource type="Script" uid="uid://xtopgpgymqh0" path="res://scripts/menu.gd" id="2_4ytvr"]
 [ext_resource type="Texture2D" uid="uid://8mi331kcfci" path="res://interface/textures/CritterSweeper.png" id="2_vjb58"]
-[ext_resource type="PackedScene" uid="uid://mgkqrayegu0x" path="res://scenes/main.tscn" id="3_g3eks"]
+[ext_resource type="PackedScene" uid="uid://mgkqrayegu0x" path="res://scenes/game.tscn" id="3_g3eks"]
 [ext_resource type="Texture2D" uid="uid://bco4bjasej7ri" path="res://interface/textures/MusicSound.png" id="3_mhnvy"]
 [ext_resource type="Texture2D" uid="uid://rqimlliym8t8" path="res://interface/textures/UISound.png" id="4_4ytvr"]
 [ext_resource type="Script" uid="uid://cm8rqrm54087" path="res://scripts/parallax_randomizer.gd" id="4_mj5lg"]
 [ext_resource type="Texture2D" uid="uid://dpvdd4jyhas1v" path="res://assets/sprites/backgrounds/Background0.png" id="4_ufwb2"]
 [ext_resource type="Texture2D" uid="uid://bcgx7w16kxqp2" path="res://assets/sprites/foregrounds/Foreground0.png" id="5_mj5lg"]
+[ext_resource type="Texture2D" uid="uid://cp227g2cag6co" path="res://interface/textures/PauseButton/PauseButton_Norm.png" id="7_7jp70"]
 [ext_resource type="Script" uid="uid://dx1w2nxwnc5qs" path="res://scripts/pause_button.gd" id="7_mj5lg"]
 [ext_resource type="Script" uid="uid://d16hdx4moncic" path="res://scripts/back_button.gd" id="7_v86rl"]
+[ext_resource type="Texture2D" uid="uid://pe3hx6mhd57l" path="res://interface/textures/PauseButton/PauseButton_Pressed.png" id="8_mxgkd"]
+[ext_resource type="Texture2D" uid="uid://cqeavkhghepvt" path="res://interface/textures/PauseButton/PauseButton_Hover.png" id="9_g6gyw"]
 [ext_resource type="Texture2D" uid="uid://vfjnytyscp85" path="res://interface/textures/Settings_TitleCard.png" id="11_ufwb2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_70i5f"]
@@ -61,7 +64,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("GameLayer/BoardMargin:visible")
+tracks/3/path = NodePath("GameLayer/GameOverlay:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -97,7 +100,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("GameLayer/BoardMargin:position")
+tracks/6/path = NodePath("GameLayer/GameOverlay:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -109,7 +112,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("GameLayer/BoardMargin:scale")
+tracks/7/path = NodePath("GameLayer/GameOverlay:scale")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -239,7 +242,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("GameLayer/BoardMargin:visible")
+tracks/0/path = NodePath("GameLayer/GameOverlay:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -251,7 +254,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("GameLayer/BoardMargin:position")
+tracks/1/path = NodePath("GameLayer/GameOverlay:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -263,7 +266,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("GameLayer/BoardMargin:scale")
+tracks/2/path = NodePath("GameLayer/GameOverlay:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -427,7 +430,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("GameLayer/BoardMargin:visible")
+tracks/0/path = NodePath("GameLayer/GameOverlay:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -439,7 +442,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("GameLayer/BoardMargin:position")
+tracks/1/path = NodePath("GameLayer/GameOverlay:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -451,7 +454,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("GameLayer/BoardMargin:scale")
+tracks/2/path = NodePath("GameLayer/GameOverlay:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -613,15 +616,17 @@ centered = false
 
 [node name="Game" parent="GameLayer" node_paths=PackedStringArray("label", "toast") instance=ExtResource("3_g3eks")]
 pivot_offset = Vector2(288, 336)
-label = NodePath("../BoardMargin/HBoxContainer/Notif Panel/Label")
-toast = NodePath("../BoardMargin/HBoxContainer/Notif Panel")
+size_flags_horizontal = 3
+size_flags_vertical = 3
+label = NodePath("../GameOverlay/HBoxContainer/Notif Panel/Label")
+toast = NodePath("../GameOverlay/HBoxContainer/Notif Panel")
 
-[node name="BoardMargin" type="MarginContainer" parent="GameLayer"]
+[node name="GameOverlay" type="MarginContainer" parent="GameLayer"]
 visible = false
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = -96.0
-offset_bottom = -8.0
+offset_bottom = 184.0
 grow_horizontal = 2
 scale = Vector2(1.02, 1.02)
 pivot_offset = Vector2(288, 44)
@@ -633,29 +638,30 @@ theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GameLayer/BoardMargin"]
-custom_minimum_size = Vector2(0, 64)
+[node name="HBoxContainer" type="HBoxContainer" parent="GameLayer/GameOverlay"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="PauseButton" type="Button" parent="GameLayer/BoardMargin/HBoxContainer"]
-custom_minimum_size = Vector2(64, 64)
+[node name="PauseButton" type="TextureButton" parent="GameLayer/GameOverlay/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-size_flags_vertical = 0
+size_flags_horizontal = 0
 mouse_default_cursor_shape = 2
-icon = ExtResource("4_4ytvr")
-icon_alignment = 1
-expand_icon = true
+texture_normal = ExtResource("7_7jp70")
+texture_pressed = ExtResource("8_mxgkd")
+texture_hover = ExtResource("9_g6gyw")
+texture_focused = ExtResource("9_g6gyw")
 script = ExtResource("7_mj5lg")
 
-[node name="Notif Panel" type="Panel" parent="GameLayer/BoardMargin/HBoxContainer"]
+[node name="Notif Panel" type="Panel" parent="GameLayer/GameOverlay/HBoxContainer"]
 visible = false
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
-[node name="Label" type="Label" parent="GameLayer/BoardMargin/HBoxContainer/Notif Panel"]
+[node name="Label" type="Label" parent="GameLayer/GameOverlay/HBoxContainer/Notif Panel"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -694,7 +700,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 texture = ExtResource("2_vjb58")
-expand_mode = 3
+expand_mode = 5
 stretch_mode = 5
 
 [node name="HSeparator" type="HSeparator" parent="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer"]
@@ -787,7 +793,7 @@ text = "Volume:"
 [node name="Sliders" type="VBoxContainer" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VolumeContainer"]
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_constants/separation = 4
+theme_override_constants/separation = 2
 alignment = 1
 
 [node name="MusicLabel" type="Label" parent="MenuLayer/Settings/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/VolumeContainer/Sliders"]
@@ -908,7 +914,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_13sgg")
 }
 
-[connection signal="pressed" from="GameLayer/BoardMargin/HBoxContainer/PauseButton" to="GameLayer/BoardMargin/HBoxContainer/PauseButton" method="_on_pressed"]
+[connection signal="pressed" from="GameLayer/GameOverlay/HBoxContainer/PauseButton" to="GameLayer/GameOverlay/HBoxContainer/PauseButton" method="_on_pressed"]
 [connection signal="pressed" from="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MenuLayer/MainMenu/AspectRatioContainer/PanelContainer/VBoxContainer/Button Container/SettingsButton" to="." method="_on_settings_button_pressed"]
