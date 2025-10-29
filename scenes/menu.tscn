@@ -986,6 +986,7 @@ ratio = 0.8
 
 [node name="DifficultyPicker" type="MarginContainer" parent="MenuLayer/DifficultyPickerContainer"]
 layout_mode = 2
+size_flags_vertical = 4
 mouse_filter = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker"]
