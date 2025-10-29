@@ -623,7 +623,7 @@ toast = NodePath("../GameOverlay/HBoxContainer/Notif Panel")
 
 [node name="GameOverlay" type="MarginContainer" parent="GameLayer"]
 visible = false
-anchors_preset = -1
+anchors_preset = 10
 anchor_right = 1.0
 offset_top = -96.0
 offset_bottom = -8.0
@@ -864,8 +864,6 @@ modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 32.0
-offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(288, 336)
@@ -932,5 +930,3 @@ libraries = {
 [connection signal="pressed" from="MenuLayer/DifficultyPicker/AspectRatioContainer/PanelContainer/VBoxContainer/NormalButton" to="." method="_on_difficulty_button_pressed" binds= [1]]
 [connection signal="pressed" from="MenuLayer/DifficultyPicker/AspectRatioContainer/PanelContainer/VBoxContainer/DifficultButton" to="." method="_on_difficulty_button_pressed" binds= [2]]
 [connection signal="pressed" from="MenuLayer/DifficultyPicker/AspectRatioContainer/PanelContainer/BackButton" to="MenuLayer/DifficultyPicker/AspectRatioContainer/PanelContainer/BackButton" method="_on_pressed"]
-
-[editable path="GameLayer/Game"]

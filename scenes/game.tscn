@@ -7,7 +7,7 @@
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 64.0
+offset_top = 96.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_0wfyh")
@@ -27,12 +27,10 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-mouse_filter = 2
 
 [node name="BoardAspect" type="AspectRatioContainer" parent="ScrollContainer/CenterContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+stretch_mode = 3
 
 [node name="Grid" type="GridContainer" parent="ScrollContainer/CenterContainer/BoardAspect"]
 layout_mode = 2
