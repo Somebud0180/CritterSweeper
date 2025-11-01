@@ -755,7 +755,7 @@ vertical_alignment = 1
 layer = 2
 
 [node name="MainMenuContainer" type="AspectRatioContainer" parent="MenuLayer"]
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -814,7 +814,7 @@ text = "Settings"
 [node name="SettingsContainer" type="AspectRatioContainer" parent="MenuLayer"]
 visible = false
 modulate = Color(1, 1, 1, 0)
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -973,7 +973,7 @@ text = "Return"
 [node name="DifficultyPickerContainer" type="AspectRatioContainer" parent="MenuLayer"]
 visible = false
 modulate = Color(1, 1, 1, 0)
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
