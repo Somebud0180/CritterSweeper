@@ -29,10 +29,14 @@ func set_tile_size(custom_size: float = 0) -> void:
 			custom_minimum_size = Vector2(custom_tile_size, custom_tile_size)
 			pivot_offset = Vector2(custom_tile_size/2, custom_tile_size/2)
 
-func reveal_tile():
+func reveal_tile(original_press: bool = false):
+	if is_revealed:
+		return
+	
 	is_revealed = true
 	if is_mine:
-		texture_normal.region = Rect2(Vector2(170, 0), tile_size)
+		print(original_press)
+		texture_normal.region = Rect2(Vector2(204, 0), tile_size) if original_press else Rect2(Vector2(170, 0), tile_size)
 	else:
 		var x_pos = (adjacent_mines -1) * 34
 		texture_normal.region = Rect2(Vector2(x_pos, 34), tile_size)
@@ -83,11 +87,38 @@ func toggle_flagging():
 	else:
 		texture_normal.region = Rect2(Vector2(0,0),tile_size)
 
+# Focus Animation
+func _on_focus_entered() -> void:
+	_enlarge_button()
+
+func _on_focus_exited() -> void:
+	_normalize_button()
+
+# Mouse Animation
+func _on_mouse_entered() -> void:
+	_enlarge_button()
+
+func _on_mouse_exited() -> void:
+	_normalize_button()
+
+# Button Press Animation
 func _on_button_down() -> void:
-	z_index += 1
-	$AnimationPlayer.play("press_down")
+	_press_button()
 
 func _on_button_up() -> void:
-	$AnimationPlayer.play("press_up")
+	_normalize_button()
+
+# Animations
+func _enlarge_button() -> void:
+	z_index += 1
+	$AnimationPlayer.play("hover")
+
+func _normalize_button() -> void:
+	$AnimationPlayer.play("normalize")
+	await $AnimationPlayer.animation_finished
+	z_index -= 1
+
+func _press_button() -> void:
+	$AnimationPlayer.play("press")
 	await $AnimationPlayer.animation_finished
 	z_index -= 1

@@ -15,6 +15,9 @@ const TILE_SCENE = preload("res://scenes/tile.tscn")
 var tiles = [] # 2D array to store tile instances
 var first_click_done = false
 
+func _ready() -> void:
+	get_tree().root.connect("size_changed", _on_viewport_size_changed)
+
 func start() -> void:
 	for child in grid.get_children():
 		child.queue_free()
@@ -39,6 +42,7 @@ func _on_tile_pressed(x: int, y: int):
 		calculate_adjacent_mines()
 	
 	if tile.is_mine:
+		tile.reveal_tile(true)
 		game_over()
 	else:
 		reveal_tile_and_neighbors(x, y)
@@ -180,3 +184,6 @@ func restart_game():
 	toast.visible = false
 	
 	create_grid()
+
+func _on_viewport_size_changed() -> void:
+	update_tile_sizes()

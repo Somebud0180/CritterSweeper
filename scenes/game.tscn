@@ -21,6 +21,7 @@ grid_aspect = NodePath("ScrollContainer/CenterContainer/BoardAspect")
 scroll_container = NodePath("ScrollContainer")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
+clip_contents = false
 layout_mode = 2
 horizontal_scroll_mode = 4
 vertical_scroll_mode = 4
