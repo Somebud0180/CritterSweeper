@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://wxiagu8uy4w4"]
+[gd_scene load_steps=42 format=3 uid="uid://wxiagu8uy4w4"]
 
 [ext_resource type="Theme" uid="uid://bhmyomirsk6vr" path="res://interface/menu.tres" id="1_yqeox"]
 [ext_resource type="Script" uid="uid://xtopgpgymqh0" path="res://scripts/menu.gd" id="2_4ytvr"]
@@ -15,10 +15,89 @@
 [ext_resource type="Texture2D" uid="uid://pe3hx6mhd57l" path="res://interface/textures/PauseButton/PauseButton_Pressed.png" id="8_mxgkd"]
 [ext_resource type="Texture2D" uid="uid://cqeavkhghepvt" path="res://interface/textures/PauseButton/PauseButton_Hover.png" id="9_g6gyw"]
 [ext_resource type="Texture2D" uid="uid://vfjnytyscp85" path="res://interface/textures/Settings_TitleCard.png" id="11_ufwb2"]
+[ext_resource type="Texture2D" uid="uid://c6f10arg2qu1a" path="res://interface/textures/ButtonTexture/Resume.png" id="12_81l6r"]
+[ext_resource type="Script" uid="uid://dbhl7y6g0pb5s" path="res://scripts/button_animation.gd" id="13_oi1it"]
+[ext_resource type="Texture2D" uid="uid://dx04omoqdkew8" path="res://interface/textures/ButtonTexture/NewGame.png" id="13_rsfmq"]
+[ext_resource type="Texture2D" uid="uid://dndsd2ke1gy78" path="res://interface/textures/ButtonTexture/Settings.png" id="14_oi1it"]
 [ext_resource type="Script" uid="uid://c8ywq5j56nj1o" path="res://scripts/tile_size_picker.gd" id="16_mxgkd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_70i5f"]
 font_size = 44
+
+[sub_resource type="Animation" id="Animation_jy7pm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_q7utx"]
+resource_name = "press_up"
+length = 0.1
+step = 0.05
+capture_included = true
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(0.5),
+"update": 2,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6p3j2"]
+length = 0.1
+capture_included = true
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(0.5),
+"update": 2,
+"values": [Vector2(0.9, 0.9)]
+}
+
+[sub_resource type="Animation" id="Animation_ywnoi"]
+resource_name = "press_down"
+length = 0.1
+step = 0.05
+capture_included = true
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.099999994),
+"transitions": PackedFloat32Array(0.5),
+"update": 2,
+"values": [Vector2(1.1, 1.1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6p3j2"]
+_data = {
+&"RESET": SubResource("Animation_jy7pm"),
+&"enlarge": SubResource("Animation_ywnoi"),
+&"normalize": SubResource("Animation_q7utx"),
+&"press": SubResource("Animation_6p3j2")
+}
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjb58"]
 
@@ -789,27 +868,51 @@ layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="ResumeButton" type="Button" parent="MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer/Button Container"]
+[node name="ResumeButton" type="TextureButton" parent="MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer/Button Container"]
 visible = false
-custom_minimum_size = Vector2(256, 32)
+custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
-size_flags_vertical = 8
+size_flags_vertical = 4
 mouse_default_cursor_shape = 2
-text = "Resume Game"
+texture_normal = ExtResource("12_81l6r")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("13_oi1it")
 
-[node name="StartButton" type="Button" parent="MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer/Button Container"]
-custom_minimum_size = Vector2(256, 32)
-layout_mode = 2
-size_flags_vertical = 8
-mouse_default_cursor_shape = 2
-text = "Start Game"
+[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer/Button Container/ResumeButton"]
+libraries = {
+&"": SubResource("AnimationLibrary_6p3j2")
+}
 
-[node name="SettingsButton" type="Button" parent="MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer/Button Container"]
-custom_minimum_size = Vector2(256, 32)
+[node name="StartButton" type="TextureButton" parent="MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer/Button Container"]
+custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
-size_flags_vertical = 8
+size_flags_vertical = 4
 mouse_default_cursor_shape = 2
-text = "Settings"
+texture_normal = ExtResource("13_rsfmq")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("13_oi1it")
+
+[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer/Button Container/StartButton"]
+libraries = {
+&"": SubResource("AnimationLibrary_6p3j2")
+}
+
+[node name="SettingsButton" type="TextureButton" parent="MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer/Button Container"]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("14_oi1it")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("13_oi1it")
+
+[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer/Button Container/SettingsButton"]
+libraries = {
+&"": SubResource("AnimationLibrary_6p3j2")
+}
 
 [node name="SettingsContainer" type="AspectRatioContainer" parent="MenuLayer"]
 visible = false

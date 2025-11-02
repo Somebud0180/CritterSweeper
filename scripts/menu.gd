@@ -1,8 +1,11 @@
 extends Control
 
 @export var animation_player: AnimationPlayer
-@export var resume_button: Button
-@export var start_button: Button
+@export var resume_button: TextureButton
+@export var start_button: TextureButton
+
+const new_game_btntext = preload("res://interface/textures/ButtonTexture/NewGame.png")
+const start_game_btntext = preload("res://interface/textures/ButtonTexture/StartGame.png")
 
 var in_game: bool:
 	get:
@@ -10,7 +13,7 @@ var in_game: bool:
 	set(value):
 		in_game = value
 		resume_button.visible = in_game
-		start_button.text = "New Game" if in_game else "Start Game"
+		start_button.texture_normal = new_game_btntext if in_game else start_game_btntext
 
 var music_vol: float = 1.0
 var sfx_vol: float = 1.0

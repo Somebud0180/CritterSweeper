@@ -111,7 +111,7 @@ func _on_button_up() -> void:
 # Animations
 func _enlarge_button() -> void:
 	z_index += 1
-	$AnimationPlayer.play("hover")
+	$AnimationPlayer.play("enlarge")
 
 func _normalize_button() -> void:
 	$AnimationPlayer.play("normalize")
