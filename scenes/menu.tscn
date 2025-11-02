@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://wxiagu8uy4w4"]
+[gd_scene load_steps=44 format=3 uid="uid://wxiagu8uy4w4"]
 
 [ext_resource type="Theme" uid="uid://bhmyomirsk6vr" path="res://interface/menu.tres" id="1_yqeox"]
 [ext_resource type="Script" uid="uid://xtopgpgymqh0" path="res://scripts/menu.gd" id="2_4ytvr"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://d16hdx4moncic" path="res://scripts/back_button.gd" id="7_v86rl"]
 [ext_resource type="Texture2D" uid="uid://pe3hx6mhd57l" path="res://interface/textures/PauseButton/PauseButton_Pressed.png" id="8_mxgkd"]
 [ext_resource type="Texture2D" uid="uid://cqeavkhghepvt" path="res://interface/textures/PauseButton/PauseButton_Hover.png" id="9_g6gyw"]
+[ext_resource type="Texture2D" uid="uid://vjrlaao8ex80" path="res://interface/textures/Fade.png" id="11_oi1it"]
 [ext_resource type="Texture2D" uid="uid://vfjnytyscp85" path="res://interface/textures/Settings_TitleCard.png" id="11_ufwb2"]
 [ext_resource type="Texture2D" uid="uid://c6f10arg2qu1a" path="res://interface/textures/ButtonTexture/Resume.png" id="12_81l6r"]
 [ext_resource type="Script" uid="uid://dbhl7y6g0pb5s" path="res://scripts/button_animation.gd" id="13_oi1it"]
@@ -23,6 +24,9 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_70i5f"]
 font_size = 44
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fy8yy"]
+texture = ExtResource("11_oi1it")
 
 [sub_resource type="Animation" id="Animation_jy7pm"]
 length = 0.001
@@ -164,19 +168,19 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MenuLayer/MainMenuContainer:visible")
+tracks/0/path = NodePath("MenuLayer/SettingsContainer:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MenuLayer/SettingsContainer:visible")
+tracks/1/path = NodePath("MenuLayer/DifficultyPickerContainer:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -188,7 +192,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MenuLayer/DifficultyPickerContainer:visible")
+tracks/2/path = NodePath("GameLayer/GameOverlay:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -200,98 +204,98 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("GameLayer/GameOverlay:visible")
+tracks/3/path = NodePath("MenuLayer/DifficultyPickerContainer:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("MenuLayer/DifficultyPickerContainer:modulate")
+tracks/4/path = NodePath("MenuLayer/DifficultyPickerContainer:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [Vector2(1, 1)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("MenuLayer/DifficultyPickerContainer:scale")
+tracks/5/path = NodePath("GameLayer/GameOverlay:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(0, -96)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("GameLayer/GameOverlay:position")
+tracks/6/path = NodePath("GameLayer/GameOverlay:scale")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -96)]
+"values": [Vector2(1.02, 1.02)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("GameLayer/GameOverlay:scale")
+tracks/7/path = NodePath("MenuLayer/SettingsContainer:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1.02, 1.02)]
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("MenuLayer/SettingsContainer:modulate")
+tracks/8/path = NodePath("MenuLayer/SettingsContainer:scale")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [Vector2(1, 1)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("MenuLayer/SettingsContainer:scale")
+tracks/9/path = NodePath("MenuLayer/DifficultyPickerContainer:anchor_bottom")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [1.0]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("MenuLayer/MainMenuContainer:scale")
+tracks/10/path = NodePath("MenuLayer/SettingsContainer:anchor_bottom")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [1.0]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
@@ -308,26 +312,14 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("MenuLayer/DifficultyPickerContainer:anchor_bottom")
+tracks/12/path = NodePath("MenuLayer/MainMenuContainer:visible")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("MenuLayer/SettingsContainer:anchor_bottom")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_70i5f"]
@@ -431,38 +423,26 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MenuLayer/MainMenuContainer:visible")
+tracks/0/path = NodePath("MenuLayer/MainMenuContainer:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
+"transitions": PackedFloat32Array(2, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MenuLayer/MainMenuContainer:scale")
+tracks/1/path = NodePath("MenuLayer/MainMenuContainer:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(0.5, 0.5),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0.9, 0.9)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("MenuLayer/MainMenuContainer:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(0.5, 0.5),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_i6lef"]
@@ -619,38 +599,26 @@ step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MenuLayer/MainMenuContainer:visible")
+tracks/0/path = NodePath("MenuLayer/MainMenuContainer:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, true]
+"times": PackedFloat32Array(0, 0.24),
+"transitions": PackedFloat32Array(2, 2),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MenuLayer/MainMenuContainer:scale")
+tracks/1/path = NodePath("MenuLayer/MainMenuContainer:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [Vector2(0.95, 0.95), Vector2(1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("MenuLayer/MainMenuContainer:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_v86rl"]
@@ -733,8 +701,8 @@ grow_vertical = 2
 theme = ExtResource("1_yqeox")
 script = ExtResource("2_4ytvr")
 animation_player = NodePath("AnimationPlayer")
-resume_button = NodePath("MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer/Button Container/ResumeButton")
-start_button = NodePath("MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer/Button Container/StartButton")
+resume_button = NodePath("MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/ResumeButton")
+start_button = NodePath("MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/StartButton")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 0
@@ -833,42 +801,46 @@ vertical_alignment = 1
 [node name="MenuLayer" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="MainMenuContainer" type="AspectRatioContainer" parent="MenuLayer"]
-anchors_preset = 15
+[node name="MainMenuContainer" type="PanelContainer" parent="MenuLayer"]
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -144.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(288, 336)
+mouse_filter = 1
 theme = ExtResource("1_yqeox")
-ratio = 0.8
+theme_override_styles/panel = SubResource("StyleBoxTexture_fy8yy")
 
 [node name="MainMenu" type="MarginContainer" parent="MenuLayer/MainMenuContainer"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="MenuLayer/MainMenuContainer/MainMenu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/MainMenuContainer/MainMenu"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/MainMenuContainer/MainMenu/PanelContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer"]
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 texture = ExtResource("2_vjb58")
-expand_mode = 5
-stretch_mode = 5
+expand_mode = 1
+stretch_mode = 4
 
-[node name="HSeparator" type="HSeparator" parent="MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer"]
-layout_mode = 2
+[node name="HSeparator" type="HSeparator" parent="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_right = 360.0
+offset_bottom = 12.0
+grow_vertical = 0
 
-[node name="Button Container" type="VBoxContainer" parent="MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer"]
+[node name="Button Container" type="VBoxContainer" parent="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="ResumeButton" type="TextureButton" parent="MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer/Button Container"]
+[node name="ResumeButton" type="TextureButton" parent="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container"]
 visible = false
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
@@ -876,40 +848,40 @@ size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("12_81l6r")
 ignore_texture_size = true
-stretch_mode = 5
+stretch_mode = 4
 script = ExtResource("13_oi1it")
 
-[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer/Button Container/ResumeButton"]
+[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/ResumeButton"]
 libraries = {
 &"": SubResource("AnimationLibrary_6p3j2")
 }
 
-[node name="StartButton" type="TextureButton" parent="MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer/Button Container"]
+[node name="StartButton" type="TextureButton" parent="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container"]
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("13_rsfmq")
 ignore_texture_size = true
-stretch_mode = 5
+stretch_mode = 4
 script = ExtResource("13_oi1it")
 
-[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer/Button Container/StartButton"]
+[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/StartButton"]
 libraries = {
 &"": SubResource("AnimationLibrary_6p3j2")
 }
 
-[node name="SettingsButton" type="TextureButton" parent="MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer/Button Container"]
+[node name="SettingsButton" type="TextureButton" parent="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container"]
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("14_oi1it")
 ignore_texture_size = true
-stretch_mode = 5
+stretch_mode = 4
 script = ExtResource("13_oi1it")
 
-[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer/Button Container/SettingsButton"]
+[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/SettingsButton"]
 libraries = {
 &"": SubResource("AnimationLibrary_6p3j2")
 }
@@ -1138,9 +1110,9 @@ libraries = {
 }
 
 [connection signal="pressed" from="GameLayer/GameOverlay/HBoxContainer/PauseButton" to="GameLayer/GameOverlay/HBoxContainer/PauseButton" method="_on_pressed"]
-[connection signal="pressed" from="MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer/Button Container/ResumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer/Button Container/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="MenuLayer/MainMenuContainer/MainMenu/PanelContainer/VBoxContainer/Button Container/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/BackButton" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/BackButton" method="_on_pressed"]
 [connection signal="value_changed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider/MusicVolume" to="." method="_on_music_volume_value_changed"]
 [connection signal="value_changed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider/SFXVolume" to="." method="_on_sfx_volume_value_changed"]

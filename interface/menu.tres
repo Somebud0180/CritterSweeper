@@ -43,7 +43,7 @@ axis_stretch_vertical = 2
 region_rect = Rect2(0, 0, 516, 100)
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_87gl6"]
-color = Color(0.7490196, 0.6745098, 0.7921569, 1)
+color = Color(0.8547833, 0.75756836, 0.90625, 1)
 thickness = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_87gl6"]
