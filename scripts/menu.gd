@@ -69,9 +69,28 @@ func _on_music_volume_value_changed(value: float) -> void:
 func _on_sfx_volume_value_changed(value: float) -> void:
 	sfx_vol = value
 
-func _on_flag_mode_value_changed() -> void:
-	if Globals.flag_mode == 0:
+func update_flag_mode() -> void:
+	# If Keyboard and Mouse, catch 
+	if Globals.input_type == 0:
+		if get_node_or_null("GameLayer/TileModeOverlay"):
+			%GameLayer/TileModeOverlay.free()
+		return
+	
+	if Globals.flag_mode == 0 and get_node_or_null("GameLayer/TileModeOverlay"):
+		animation_player.play("hide_flag_mode")
+		await animation_player.animation_finished
 		%GameLayer/TileModeOverlay.free()
-	elif Globals.flag_mode == 1:
+	elif Globals.flag_mode == 1 and !get_node_or_null("GameLayer/TileModeOverlay"):
 		var new_overlay = tile_mode_overlay.instantiate()
 		%GameLayer.add_child(new_overlay)
+		%GameLayer/TileModeOverlay.visible = false
+		animation_player.play("show_flag_mode")
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventScreenTouch:
+		Globals.input_type = 1
+	elif event is InputEventJoypadButton:
+		Globals.input_type = 2
+		print("Controller Detected")
+	else:
+		Globals.input_type = 0

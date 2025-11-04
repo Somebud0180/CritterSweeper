@@ -25,17 +25,22 @@ var music_vol: float = 1.0
 var sfx_vol: float = 1.0
 
 # Touch Controls
-var flag_mode: int:
+var flag_mode: int: # (Not on KBM) 0 - Hold to Flag; 1 - Flag Mode Sidebar
 	get:
 		return flag_mode
 	set(value):
 		value = mini(1, maxi(value, 0))
 		flag_mode = value
-		get_tree().get_first_node_in_group("MainScreen")._on_flag_mode_value_changed()
+		get_tree().get_first_node_in_group("MainScreen").update_flag_mode()
 
 # General
-var control_type: int = 0 # 0 - KB/M; 1 - Touch; 2 - Controller
+var input_type: int: # 0 - KBM; 1 - Touch; 2 - Controller
+	get:
+		return input_type
+	set(value):
+		input_type = value
+		get_tree().get_first_node_in_group("MainScreen").update_flag_mode() 
 
 func _ready() -> void:
 	tile_size = 0
-	flag_mode = 0
+	flag_mode = 1

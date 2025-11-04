@@ -4,3 +4,6 @@ extends OptionButton
 func _on_item_selected(index: int) -> void:
 	print(index)
 	Globals.set(globals_var_name, index) 
+
+func _ready() -> void:
+	selected = Globals.get(globals_var_name)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://wxiagu8uy4w4"]
+[gd_scene load_steps=47 format=3 uid="uid://wxiagu8uy4w4"]
 
 [ext_resource type="Theme" uid="uid://bhmyomirsk6vr" path="res://interface/menu.tres" id="1_yqeox"]
 [ext_resource type="Script" uid="uid://xtopgpgymqh0" path="res://scripts/menu.gd" id="2_4ytvr"]
@@ -423,10 +423,10 @@ tracks/0/path = NodePath("GameLayer/GameOverlay:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true, false]
+"values": [false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -471,10 +471,10 @@ tracks/4/path = NodePath("GameLayer/TileModeOverlay:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.1),
+"times": PackedFloat32Array(0.4),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -679,82 +679,94 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("GameLayer/GameOverlay:scale")
+tracks/1/path = NodePath("GameLayer/GameOverlay:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.25, 0.4),
-"transitions": PackedFloat32Array(2, 2),
-"update": 0,
-"values": [Vector2(1.02, 1.02), Vector2(1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("GameLayer/GameOverlay:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(0.5, 0.5),
-"update": 0,
-"values": [Vector2(0, -96), Vector2(0, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("GameLayer/TileModeOverlay:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("GameLayer/TileModeOverlay:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 2),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GameLayer/GameOverlay:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.25, 0.4),
+"transitions": PackedFloat32Array(2, 2),
+"update": 0,
+"values": [Vector2(1.02, 1.02), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GameLayer/GameOverlay:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(0, -96), Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GameLayer/TileModeOverlay:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("GameLayer/TileModeOverlay:scale")
+tracks/5/path = NodePath("GameLayer/TileModeOverlay:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("GameLayer/TileModeOverlay:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "times": PackedFloat32Array(0.25, 0.4),
 "transitions": PackedFloat32Array(-2, -2),
 "update": 0,
 "values": [Vector2(1.02, 1.02), Vector2(1, 1)]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("GameLayer/TileModeOverlay:offset_left")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("GameLayer/TileModeOverlay:offset_left")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(0.5, 0.5),
 "update": 0,
 "values": [96.0, 0.0]
 }
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("GameLayer/TileModeOverlay:offset_right")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("GameLayer/TileModeOverlay:offset_right")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(0.5, 0.5),
 "update": 0,
@@ -843,14 +855,146 @@ tracks/3/keys = {
 "values": [1.1, 1.0]
 }
 
+[sub_resource type="Animation" id="Animation_fy8yy"]
+resource_name = "hide_flag_mode"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameLayer/TileModeOverlay:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GameLayer/TileModeOverlay:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.099999994, 0.4),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GameLayer/TileModeOverlay:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.02, 1.02)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GameLayer/TileModeOverlay:offset_left")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 0.4),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [0.0, 96.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GameLayer/TileModeOverlay:offset_right")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1, 0.4),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [0.0, 96.0]
+}
+
+[sub_resource type="Animation" id="Animation_6wigr"]
+resource_name = "show_flag_mode"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameLayer/TileModeOverlay:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GameLayer/TileModeOverlay:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GameLayer/TileModeOverlay:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.25, 0.4),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(1.02, 1.02), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GameLayer/TileModeOverlay:offset_left")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [96.0, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GameLayer/TileModeOverlay:offset_right")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [96.0, 0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_13sgg"]
 _data = {
 &"RESET": SubResource("Animation_4ytvr"),
 &"hide_difficulty": SubResource("Animation_70i5f"),
+&"hide_flag_mode": SubResource("Animation_fy8yy"),
 &"hide_game": SubResource("Animation_6cdou"),
 &"hide_main": SubResource("Animation_13sgg"),
 &"hide_settings": SubResource("Animation_i6lef"),
 &"show_difficulty": SubResource("Animation_g3eks"),
+&"show_flag_mode": SubResource("Animation_6wigr"),
 &"show_game": SubResource("Animation_mj5lg"),
 &"show_main": SubResource("Animation_ufwb2"),
 &"show_settings": SubResource("Animation_v86rl")
@@ -937,7 +1081,6 @@ custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 2
-script = ExtResource("16_mxgkd")
 
 [node name="PauseButton" type="TextureButton" parent="GameLayer/GameOverlay/HBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
@@ -973,7 +1116,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TileModeOverlay" parent="GameLayer" instance=ExtResource("11_fy8yy")]
-script = ExtResource("16_mxgkd")
 
 [node name="MenuLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -1310,6 +1452,7 @@ current_menu = "difficulty"
 previous_menu = "main"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." groups=["AnimationPlayer"]]
+unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_13sgg")
 }
