@@ -24,7 +24,7 @@ var music_vol: float = 1.0
 var sfx_vol: float = 1.0
 
 # Touch Controls
-var flag_mode: int = 0 # 0 = Hold to flag; 1 = Flag Mode
+var flag_mode: int = 1 # 0 = Hold to flag; 1 = Flag Mode
 
 func _ready() -> void:
 	tile_size = -1

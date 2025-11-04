@@ -8,6 +8,7 @@ var adjacent_mines: int = 0
 var tile_size: Vector2 = Vector2(32, 32)
 var touch_held: bool = false
 var long_press_triggered: bool = false
+var flag_mode: bool = false
 
 func _ready() -> void:
 	texture_normal = texture_normal.duplicate()
@@ -45,20 +46,28 @@ func reveal_tile(original_press: bool = false):
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch and !disabled:
-		if event.pressed:
-			# Touch started - begin long press timer
-			touch_held = true
-			long_press_triggered = false
-			$Timer.start()
-		else:
-			# Touch released
-			$Timer.stop()
-			if touch_held and !long_press_triggered:
-				# Short tap - reveal tile
-				if !is_flagged:
+		match Globals.flag_mode:
+			0:
+				if event.pressed:
+					# Touch started - begin long press timer
+					touch_held = true
+					long_press_triggered = false
+					$Timer.start()
+				else:
+					# Touch released
+					$Timer.stop()
+					if touch_held and !long_press_triggered:
+						# Short tap - reveal tile
+						if !is_flagged:
+							emit_signal("tile_pressed")
+					touch_held = false
+					long_press_triggered = false
+			1:
+				if flag_mode and !is_revealed:
+					toggle_flagging()
+				elif not flag_mode and !is_flagged :
 					emit_signal("tile_pressed")
-			touch_held = false
-			long_press_triggered = false
+		
 		accept_event()
 		return
 
@@ -68,7 +77,9 @@ func _on_gui_input(event: InputEvent) -> void:
 			return
 		match event.button_index:
 			MOUSE_BUTTON_LEFT:
-				if !is_flagged:
+				if flag_mode and !is_revealed:
+					toggle_flagging()
+				elif not flag_mode and !is_flagged :
 					emit_signal("tile_pressed")
 			MOUSE_BUTTON_RIGHT:
 				if !is_revealed:

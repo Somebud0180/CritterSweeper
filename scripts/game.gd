@@ -14,8 +14,17 @@ const TILE_SCENE = preload("res://scenes/tile.tscn")
 @export var scroll_container: ScrollContainer
 var tiles = [] # 2D array to store tile instances
 var first_click_done = false
+var flag_mode:
+	get:
+		return flag_mode
+	set(value):
+		flag_mode = value
+		for row in tiles:
+			for tile in row:
+				tile.flag_mode = flag_mode
 
 func _ready() -> void:
+	flag_mode = false
 	get_tree().root.connect("size_changed", _on_viewport_size_changed)
 
 func start() -> void:
@@ -187,3 +196,9 @@ func restart_game():
 
 func _on_viewport_size_changed() -> void:
 	update_tile_sizes()
+
+func _on_reveal_mode_pressed() -> void:
+	flag_mode = false
+
+func _on_flag_mode_pressed() -> void:
+	flag_mode = true
