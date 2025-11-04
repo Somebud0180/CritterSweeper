@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://wxiagu8uy4w4"]
+[gd_scene load_steps=45 format=3 uid="uid://wxiagu8uy4w4"]
 
 [ext_resource type="Theme" uid="uid://bhmyomirsk6vr" path="res://interface/menu.tres" id="1_yqeox"]
 [ext_resource type="Script" uid="uid://xtopgpgymqh0" path="res://scripts/menu.gd" id="2_4ytvr"]
@@ -14,13 +14,14 @@
 [ext_resource type="Script" uid="uid://d16hdx4moncic" path="res://scripts/back_button.gd" id="7_v86rl"]
 [ext_resource type="Texture2D" uid="uid://pe3hx6mhd57l" path="res://interface/textures/PauseButton/PauseButton_Pressed.png" id="8_mxgkd"]
 [ext_resource type="Texture2D" uid="uid://cqeavkhghepvt" path="res://interface/textures/PauseButton/PauseButton_Hover.png" id="9_g6gyw"]
+[ext_resource type="PackedScene" uid="uid://chm2tu86wl8ae" path="res://scenes/tile_mode_overlay.tscn" id="11_fy8yy"]
 [ext_resource type="Texture2D" uid="uid://vjrlaao8ex80" path="res://interface/textures/Fade.png" id="11_oi1it"]
 [ext_resource type="Texture2D" uid="uid://vfjnytyscp85" path="res://interface/textures/Settings_TitleCard.png" id="11_ufwb2"]
 [ext_resource type="Texture2D" uid="uid://c6f10arg2qu1a" path="res://interface/textures/ButtonTexture/Resume.png" id="12_81l6r"]
 [ext_resource type="Script" uid="uid://dbhl7y6g0pb5s" path="res://scripts/button_animation.gd" id="13_oi1it"]
 [ext_resource type="Texture2D" uid="uid://dx04omoqdkew8" path="res://interface/textures/ButtonTexture/NewGame.png" id="13_rsfmq"]
 [ext_resource type="Texture2D" uid="uid://dndsd2ke1gy78" path="res://interface/textures/ButtonTexture/Settings.png" id="14_oi1it"]
-[ext_resource type="Script" uid="uid://c8ywq5j56nj1o" path="res://scripts/tile_size_picker.gd" id="16_mxgkd"]
+[ext_resource type="Script" uid="uid://c8ywq5j56nj1o" path="res://scripts/globals_picker.gd" id="16_mxgkd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_70i5f"]
 font_size = 44
@@ -872,10 +873,11 @@ animation_player = NodePath("AnimationPlayer")
 resume_button = NodePath("MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/ResumeButton")
 start_button = NodePath("MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/StartButton")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
 layer = 0
 
-[node name="BackgroundParallax" type="Parallax2D" parent="CanvasLayer"]
+[node name="BackgroundParallax" type="Parallax2D" parent="BackgroundLayer"]
 scroll_scale = Vector2(0, 0)
 repeat_size = Vector2(1024, 1024)
 repeat_times = 6
@@ -883,11 +885,11 @@ screen_offset = Vector2(1024, 0)
 script = ExtResource("4_mj5lg")
 textures_folder = "res://assets/sprites/backgrounds"
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/BackgroundParallax"]
+[node name="Sprite2D" type="Sprite2D" parent="BackgroundLayer/BackgroundParallax"]
 texture = ExtResource("4_ufwb2")
 centered = false
 
-[node name="ForegroundParallax" type="Parallax2D" parent="CanvasLayer"]
+[node name="ForegroundParallax" type="Parallax2D" parent="BackgroundLayer"]
 scroll_scale = Vector2(0.5, 0.5)
 repeat_size = Vector2(1024, 1024)
 autoscroll = Vector2(50, 50)
@@ -896,11 +898,12 @@ screen_offset = Vector2(1536, 0)
 script = ExtResource("4_mj5lg")
 textures_folder = "res://assets/sprites/foregrounds"
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/ForegroundParallax"]
+[node name="Sprite2D" type="Sprite2D" parent="BackgroundLayer/ForegroundParallax"]
 texture = ExtResource("5_mj5lg")
 centered = false
 
 [node name="GameLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
 
 [node name="Game" parent="GameLayer" node_paths=PackedStringArray("label", "toast") instance=ExtResource("3_g3eks")]
 pivot_offset = Vector2(288, 336)
@@ -934,6 +937,7 @@ custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 2
+script = ExtResource("16_mxgkd")
 
 [node name="PauseButton" type="TextureButton" parent="GameLayer/GameOverlay/HBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
@@ -968,28 +972,11 @@ label_settings = SubResource("LabelSettings_70i5f")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TileModeOverlay" type="VBoxContainer" parent="GameLayer"]
-modulate = Color(1, 1, 1, 0)
-z_index = 2
-anchors_preset = -1
-anchor_left = 0.875
-anchor_top = 0.5
-anchor_right = 0.975
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.02, 1.02)
-theme = ExtResource("1_yqeox")
-
-[node name="RevealMode" type="Button" parent="GameLayer/TileModeOverlay"]
-layout_mode = 2
-text = "R"
-
-[node name="FlagMode" type="Button" parent="GameLayer/TileModeOverlay"]
-layout_mode = 2
-text = "F"
+[node name="TileModeOverlay" parent="GameLayer" instance=ExtResource("11_fy8yy")]
+script = ExtResource("16_mxgkd")
 
 [node name="MenuLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
 layer = 2
 
 [node name="MainMenuContainer" type="PanelContainer" parent="MenuLayer"]
@@ -1231,6 +1218,33 @@ popup/item_3/id = 3
 popup/item_4/text = "Large"
 popup/item_4/id = 4
 script = ExtResource("16_mxgkd")
+globals_var_name = "tile_size"
+
+[node name="TileModeContainer" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileModeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "Flag Mode:"
+
+[node name="TileSizePicker" type="OptionButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileModeContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_7jp70")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mxgkd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_g6gyw")
+theme_override_styles/focus = SubResource("StyleBoxFlat_3dmrc")
+selected = 0
+item_count = 2
+popup/item_0/text = "Hold to Flag"
+popup/item_0/id = 0
+popup/item_1/text = "Flag Mode"
+popup/item_1/id = 1
+script = ExtResource("16_mxgkd")
+globals_var_name = "flag_mode"
 
 [node name="Button" type="Button" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer"]
 layout_mode = 2
@@ -1301,8 +1315,6 @@ libraries = {
 }
 
 [connection signal="pressed" from="GameLayer/GameOverlay/HBoxContainer/PauseButton" to="GameLayer/GameOverlay/HBoxContainer/PauseButton" method="_on_pressed"]
-[connection signal="pressed" from="GameLayer/TileModeOverlay/RevealMode" to="GameLayer/Game" method="_on_reveal_mode_pressed"]
-[connection signal="pressed" from="GameLayer/TileModeOverlay/FlagMode" to="GameLayer/Game" method="_on_flag_mode_pressed"]
 [connection signal="pressed" from="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/SettingsButton" to="." method="_on_settings_button_pressed"]
@@ -1310,6 +1322,7 @@ libraries = {
 [connection signal="value_changed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider/MusicVolume" to="." method="_on_music_volume_value_changed"]
 [connection signal="value_changed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider/SFXVolume" to="." method="_on_sfx_volume_value_changed"]
 [connection signal="item_selected" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileSizeContainer/TileSizePicker" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileSizeContainer/TileSizePicker" method="_on_item_selected"]
+[connection signal="item_selected" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileModeContainer/TileSizePicker" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileModeContainer/TileSizePicker" method="_on_item_selected"]
 [connection signal="pressed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/PanelContainer/VBoxContainer/SimpleButton" to="." method="_on_difficulty_button_pressed" binds= [0]]
 [connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/PanelContainer/VBoxContainer/NormalButton" to="." method="_on_difficulty_button_pressed" binds= [1]]

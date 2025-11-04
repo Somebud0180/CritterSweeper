@@ -6,7 +6,7 @@ extends Control
 
 const new_game_btntext = preload("res://interface/textures/ButtonTexture/NewGame.png")
 const start_game_btntext = preload("res://interface/textures/ButtonTexture/StartGame.png")
-
+const tile_mode_overlay = preload("res://scenes/tile_mode_overlay.tscn")
 var in_game: bool:
 	get:
 		return in_game
@@ -68,3 +68,10 @@ func _on_music_volume_value_changed(value: float) -> void:
 
 func _on_sfx_volume_value_changed(value: float) -> void:
 	sfx_vol = value
+
+func _on_flag_mode_value_changed() -> void:
+	if Globals.flag_mode == 0:
+		%GameLayer/TileModeOverlay.free()
+	elif Globals.flag_mode == 1:
+		var new_overlay = tile_mode_overlay.instantiate()
+		%GameLayer.add_child(new_overlay)

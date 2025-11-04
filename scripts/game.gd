@@ -67,22 +67,22 @@ func update_tile_sizes():
 	var tile_size_setting = Globals.tile_size
 	var calculated_tile_size: float = 0
 	
-	if tile_size_setting <= 0:
+	if tile_size_setting <= 1:
 		var viewport_size = scroll_container.size
 		
-		if tile_size_setting == -1:
+		if tile_size_setting == 0:
 			# Fit to screen (both width and height)
 			var size_by_width = viewport_size.x / columns
 			var size_by_height = viewport_size.y / rows
 			calculated_tile_size = min(size_by_width, size_by_height)
-		else: # tile_size_setting == 0
+		else: # tile_size_setting == 1
 			# Fit to screen width only
 			calculated_tile_size = viewport_size.x / columns
 	
 	# Apply tile size to all existing tiles
 	for row in tiles:
 		for tile in row:
-			if calculated_tile_size > 0:
+			if calculated_tile_size > 1:
 				tile.set_tile_size(calculated_tile_size)
 			else:
 				tile.set_tile_size() # Use predefined size from Globals

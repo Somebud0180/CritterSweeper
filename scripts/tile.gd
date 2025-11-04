@@ -21,8 +21,8 @@ func set_tile_size(custom_size: float = 0) -> void:
 		pivot_offset = Vector2(custom_size/2, custom_size/2)
 	else:
 		var tile_size_setting = Globals.tile_size
-		# Don't set a size when using dynamic sizing (-1, 0)
-		if tile_size_setting <= 0:
+		# Don't set a size when using dynamic sizing (0, 1)
+		if tile_size_setting <= 1:
 			return
 		else:
 			# Use predefined tile size
