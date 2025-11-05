@@ -34,6 +34,50 @@ func hide_and_show(hide_string: String, show_string: String) -> void:
 	await animation_player.animation_finished
 	animation_player.play("show_" + show_string)
 
+func update_flag_mode() -> void:
+	# If Keyboard and Mouse, catch and hide sidebar
+	if Globals.input_type == 0:
+		sidebar_animation_player.play("shared_animations/hide_flag_mode")
+		return
+	
+	if Globals.flag_mode == 0:
+		sidebar_animation_player.play("shared_animations/hide_flag_mode")
+	elif Globals.flag_mode == 1 and in_game and menu_state == STATE.GAME:
+		sidebar_animation_player.play("shared_animations/show_flag_mode")
+
+func focus_main_menu() -> void:
+	if in_game:
+		resume_button.grab_focus()
+	else:
+		start_button.grab_focus()
+
+func _input(event: InputEvent) -> void:
+	var new_input_type = 0
+	if event is InputEventScreenTouch:
+		new_input_type = 1
+	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
+		new_input_type = 2
+	else:
+		new_input_type = 0
+	
+	# Reduce unnecessary updates
+	if Globals.input_type != new_input_type:
+		Globals.input_type = new_input_type
+	
+	if (event.is_action_pressed("ui_cancel") or event.is_action_pressed("go_back")) and not animation_player.is_playing():
+		match menu_state:
+			STATE.MAIN:
+				if in_game:
+					hide_and_show("main", "game")
+			STATE.GAME:
+				# Only open menu if go_back is pressed (affects controllers)
+				if event.is_action_pressed("go_back"):
+					hide_and_show("game", "main")
+			STATE.SETTINGS:
+				hide_and_show("settings", "main")
+			STATE.DIFFICULTY:
+				hide_and_show("difficulty", "main")
+
 # Main Menu Buttons
 func _on_start_button_pressed() -> void:
 	hide_and_show("main", "difficulty")
@@ -80,41 +124,3 @@ func _on_music_volume_value_changed(value: float) -> void:
 
 func _on_sfx_volume_value_changed(value: float) -> void:
 	Globals.sfx_vol = value
-
-func update_flag_mode() -> void:
-	# If Keyboard and Mouse, catch and hide sidebar
-	if Globals.input_type == 0:
-		sidebar_animation_player.play("shared_animations/hide_flag_mode")
-		return
-	
-	if Globals.flag_mode == 0:
-		sidebar_animation_player.play("shared_animations/hide_flag_mode")
-	elif Globals.flag_mode == 1 and in_game and menu_state == STATE.GAME:
-		sidebar_animation_player.play("shared_animations/show_flag_mode")
-
-func _input(event: InputEvent) -> void:
-	var new_input_type = 0
-	if event is InputEventScreenTouch:
-		new_input_type = 1
-	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
-		new_input_type = 2
-	else:
-		new_input_type = 0
-	
-	# Reduce unnecessary updates
-	if Globals.input_type != new_input_type:
-		Globals.input_type = new_input_type
-	
-	if (event.is_action_pressed("ui_cancel") or event.is_action_pressed("go_back")) and not animation_player.is_playing():
-		match menu_state:
-			STATE.MAIN:
-				if in_game:
-					hide_and_show("main", "game")
-			STATE.GAME:
-				# Only open menu if go_back is pressed (affects controllers)
-				if event.is_action_pressed("go_back"):
-					hide_and_show("game", "main")
-			STATE.SETTINGS:
-				hide_and_show("settings", "main")
-			STATE.DIFFICULTY:
-				hide_and_show("difficulty", "main")

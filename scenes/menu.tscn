@@ -454,20 +454,6 @@ tracks/17/keys = {
 "update": 0,
 "values": [0.0]
 }
-tracks/18/type = "method"
-tracks/18/imported = false
-tracks/18/enabled = true
-tracks/18/path = NodePath("MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/StartButton")
-tracks/18/interp = 1
-tracks/18/loop_wrap = true
-tracks/18/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [false],
-"method": &"grab_focus"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_70i5f"]
 resource_name = "hide_difficulty"
@@ -804,7 +790,7 @@ tracks/5/path = NodePath("MenuLayer/DifficultyPickerContainer/DifficultyPicker/P
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.25),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [false],
@@ -885,7 +871,7 @@ tracks/5/path = NodePath(".")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.4),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [&"focus_game"],
@@ -938,22 +924,22 @@ tracks/2/keys = {
 tracks/3/type = "method"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/StartButton")
+tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.25),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [false],
-"method": &"grab_focus"
+"args": [],
+"method": &"focus_main_menu"
 }]
 }
 
 [sub_resource type="Animation" id="Animation_v86rl"]
 resource_name = "show_settings"
 length = 0.25
-step = 0.01
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1023,7 +1009,7 @@ tracks/5/path = NodePath("MenuLayer/SettingsContainer/Settings/PanelContainer/VB
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.25),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [false],
