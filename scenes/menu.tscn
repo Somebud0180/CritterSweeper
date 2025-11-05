@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://wxiagu8uy4w4"]
+[gd_scene load_steps=49 format=3 uid="uid://wxiagu8uy4w4"]
 
 [ext_resource type="Theme" uid="uid://bhmyomirsk6vr" path="res://interface/menu.tres" id="1_yqeox"]
 [ext_resource type="Script" uid="uid://xtopgpgymqh0" path="res://scripts/menu.gd" id="2_4ytvr"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://vfjnytyscp85" path="res://interface/textures/Settings_TitleCard.png" id="11_ufwb2"]
 [ext_resource type="AnimationLibrary" uid="uid://ikbf1v8drsm7" path="res://assets/shared_animations.res" id="12_6wigr"]
 [ext_resource type="Texture2D" uid="uid://c6f10arg2qu1a" path="res://interface/textures/ButtonTexture/Resume.png" id="12_81l6r"]
+[ext_resource type="Script" uid="uid://cptukuhpxwgkw" path="res://scripts/critter_layer.gd" id="13_lnf0i"]
 [ext_resource type="Script" uid="uid://dbhl7y6g0pb5s" path="res://scripts/button_animation.gd" id="13_oi1it"]
 [ext_resource type="Texture2D" uid="uid://dx04omoqdkew8" path="res://interface/textures/ButtonTexture/NewGame.png" id="13_rsfmq"]
 [ext_resource type="Texture2D" uid="uid://dndsd2ke1gy78" path="res://interface/textures/ButtonTexture/Settings.png" id="14_oi1it"]
@@ -1009,12 +1010,23 @@ centered = false
 [node name="GameLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 
-[node name="Game" parent="GameLayer" node_paths=PackedStringArray("label", "toast") instance=ExtResource("3_g3eks")]
+[node name="CritterLayer" type="Control" parent="GameLayer"]
+z_index = -1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("13_lnf0i")
+animation_duration = 4.0
+
+[node name="Game" parent="GameLayer" node_paths=PackedStringArray("label", "toast", "critter_layer") instance=ExtResource("3_g3eks")]
+z_index = 1
 pivot_offset = Vector2(288, 336)
-size_flags_horizontal = 3
-size_flags_vertical = 3
 label = NodePath("../GameOverlay/HBoxContainer/Notif Panel/Label")
 toast = NodePath("../GameOverlay/HBoxContainer/Notif Panel")
+critter_layer = NodePath("../CritterLayer")
 
 [node name="GameOverlay" type="MarginContainer" parent="GameLayer"]
 visible = false

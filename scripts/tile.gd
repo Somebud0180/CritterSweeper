@@ -9,8 +9,10 @@ var tile_size: Vector2 = Vector2(32, 32)
 var touch_held: bool = false
 var long_press_triggered: bool = false
 var flag_mode: bool = false
+var original_zindex: int = 0
 
 func _ready() -> void:
+	original_zindex = z_index
 	texture_normal = texture_normal.duplicate()
 	set_tile_size()
 
@@ -121,15 +123,21 @@ func _on_button_up() -> void:
 
 # Animations
 func _enlarge_button() -> void:
-	z_index += 1
+	if disabled:
+		return
+	
+	z_index = original_zindex + 1
 	$AnimationPlayer.play("enlarge")
 
 func _normalize_button() -> void:
 	$AnimationPlayer.play("normalize")
 	await $AnimationPlayer.animation_finished
-	z_index -= 1
+	z_index = original_zindex
 
 func _press_button() -> void:
+	if disabled:
+		return
+	
 	$AnimationPlayer.play("press")
 	await $AnimationPlayer.animation_finished
-	z_index -= 1
+	z_index = original_zindex - 1

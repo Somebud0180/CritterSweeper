@@ -1,0 +1,21 @@
+extends Sprite2D
+
+@export var textures: Array[Texture2D] = []
+@export var rotation_speed: float = 0.25
+
+func _ready():
+	if textures.size() > 0:
+		texture = textures[randi() % textures.size()]
+	scale = Vector2(0.3, 0.3)
+	
+	# Add slight rotation
+	rotation = randf_range(0, TAU)
+
+func _process(delta):
+	# Wobble effect
+	rotation += rotation_speed * delta
+
+func hide_critter():
+	var tween = create_tween()
+	tween.tween_property(self, "scale", Vector2.ZERO, 0.2)
+	tween.tween_callback(queue_free)

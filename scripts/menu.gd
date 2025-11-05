@@ -5,16 +5,16 @@ extends Control
 @export var resume_button: TextureButton
 @export var start_button: TextureButton
 
-const new_game_btntext = preload("res://interface/textures/ButtonTexture/NewGame.png")
-const start_game_btntext = preload("res://interface/textures/ButtonTexture/StartGame.png")
-const tile_mode_overlay = preload("res://scenes/tile_mode_overlay.tscn")
+const NEW_GAME_BTNTEXT = preload("res://interface/textures/ButtonTexture/NewGame.png")
+const START_GAME_BTNTEXT = preload("res://interface/textures/ButtonTexture/StartGame.png")
+const TILE_MODE_OVERLAY = preload("res://scenes/tile_mode_overlay.tscn")
 var in_game: bool:
 	get:
 		return in_game
 	set(value):
 		in_game = value
 		resume_button.visible = in_game
-		start_button.texture_normal = new_game_btntext if in_game else start_game_btntext
+		start_button.texture_normal = NEW_GAME_BTNTEXT if in_game else START_GAME_BTNTEXT
 
 enum STATE { MAIN, GAME, SETTINGS, DIFFICULTY }
 var menu_state: STATE:

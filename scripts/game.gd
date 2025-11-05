@@ -12,6 +12,7 @@ const TILE_SCENE = preload("res://scenes/tile.tscn")
 @export var grid: GridContainer
 @export var grid_aspect: AspectRatioContainer
 @export var scroll_container: ScrollContainer
+@export var critter_layer = Control
 var tiles = [] # 2D array to store tile instances
 var first_click_done = false
 var flag_mode:
@@ -39,6 +40,27 @@ func start() -> void:
 	grid.columns = columns
 	grid_aspect.ratio = float(columns) / float(rows)
 	create_grid()
+	
+	# Disabled tiles
+	for row in tiles:
+		for tile in row:
+			tile.disabled = true
+			tile.mouse_default_cursor_shape = CURSOR_ARROW
+	
+	# Animate critters
+	var target_rect = Rect2(
+		grid.global_position,
+		grid.size
+	)
+	
+	critter_layer.animate_critters(num_mines, target_rect)
+	await critter_layer.critters_finished
+	
+	# Re-enable tiles
+	for row in tiles:
+		for tile in row:
+			tile.disabled = false
+			tile.mouse_default_cursor_shape = CURSOR_POINTING_HAND
 
 func _on_tile_pressed(x: int, y: int):
 	var tile = tiles[y][x]

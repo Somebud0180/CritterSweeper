@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpyb2tdwtuq1p"]
+
+[ext_resource type="Texture2D" uid="uid://b4usggsbu611s" path="res://assets/sprites/critter.png" id="1_63vdf"]
+[ext_resource type="Script" uid="uid://bh3w1h0gu54e6" path="res://scripts/critter.gd" id="2_oeans"]
+
+[node name="Critter" type="Sprite2D"]
+texture = ExtResource("1_63vdf")
+script = ExtResource("2_oeans")
