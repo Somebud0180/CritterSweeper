@@ -14,6 +14,7 @@ const TILE_SCENE = preload("res://scenes/tile.tscn")
 @export var scroll_container: ScrollContainer
 @export var critter_layer = Control
 var tiles = [] # 2D array to store tile instances
+var last_focused_tile = []
 var first_click_done = false
 var flag_mode:
 	get:
@@ -27,6 +28,7 @@ var flag_mode:
 func _ready() -> void:
 	flag_mode = false
 	get_tree().root.connect("size_changed", _on_viewport_size_changed)
+	get_tree().get_first_node_in_group("MainScreen").connect("focus_game", _focus_tile)
 
 func start() -> void:
 	for child in grid.get_children():
@@ -62,6 +64,20 @@ func start() -> void:
 			tile.disabled = false
 			tile.mouse_default_cursor_shape = CURSOR_POINTING_HAND
 
+func _save_last_focused() -> void:
+	var focused := get_viewport().gui_get_focus_owner()
+	if focused and grid.is_ancestor_of(focused):
+		last_focused_tile = focused
+
+func _on_tile_focus_entered(tile: Control) -> void:
+	last_focused_tile = tile
+
+func _focus_tile() -> void:
+	if is_instance_valid(last_focused_tile):
+		last_focused_tile.grab_focus()
+	elif tiles.size() > 0 and tiles[0].size() > 0:
+		tiles[0][0].grab_focus()
+
 func _on_tile_pressed(x: int, y: int):
 	var tile = tiles[y][x]
 	if not first_click_done:
@@ -79,10 +95,6 @@ func _on_tile_pressed(x: int, y: int):
 		reveal_tile_and_neighbors(x, y)
 		if check_win_condition():
 			game_won()
-
-func _on_restart_button_pressed() -> void:
-	first_click_done = false;
-	restart_game()
 
 func update_tile_sizes():
 	# Calculate dynamic tile size if needed
@@ -206,6 +218,9 @@ func game_won():
 	toast.visible = true
 
 func restart_game():
+	first_click_done = false
+	last_focused_tile = null
+	
 	for child in grid.get_children():
 		child.queue_free()
 	tiles.clear()

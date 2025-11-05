@@ -1,5 +1,7 @@
 extends Control
 
+@warning_ignore("unused_signal") signal focus_game
+
 @export var animation_player: AnimationPlayer
 @export var sidebar_animation_player: AnimationPlayer
 @export var resume_button: TextureButton
@@ -25,7 +27,7 @@ var menu_state: STATE:
 
 func _ready() -> void:
 	in_game = false
-	menu_state = STATE.MAIN
+	animation_player.play("show_main")
 
 func hide_and_show(hide_string: String, show_string: String) -> void:
 	animation_player.play("hide_" + hide_string)
@@ -80,13 +82,11 @@ func _on_sfx_volume_value_changed(value: float) -> void:
 	Globals.sfx_vol = value
 
 func update_flag_mode() -> void:
-	# If Keyboard and Mouse, catch 
-	print("Updating Flag Mode; Input type: {input_type}".format({"input_type": Globals.input_type}))
+	# If Keyboard and Mouse, catch and hide sidebar
 	if Globals.input_type == 0:
 		sidebar_animation_player.play("shared_animations/hide_flag_mode")
 		return
 	
-	print("Updating Flag Mode")
 	if Globals.flag_mode == 0:
 		sidebar_animation_player.play("shared_animations/hide_flag_mode")
 	elif Globals.flag_mode == 1 and in_game and menu_state == STATE.GAME:
@@ -111,7 +111,9 @@ func _input(event: InputEvent) -> void:
 				if in_game:
 					hide_and_show("main", "game")
 			STATE.GAME:
-				hide_and_show("game", "main")
+				# Only open menu if go_back is pressed (affects controllers)
+				if event.is_action_pressed("go_back"):
+					hide_and_show("game", "main")
 			STATE.SETTINGS:
 				hide_and_show("settings", "main")
 			STATE.DIFFICULTY:

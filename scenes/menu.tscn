@@ -1,7 +1,7 @@
 [gd_scene load_steps=49 format=3 uid="uid://wxiagu8uy4w4"]
 
 [ext_resource type="Theme" uid="uid://bhmyomirsk6vr" path="res://interface/menu.tres" id="1_yqeox"]
-[ext_resource type="Script" uid="uid://xtopgpgymqh0" path="res://scripts/menu.gd" id="2_4ytvr"]
+[ext_resource type="Script" uid="uid://xtopgpgymqh0" path="res://scripts/main_screen.gd" id="2_4ytvr"]
 [ext_resource type="Texture2D" uid="uid://8mi331kcfci" path="res://interface/textures/CritterSweeper.png" id="2_vjb58"]
 [ext_resource type="PackedScene" uid="uid://mgkqrayegu0x" path="res://scenes/game.tscn" id="3_g3eks"]
 [ext_resource type="Texture2D" uid="uid://bco4bjasej7ri" path="res://interface/textures/MusicSound.png" id="3_mhnvy"]
@@ -392,7 +392,7 @@ tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/13/type = "value"
 tracks/13/imported = false
@@ -404,7 +404,7 @@ tracks/13/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/14/type = "value"
 tracks/14/imported = false
@@ -453,6 +453,20 @@ tracks/17/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/18/type = "method"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/StartButton")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"grab_focus"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_70i5f"]
@@ -620,6 +634,20 @@ tracks/8/keys = {
 "update": 0,
 "values": [0.0, 96.0]
 }
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("GameLayer/Game")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_save_last_focused"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_13sgg"]
 resource_name = "hide_main"
@@ -769,6 +797,20 @@ tracks/4/keys = {
 "method": &"set"
 }]
 }
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MenuLayer/DifficultyPickerContainer/DifficultyPicker/PanelContainer/VBoxContainer/SimpleButton")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"grab_focus"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_mj5lg"]
 resource_name = "show_game"
@@ -836,11 +878,25 @@ tracks/4/keys = {
 "method": &"set"
 }]
 }
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"focus_game"],
+"method": &"emit_signal"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_ufwb2"]
 resource_name = "show_main"
 length = 0.25
-step = 0.01
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -877,6 +933,20 @@ tracks/2/keys = {
 "values": [{
 "args": [&"menu_state", 0],
 "method": &"set"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/StartButton")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"grab_focus"
 }]
 }
 
@@ -944,6 +1014,20 @@ tracks/4/keys = {
 "values": [{
 "args": [&"menu_state", 2],
 "method": &"set"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider/MusicVolume")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"grab_focus"
 }]
 }
 
@@ -1102,6 +1186,8 @@ unique_name_in_owner = true
 layer = 2
 
 [node name="MainMenuContainer" type="PanelContainer" parent="MenuLayer"]
+visible = false
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

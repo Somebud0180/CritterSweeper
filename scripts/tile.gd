@@ -1,6 +1,7 @@
 extends TextureButton
 
 signal tile_pressed
+
 var is_mine: bool = false
 var is_flagged: bool = false
 var is_revealed: bool = false
@@ -38,7 +39,6 @@ func reveal_tile(original_press: bool = false):
 	
 	is_revealed = true
 	if is_mine:
-		print(original_press)
 		texture_normal.region = Rect2(Vector2(204, 0), tile_size) if original_press else Rect2(Vector2(170, 0), tile_size)
 	else:
 		var x_pos = (adjacent_mines -1) * 34
@@ -47,7 +47,7 @@ func reveal_tile(original_press: bool = false):
 			texture_normal.region = Rect2(Vector2(34, 0), tile_size)
 
 func _on_gui_input(event: InputEvent) -> void:
-	if event is InputEventScreenTouch and !disabled:
+	if event is InputEventJoypadButton and event.is_action("ui_accept") or event.is_action_pressed("ui_cancel"):
 		match Globals.flag_mode:
 			0:
 				if event.pressed:
@@ -70,9 +70,29 @@ func _on_gui_input(event: InputEvent) -> void:
 				elif not flag_mode and !is_flagged :
 					emit_signal("tile_pressed")
 		
+		return
+	
+	elif event is InputEventScreenTouch and !disabled:
+		match Globals.flag_mode:
+			0:
+				if event.is_action_pressed("ui_accept"):
+						if flag_mode and !is_revealed:
+							toggle_flagging()
+						elif not flag_mode and !is_flagged :
+							emit_signal("tile_pressed")
+				elif event.is_action_pressed("ui_cancel"):
+						if !is_revealed:
+							toggle_flagging()
+			1:
+				if event.is_action_pressed("ui_accept"):
+					if flag_mode and !is_revealed:
+						toggle_flagging()
+					elif not flag_mode and !is_flagged :
+						emit_signal("tile_pressed")
+		
 		accept_event()
 		return
-
+	
 	elif event is InputEventMouseButton and event.is_pressed() and !disabled:
 		if event.device == -1:
 			accept_event()
