@@ -16,13 +16,16 @@ var in_game: bool:
 		resume_button.visible = in_game
 		start_button.texture_normal = new_game_btntext if in_game else start_game_btntext
 
-var is_paused: bool = false
-
-var music_vol: float = 1.0
-var sfx_vol: float = 1.0
+enum STATE { MAIN, GAME, SETTINGS, DIFFICULTY }
+var menu_state: STATE:
+	get:
+		return menu_state
+	set(value):
+		menu_state = value
 
 func _ready() -> void:
 	in_game = false
+	menu_state = STATE.MAIN
 
 func hide_and_show(hide_string: String, show_string: String) -> void:
 	animation_player.play("hide_" + hide_string)
@@ -35,7 +38,6 @@ func _on_start_button_pressed() -> void:
 
 func _on_resume_button_pressed() -> void:
 	hide_and_show("main", "game")
-	is_paused = false
 	if Globals.input_type != 0:
 		sidebar_animation_player.play("shared_animations/show_flag_mode")
 
@@ -64,7 +66,6 @@ func _on_difficulty_button_pressed(difficulty: int) -> void:
 	
 	game_scene.start()
 	hide_and_show("difficulty", "game")
-	is_paused = false
 	if Globals.input_type != 0:
 		sidebar_animation_player.play("shared_animations/show_flag_mode")
 
@@ -73,10 +74,10 @@ func _on_button_pressed() -> void:
 	hide_and_show("settings", "main")
 
 func _on_music_volume_value_changed(value: float) -> void:
-	music_vol = value
+	Globals.music_vol = value
 
 func _on_sfx_volume_value_changed(value: float) -> void:
-	sfx_vol = value
+	Globals.sfx_vol = value
 
 func update_flag_mode() -> void:
 	# If Keyboard and Mouse, catch 
@@ -88,7 +89,7 @@ func update_flag_mode() -> void:
 	print("Updating Flag Mode")
 	if Globals.flag_mode == 0:
 		sidebar_animation_player.play("shared_animations/hide_flag_mode")
-	elif Globals.flag_mode == 1 and in_game and !is_paused:
+	elif Globals.flag_mode == 1 and in_game and menu_state == STATE.GAME:
 		sidebar_animation_player.play("shared_animations/show_flag_mode")
 
 func _input(event: InputEvent) -> void:
@@ -101,7 +102,17 @@ func _input(event: InputEvent) -> void:
 		new_input_type = 0
 	
 	# Reduce unnecessary updates
-	if Globals.input_type == new_input_type:
-		return
-	else:
+	if Globals.input_type != new_input_type:
 		Globals.input_type = new_input_type
+	
+	if (event.is_action_pressed("ui_cancel") or event.is_action_pressed("go_back")) and not animation_player.is_playing():
+		match menu_state:
+			STATE.MAIN:
+				if in_game:
+					hide_and_show("main", "game")
+			STATE.GAME:
+				hide_and_show("game", "main")
+			STATE.SETTINGS:
+				hide_and_show("settings", "main")
+			STATE.DIFFICULTY:
+				hide_and_show("difficulty", "main")
