@@ -10,6 +10,7 @@ anchor_bottom = 1.0
 offset_top = 96.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(288, 288)
 theme = ExtResource("1_0wfyh")
 theme_override_constants/margin_left = 22
 theme_override_constants/margin_top = 22
@@ -22,6 +23,7 @@ scroll_container = NodePath("ScrollContainer")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 2
+follow_focus = true
 horizontal_scroll_mode = 4
 vertical_scroll_mode = 4
 
