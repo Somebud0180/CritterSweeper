@@ -55,7 +55,13 @@ func start() -> void:
 		grid.size
 	)
 	
-	critter_layer.animate_critters(num_mines, target_rect)
+	var animation_speed: float
+	if num_mines <= 10:
+		animation_speed = 1.5
+	elif num_mines > 10:
+		animation_speed = 2.0
+	
+	critter_layer.animate_critters(animation_speed, num_mines, target_rect)
 	await critter_layer.critters_finished
 	
 	# Re-enable tiles

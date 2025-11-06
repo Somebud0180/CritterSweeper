@@ -1089,7 +1089,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("13_lnf0i")
-animation_duration = 4.0
 
 [node name="Game" parent="GameLayer" node_paths=PackedStringArray("label", "toast", "critter_layer") instance=ExtResource("3_g3eks")]
 z_index = 1

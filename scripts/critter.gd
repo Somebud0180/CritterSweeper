@@ -7,13 +7,6 @@ func _ready():
 	if textures.size() > 0:
 		texture = textures[randi() % textures.size()]
 	scale = Vector2(0.2, 0.2)
-	
-	# Add slight rotation
-	rotation = randf_range(0, TAU)
-
-func _process(delta):
-	# Wobble effect
-	rotation += rotation_speed * delta
 
 func hide_critter():
 	var tween = create_tween()

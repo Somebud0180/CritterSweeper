@@ -3,10 +3,12 @@ extends Control
 signal critters_finished
 
 const CRITTER = preload("res://scenes/critter.tscn")
-@export var animation_duration: float = 2.0
 @export var spawn_delay: float = 0.05
+var animation_duration: float = 2.0
 
-func animate_critters(count: int, target_rect: Rect2):
+func animate_critters(duration: float, count: int, target_rect: Rect2):
+	animation_duration = duration
+	
 	for child in get_children():
 		child.queue_free()
 	
@@ -23,17 +25,20 @@ func spawn_critter(target_rect: Rect2):
 	var critter = CRITTER.instantiate()
 	add_child(critter)
 	
+	
 	# Pick a random edge
 	var edge = randi() % 4
 	var start_pos = get_spawn_position(edge)
 	var end_pos = get_random_point_in_rect(target_rect)
+	var direction = (end_pos - start_pos).angle()
 	
 	critter.position = start_pos
+	critter.rotation = direction
 	
 	# Animate critter to point
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.set_trans(Tween.TRANS_LINEAR)
 	tween.tween_property(critter, "position", end_pos, animation_duration)
 	tween.tween_callback(critter.hide_critter)
 
