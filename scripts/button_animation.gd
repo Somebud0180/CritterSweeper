@@ -20,6 +20,8 @@ func _enlarge_button() -> void:
 	z_index = 0
 	z_index += 1
 	$ButtonAnimations.play("enlarge")
+	Globals.vibrate_stop()
+	Globals.vibrate_hover()
 
 func _normalize_button() -> void:
 	$ButtonAnimations.play("normalize")

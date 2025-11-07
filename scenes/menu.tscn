@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://wxiagu8uy4w4"]
+[gd_scene load_steps=51 format=3 uid="uid://wxiagu8uy4w4"]
 
 [ext_resource type="Theme" uid="uid://bhmyomirsk6vr" path="res://interface/menu.tres" id="1_yqeox"]
 [ext_resource type="Script" uid="uid://xtopgpgymqh0" path="res://scripts/main_screen.gd" id="2_4ytvr"]
@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://dndsd2ke1gy78" path="res://interface/textures/ButtonTexture/Settings.png" id="14_oi1it"]
 [ext_resource type="Script" uid="uid://c8ywq5j56nj1o" path="res://scripts/globals_picker.gd" id="16_mxgkd"]
 [ext_resource type="Script" uid="uid://58xr8yxuyjby" path="res://scripts/globals_slider.gd" id="23_ffqrc"]
+[ext_resource type="Script" uid="uid://bfw1gn3rff0q0" path="res://scripts/globals_check_button.gd" id="26_x16fv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_70i5f"]
 font_size = 44
@@ -407,54 +408,6 @@ tracks/13/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
-tracks/14/type = "value"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath("GameLayer/TileModeOverlay:visible")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/15/type = "value"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath("GameLayer/TileModeOverlay:modulate")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/16/type = "value"
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/path = NodePath("GameLayer/TileModeOverlay:offset_left")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/17/type = "value"
-tracks/17/imported = false
-tracks/17/enabled = true
-tracks/17/path = NodePath("GameLayer/TileModeOverlay:offset_right")
-tracks/17/interp = 1
-tracks/17/loop_wrap = true
-tracks/17/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
 
 [sub_resource type="Animation" id="Animation_70i5f"]
 resource_name = "hide_difficulty"
@@ -561,73 +514,13 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, -96)]
 }
-tracks/4/type = "value"
+tracks/4/type = "method"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("GameLayer/TileModeOverlay:visible")
+tracks/4/path = NodePath("GameLayer/Game")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.4),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("GameLayer/TileModeOverlay:modulate")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0.099999994, 0.4),
-"transitions": PackedFloat32Array(2, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("GameLayer/TileModeOverlay:scale")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.15),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.02, 1.02)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("GameLayer/TileModeOverlay:offset_left")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0.1, 0.4),
-"transitions": PackedFloat32Array(0.5, 0.5),
-"update": 0,
-"values": [0.0, 96.0]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("GameLayer/TileModeOverlay:offset_right")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0.1, 0.4),
-"transitions": PackedFloat32Array(0.5, 0.5),
-"update": 0,
-"values": [0.0, 96.0]
-}
-tracks/9/type = "method"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("GameLayer/Game")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -1285,6 +1178,7 @@ custom_minimum_size = Vector2(44, 44)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+focus_neighbor_top = NodePath("../Button Container/VBoxContainer/ControlsContainer/Vibration/CheckButton")
 mouse_default_cursor_shape = 2
 script = ExtResource("7_v86rl")
 current_menu = "settings"
@@ -1304,6 +1198,7 @@ theme_override_constants/separation = 12
 [node name="Button Container" type="ScrollContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+follow_focus = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container"]
 layout_mode = 2
@@ -1418,17 +1313,28 @@ popup/item_4/id = 4
 script = ExtResource("16_mxgkd")
 globals_var_name = "tile_size"
 
-[node name="TileModeContainer" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer"]
+[node name="ControlsContainer" type="VBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+alignment = 1
+
+[node name="Controls" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+text = "Controls:"
+
+[node name="TileModeContainer" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer"]
 custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileModeContainer"]
+[node name="Label" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/TileModeContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
 text = "Flagging Mode:"
 
-[node name="TileModePicker" type="OptionButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileModeContainer" groups=["SettingsNode"]]
+[node name="TileModePicker" type="OptionButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/TileModeContainer" groups=["SettingsNode"]]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_7jp70")
@@ -1444,8 +1350,25 @@ popup/item_1/id = 1
 script = ExtResource("16_mxgkd")
 globals_var_name = "flag_mode"
 
+[node name="Vibration" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/Vibration"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "Vibration:"
+
+[node name="CheckButton" type="CheckButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/Vibration" groups=["SettingsNode"]]
+layout_mode = 2
+flat = true
+script = ExtResource("26_x16fv")
+globals_var_name = "vibration"
+
 [node name="Button" type="Button" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../BackButton")
 text = "Return"
 
 [node name="DifficultyPickerContainer" type="AspectRatioContainer" parent="MenuLayer"]
@@ -1521,7 +1444,8 @@ libraries = {
 [connection signal="value_changed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider/MusicVolume" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider/MusicVolume" method="_on_value_changed"]
 [connection signal="value_changed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider/SFXVolume" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider/SFXVolume" method="_on_value_changed"]
 [connection signal="item_selected" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileSizeContainer/TileSizePicker" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileSizeContainer/TileSizePicker" method="_on_item_selected"]
-[connection signal="item_selected" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileModeContainer/TileModePicker" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileModeContainer/TileModePicker" method="_on_item_selected"]
+[connection signal="item_selected" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/TileModeContainer/TileModePicker" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/TileModeContainer/TileModePicker" method="_on_item_selected"]
+[connection signal="toggled" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/Vibration/CheckButton" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/Vibration/CheckButton" method="_on_toggled"]
 [connection signal="pressed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/PanelContainer/VBoxContainer/SimpleButton" to="." method="_on_difficulty_button_pressed" binds= [0]]
 [connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/PanelContainer/VBoxContainer/NormalButton" to="." method="_on_difficulty_button_pressed" binds= [1]]

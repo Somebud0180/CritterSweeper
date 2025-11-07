@@ -10,6 +10,14 @@ extends Control
 const NEW_GAME_BTNTEXT = preload("res://interface/textures/ButtonTexture/NewGame.png")
 const START_GAME_BTNTEXT = preload("res://interface/textures/ButtonTexture/StartGame.png")
 const TILE_MODE_OVERLAY = preload("res://scenes/tile_mode_overlay.tscn")
+
+enum STATE { MAIN, GAME, SETTINGS, DIFFICULTY }
+var menu_state: STATE:
+	get:
+		return menu_state
+	set(value):
+		menu_state = value
+
 var in_game: bool:
 	get:
 		return in_game
@@ -18,12 +26,7 @@ var in_game: bool:
 		resume_button.visible = in_game
 		start_button.texture_normal = NEW_GAME_BTNTEXT if in_game else START_GAME_BTNTEXT
 
-enum STATE { MAIN, GAME, SETTINGS, DIFFICULTY }
-var menu_state: STATE:
-	get:
-		return menu_state
-	set(value):
-		menu_state = value
+var sidebar_visible = false
 
 func _ready() -> void:
 	in_game = false
@@ -40,7 +43,7 @@ func update_flag_mode() -> void:
 		sidebar_animation_player.play("shared_animations/hide_flag_mode")
 		return
 	
-	if Globals.flag_mode == 0:
+	if Globals.flag_mode == 0 and sidebar_visible:
 		sidebar_animation_player.play("shared_animations/hide_flag_mode")
 	elif Globals.flag_mode == 1 and in_game and menu_state == STATE.GAME:
 		sidebar_animation_player.play("shared_animations/show_flag_mode")
@@ -69,10 +72,14 @@ func _input(event: InputEvent) -> void:
 			STATE.MAIN:
 				if in_game:
 					hide_and_show("main", "game")
+					if Globals.input_type != 0 and Globals.flag_mode == 1:
+						sidebar_animation_player.play("shared_animations/show_flag_mode")
 			STATE.GAME:
 				# Only open menu if go_back is pressed (affects controllers)
 				if event.is_action_pressed("go_back"):
 					hide_and_show("game", "main")
+					if sidebar_visible:
+						sidebar_animation_player.play("shared_animations/hide_flag_mode")
 			STATE.SETTINGS:
 				hide_and_show("settings", "main")
 			STATE.DIFFICULTY:
@@ -84,7 +91,7 @@ func _on_start_button_pressed() -> void:
 
 func _on_resume_button_pressed() -> void:
 	hide_and_show("main", "game")
-	if Globals.input_type != 0:
+	if Globals.input_type != 0 and Globals.flag_mode == 1:
 		sidebar_animation_player.play("shared_animations/show_flag_mode")
 
 func _on_settings_button_pressed() -> void:
@@ -112,15 +119,9 @@ func _on_difficulty_button_pressed(difficulty: int) -> void:
 	
 	game_scene.start()
 	hide_and_show("difficulty", "game")
-	if Globals.input_type != 0:
+	if Globals.input_type != 0 and Globals.flag_mode == 1:
 		sidebar_animation_player.play("shared_animations/show_flag_mode")
 
 # Settings Functions
 func _on_button_pressed() -> void:
 	hide_and_show("settings", "main")
-
-func _on_music_volume_value_changed(value: float) -> void:
-	Globals.music_vol = value
-
-func _on_sfx_volume_value_changed(value: float) -> void:
-	Globals.sfx_vol = value

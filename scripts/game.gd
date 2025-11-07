@@ -65,10 +65,12 @@ func start() -> void:
 	await critter_layer.critters_finished
 	
 	# Re-enable tiles
-	for row in tiles:
+	for row in tiles: 
 		for tile in row:
 			tile.disabled = false
 			tile.mouse_default_cursor_shape = CURSOR_POINTING_HAND
+	
+	_focus_tile()
 
 func _save_last_focused() -> void:
 	var focused := get_viewport().gui_get_focus_owner()
@@ -79,10 +81,11 @@ func _on_tile_focus_entered(tile: Control) -> void:
 	last_focused_tile = tile
 
 func _focus_tile() -> void:
-	if is_instance_valid(last_focused_tile):
-		last_focused_tile.grab_focus()
-	elif tiles.size() > 0 and tiles[0].size() > 0:
-		tiles[0][0].grab_focus()
+	if Globals.input_type == 2:
+		if is_instance_valid(last_focused_tile):
+			last_focused_tile.grab_focus()
+		elif tiles.size() > 0 and tiles[0].size() > 0:
+			tiles[0][0].grab_focus()
 
 func _on_tile_pressed(x: int, y: int):
 	var tile = tiles[y][x]

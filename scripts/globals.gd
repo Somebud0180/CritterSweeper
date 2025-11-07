@@ -98,6 +98,21 @@ func _update_settings_nodes() -> void:
 		node.update_value()
 
 ## Global Functions
+func vibrate_stop() -> void:
+	if Globals.input_type == 2:
+		Input.stop_joy_vibration(0)
+
+func vibrate_hover(duration: float = 0.1) -> void:
+	if !vibration:
+		return
+	
+	if Globals.input_type == 1:
+		var dur = int(duration * 1000)
+		Input.vibrate_handheld(dur)
+	elif Globals.input_type == 2:
+		Input.stop_joy_vibration(0)
+		Input.start_joy_vibration(0, 0.15, 0.0, duration)
+
 func vibrate_light_press(duration: float = 0.1) -> void:
 	if !vibration:
 		return
@@ -106,6 +121,7 @@ func vibrate_light_press(duration: float = 0.1) -> void:
 		var dur = int(duration * 1000)
 		Input.vibrate_handheld(dur)
 	elif Globals.input_type == 2:
+		Input.stop_joy_vibration(0)
 		Input.start_joy_vibration(0, 0.2, 0.0, duration)
 
 func vibrate_hard_press(duration: float = 0.1) -> void:
@@ -117,4 +133,4 @@ func vibrate_hard_press(duration: float = 0.1) -> void:
 		Input.vibrate_handheld(dur)
 	elif Globals.input_type == 2:
 		Input.stop_joy_vibration(0)
-		Input.start_joy_vibration(0, 1.0, 0.0, duration)
+		Input.start_joy_vibration(0, 0.0, 0.3, duration)
