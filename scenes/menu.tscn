@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://wxiagu8uy4w4"]
+[gd_scene load_steps=50 format=3 uid="uid://wxiagu8uy4w4"]
 
 [ext_resource type="Theme" uid="uid://bhmyomirsk6vr" path="res://interface/menu.tres" id="1_yqeox"]
 [ext_resource type="Script" uid="uid://xtopgpgymqh0" path="res://scripts/main_screen.gd" id="2_4ytvr"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://dx04omoqdkew8" path="res://interface/textures/ButtonTexture/NewGame.png" id="13_rsfmq"]
 [ext_resource type="Texture2D" uid="uid://dndsd2ke1gy78" path="res://interface/textures/ButtonTexture/Settings.png" id="14_oi1it"]
 [ext_resource type="Script" uid="uid://c8ywq5j56nj1o" path="res://scripts/globals_picker.gd" id="16_mxgkd"]
+[ext_resource type="Script" uid="uid://58xr8yxuyjby" path="res://scripts/globals_slider.gd" id="23_ffqrc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_70i5f"]
 font_size = 44
@@ -1343,7 +1344,7 @@ texture = ExtResource("3_mhnvy")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="MusicVolume" type="HSlider" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider"]
+[node name="MusicVolume" type="HSlider" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider" groups=["SettingsNode"]]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -1351,6 +1352,8 @@ max_value = 1.0
 step = 0.05
 value = 1.0
 scrollable = false
+script = ExtResource("23_ffqrc")
+globals_var_name = "music_vol"
 
 [node name="HSeparator" type="HSeparator" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders"]
 layout_mode = 2
@@ -1372,7 +1375,7 @@ texture = ExtResource("4_4ytvr")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="SFXVolume" type="HSlider" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider"]
+[node name="SFXVolume" type="HSlider" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider" groups=["SettingsNode"]]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -1380,6 +1383,8 @@ max_value = 1.0
 step = 0.05
 value = 1.0
 scrollable = false
+script = ExtResource("23_ffqrc")
+globals_var_name = "sfx_vol"
 
 [node name="TileSizeContainer" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer"]
 custom_minimum_size = Vector2(0, 44)
@@ -1391,7 +1396,7 @@ size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
 text = "Tile Size:"
 
-[node name="TileSizePicker" type="OptionButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileSizeContainer"]
+[node name="TileSizePicker" type="OptionButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileSizeContainer" groups=["SettingsNode"]]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_7jp70")
@@ -1423,7 +1428,7 @@ size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
 text = "Flagging Mode:"
 
-[node name="TileSizePicker" type="OptionButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileModeContainer"]
+[node name="TileModePicker" type="OptionButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileModeContainer" groups=["SettingsNode"]]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_7jp70")
@@ -1513,10 +1518,10 @@ libraries = {
 [connection signal="pressed" from="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/BackButton" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/BackButton" method="_on_pressed"]
-[connection signal="value_changed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider/MusicVolume" to="." method="_on_music_volume_value_changed"]
-[connection signal="value_changed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider/SFXVolume" to="." method="_on_sfx_volume_value_changed"]
+[connection signal="value_changed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider/MusicVolume" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider/MusicVolume" method="_on_value_changed"]
+[connection signal="value_changed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider/SFXVolume" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider/SFXVolume" method="_on_value_changed"]
 [connection signal="item_selected" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileSizeContainer/TileSizePicker" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileSizeContainer/TileSizePicker" method="_on_item_selected"]
-[connection signal="item_selected" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileModeContainer/TileSizePicker" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileModeContainer/TileSizePicker" method="_on_item_selected"]
+[connection signal="item_selected" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileModeContainer/TileModePicker" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileModeContainer/TileModePicker" method="_on_item_selected"]
 [connection signal="pressed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/PanelContainer/VBoxContainer/SimpleButton" to="." method="_on_difficulty_button_pressed" binds= [0]]
 [connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/PanelContainer/VBoxContainer/NormalButton" to="." method="_on_difficulty_button_pressed" binds= [1]]

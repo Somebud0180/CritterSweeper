@@ -28,5 +28,6 @@ func _normalize_button() -> void:
 
 func _press_button() -> void:
 	$ButtonAnimations.play("press")
+	Globals.vibrate_hard_press()
 	await $ButtonAnimations.animation_finished
 	z_index = 0

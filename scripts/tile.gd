@@ -47,6 +47,9 @@ func reveal_tile(original_press: bool = false):
 			texture_normal.region = Rect2(Vector2(34, 0), tile_size)
 
 func _on_gui_input(event: InputEvent) -> void:
+	if disabled:
+		return
+	
 	if event is InputEventJoypadButton and event.is_action("ui_accept") or event.is_action_pressed("ui_cancel"):
 		match Globals.flag_mode:
 			0:
@@ -159,5 +162,7 @@ func _press_button() -> void:
 		return
 	
 	$AnimationPlayer.play("press")
+	Globals.vibrate_light_press()
+	
 	await $AnimationPlayer.animation_finished
 	z_index = original_zindex - 1

@@ -42,6 +42,7 @@ AnimationPlayer=""
 MainScreen=""
 Tiles=""
 Game=""
+SettingsNode=""
 
 [input]
 
