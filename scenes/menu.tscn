@@ -9,21 +9,21 @@
 [ext_resource type="Script" uid="uid://cm8rqrm54087" path="res://scripts/parallax_randomizer.gd" id="4_mj5lg"]
 [ext_resource type="Texture2D" uid="uid://dpvdd4jyhas1v" path="res://assets/sprites/backgrounds/Background0.png" id="4_ufwb2"]
 [ext_resource type="Texture2D" uid="uid://bcgx7w16kxqp2" path="res://assets/sprites/foregrounds/Foreground0.png" id="5_mj5lg"]
-[ext_resource type="Texture2D" uid="uid://cp227g2cag6co" path="res://interface/textures/PauseButton/PauseButton_Norm.png" id="7_7jp70"]
+[ext_resource type="Texture2D" uid="uid://cp227g2cag6co" path="res://interface/textures/ButtonTexture/PauseButton/PauseButton_Norm.png" id="7_7jp70"]
 [ext_resource type="Script" uid="uid://dx1w2nxwnc5qs" path="res://scripts/pause_button.gd" id="7_mj5lg"]
-[ext_resource type="Script" uid="uid://d16hdx4moncic" path="res://scripts/back_button.gd" id="7_v86rl"]
-[ext_resource type="Texture2D" uid="uid://pe3hx6mhd57l" path="res://interface/textures/PauseButton/PauseButton_Pressed.png" id="8_mxgkd"]
-[ext_resource type="Texture2D" uid="uid://cqeavkhghepvt" path="res://interface/textures/PauseButton/PauseButton_Hover.png" id="9_g6gyw"]
+[ext_resource type="Texture2D" uid="uid://pe3hx6mhd57l" path="res://interface/textures/ButtonTexture/PauseButton/PauseButton_Pressed.png" id="8_mxgkd"]
+[ext_resource type="Texture2D" uid="uid://cqeavkhghepvt" path="res://interface/textures/ButtonTexture/PauseButton/PauseButton_Hover.png" id="9_g6gyw"]
 [ext_resource type="PackedScene" uid="uid://chm2tu86wl8ae" path="res://scenes/tile_mode_overlay.tscn" id="11_fy8yy"]
 [ext_resource type="Texture2D" uid="uid://vjrlaao8ex80" path="res://interface/textures/Fade.png" id="11_oi1it"]
 [ext_resource type="Texture2D" uid="uid://vfjnytyscp85" path="res://interface/textures/Settings_TitleCard.png" id="11_ufwb2"]
 [ext_resource type="AnimationLibrary" uid="uid://ikbf1v8drsm7" path="res://assets/shared_animations.res" id="12_6wigr"]
-[ext_resource type="Texture2D" uid="uid://c6f10arg2qu1a" path="res://interface/textures/ButtonTexture/Resume.png" id="12_81l6r"]
+[ext_resource type="Texture2D" uid="uid://c6f10arg2qu1a" path="res://interface/textures/ButtonTexture/MenuButtons/Resume.png" id="12_81l6r"]
 [ext_resource type="Script" uid="uid://cptukuhpxwgkw" path="res://scripts/critter_layer.gd" id="13_lnf0i"]
 [ext_resource type="Script" uid="uid://dbhl7y6g0pb5s" path="res://scripts/button_animation.gd" id="13_oi1it"]
-[ext_resource type="Texture2D" uid="uid://dx04omoqdkew8" path="res://interface/textures/ButtonTexture/NewGame.png" id="13_rsfmq"]
-[ext_resource type="Texture2D" uid="uid://dndsd2ke1gy78" path="res://interface/textures/ButtonTexture/Settings.png" id="14_oi1it"]
+[ext_resource type="Texture2D" uid="uid://dx04omoqdkew8" path="res://interface/textures/ButtonTexture/MenuButtons/NewGame.png" id="13_rsfmq"]
+[ext_resource type="Texture2D" uid="uid://dndsd2ke1gy78" path="res://interface/textures/ButtonTexture/MenuButtons/Settings.png" id="14_oi1it"]
 [ext_resource type="Script" uid="uid://c8ywq5j56nj1o" path="res://scripts/globals_picker.gd" id="16_mxgkd"]
+[ext_resource type="PackedScene" uid="uid://cgqy54bs5kc5y" path="res://scenes/back_button.tscn" id="20_g54pe"]
 [ext_resource type="Script" uid="uid://58xr8yxuyjby" path="res://scripts/globals_slider.gd" id="23_ffqrc"]
 [ext_resource type="Script" uid="uid://bfw1gn3rff0q0" path="res://scripts/globals_check_button.gd" id="26_x16fv"]
 
@@ -1173,14 +1173,8 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer"]
 layout_mode = 2
 
-[node name="BackButton" type="Button" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(44, 44)
+[node name="BackButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer" instance=ExtResource("20_g54pe")]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-focus_neighbor_top = NodePath("../Button Container/VBoxContainer/ControlsContainer/Vibration/CheckButton")
-mouse_default_cursor_shape = 2
-script = ExtResource("7_v86rl")
 current_menu = "settings"
 previous_menu = "main"
 
@@ -1396,9 +1390,19 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/PanelContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/PanelContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/PanelContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BackButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/PanelContainer/VBoxContainer/HBoxContainer" instance=ExtResource("20_g54pe")]
+layout_mode = 2
+current_menu = "difficulty"
+previous_menu = "main"
+
+[node name="Label" type="Label" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/PanelContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 36
 text = "Pick a difficulty"
@@ -1420,16 +1424,6 @@ text = "Normal  (16x16 Tiles)"
 layout_mode = 2
 text = "Difficult (30x16 Tiles)"
 
-[node name="BackButton" type="Button" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/PanelContainer"]
-custom_minimum_size = Vector2(44, 44)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-mouse_default_cursor_shape = 2
-script = ExtResource("7_v86rl")
-current_menu = "difficulty"
-previous_menu = "main"
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." groups=["AnimationPlayer"]]
 unique_name_in_owner = true
 libraries = {
@@ -1440,7 +1434,6 @@ libraries = {
 [connection signal="pressed" from="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/BackButton" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/BackButton" method="_on_pressed"]
 [connection signal="value_changed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider/MusicVolume" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider/MusicVolume" method="_on_value_changed"]
 [connection signal="value_changed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider/SFXVolume" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider/SFXVolume" method="_on_value_changed"]
 [connection signal="item_selected" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileSizeContainer/TileSizePicker" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/TileSizeContainer/TileSizePicker" method="_on_item_selected"]
@@ -1450,4 +1443,3 @@ libraries = {
 [connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/PanelContainer/VBoxContainer/SimpleButton" to="." method="_on_difficulty_button_pressed" binds= [0]]
 [connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/PanelContainer/VBoxContainer/NormalButton" to="." method="_on_difficulty_button_pressed" binds= [1]]
 [connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/PanelContainer/VBoxContainer/DifficultButton" to="." method="_on_difficulty_button_pressed" binds= [2]]
-[connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/PanelContainer/BackButton" to="MenuLayer/DifficultyPickerContainer/DifficultyPicker/PanelContainer/BackButton" method="_on_pressed"]

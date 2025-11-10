@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://j40lxsro70gl"
-path="res://.godot/imported/ButtonStyle.png-786171cfb6edd82313c00c80349caf48.ctex"
+uid="uid://ilra7n38yjn3"
+path="res://.godot/imported/Simple_Difficulty.png-e06a2d2b9f2ea820b7530d8efcb98a01.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://interface/textures/ButtonStyle.png"
-dest_files=["res://.godot/imported/ButtonStyle.png-786171cfb6edd82313c00c80349caf48.ctex"]
+source_file="res://interface/textures/ButtonTexture/DifficultyButtons/Simple_Difficulty.png"
+dest_files=["res://.godot/imported/Simple_Difficulty.png-e06a2d2b9f2ea820b7530d8efcb98a01.ctex"]
 
 [params]
 

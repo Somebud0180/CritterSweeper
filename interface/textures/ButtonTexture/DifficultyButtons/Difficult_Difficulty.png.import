@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pe3hx6mhd57l"
-path="res://.godot/imported/PauseButton_Pressed.png-a70685fea6e98e3c332f07b265b16400.ctex"
+uid="uid://cv1hjrhd3hqji"
+path="res://.godot/imported/Difficult_Difficulty.png-e6a337e2033ecc698fc6391aa6e677b2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://interface/textures/PauseButton/PauseButton_Pressed.png"
-dest_files=["res://.godot/imported/PauseButton_Pressed.png-a70685fea6e98e3c332f07b265b16400.ctex"]
+source_file="res://interface/textures/ButtonTexture/DifficultyButtons/Difficult_Difficulty.png"
+dest_files=["res://.godot/imported/Difficult_Difficulty.png-e6a337e2033ecc698fc6391aa6e677b2.ctex"]
 
 [params]
 
