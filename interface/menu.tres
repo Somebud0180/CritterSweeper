@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=13 format=3 uid="uid://bhmyomirsk6vr"]
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://bhmyomirsk6vr"]
 
 [ext_resource type="Texture2D" uid="uid://dykr4q016im2u" path="res://interface/textures/ButtonTexture/ButtonStyle_Hover.png" id="1_87gl6"]
 [ext_resource type="Texture2D" uid="uid://j40lxsro70gl" path="res://interface/textures/ButtonTexture/ButtonStyle.png" id="2_psl0c"]
@@ -42,6 +42,12 @@ axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 region_rect = Rect2(0, 0, 516, 100)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fmrnt"]
+load_path = "res://.godot/imported/Fade.png-52c4666f099eac4ca6c832af34a10c4d.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_axvq5"]
+texture = SubResource("CompressedTexture2D_fmrnt")
+
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_87gl6"]
 color = Color(0.8547833, 0.75756836, 0.90625, 1)
 thickness = 2
@@ -80,6 +86,8 @@ Button/fonts/font = SubResource("FontVariation_im3bc")
 Button/styles/hover = SubResource("StyleBoxTexture_0mtrw")
 Button/styles/normal = SubResource("StyleBoxTexture_pw0cd")
 Button/styles/pressed = SubResource("StyleBoxTexture_rukvw")
+FadePanelContainer/base_type = &"PanelContainer"
+FadePanelContainer/styles/panel = SubResource("StyleBoxTexture_axvq5")
 GridContainer/constants/h_separation = 0
 GridContainer/constants/v_separation = 0
 HSeparator/constants/separation = 24
