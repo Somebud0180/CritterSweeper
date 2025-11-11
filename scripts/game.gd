@@ -61,7 +61,7 @@ func start() -> void:
 	elif num_mines > 10:
 		animation_speed = 2.0
 	
-	critter_layer.animate_critters(animation_speed, num_mines, target_rect)
+	critter_layer.animate_critters(animation_speed, num_mines, target_rect, get_tile_size())
 	await critter_layer.critters_finished
 	
 	# Re-enable tiles
@@ -105,10 +105,9 @@ func _on_tile_pressed(x: int, y: int):
 		if check_win_condition():
 			game_won()
 
-func update_tile_sizes():
+func get_tile_size() -> float:
 	# Calculate dynamic tile size if needed
 	var tile_size_setting = Globals.tile_size
-	var calculated_tile_size: float = 0
 	
 	if tile_size_setting <= 1:
 		var viewport_size = scroll_container.size
@@ -117,10 +116,15 @@ func update_tile_sizes():
 			# Fit to screen (both width and height)
 			var size_by_width = viewport_size.x / columns
 			var size_by_height = viewport_size.y / rows
-			calculated_tile_size = min(size_by_width, size_by_height)
+			return min(size_by_width, size_by_height)
 		else: # tile_size_setting == 1
 			# Fit to screen width only
-			calculated_tile_size = viewport_size.x / columns
+			return viewport_size.x / columns
+	
+	return 0
+
+func update_tile_sizes():
+	var calculated_tile_size: float = get_tile_size()
 	
 	# Apply tile size to all existing tiles
 	for row in tiles:
@@ -144,6 +148,7 @@ func create_grid():
 	calculate_adjacent_mines()
 
 func generate_mine_positions(first_click_position: Vector2i) -> Array:
+	print(num_mines)
 	var first_click_positions = []
 	for dy in range(-1, 2):
 		for dx in range(-1, 2):
@@ -156,6 +161,7 @@ func generate_mine_positions(first_click_position: Vector2i) -> Array:
 		if pos not in mine_positions and pos not in first_click_positions:
 			mine_positions.append(pos)
 	
+	print(mine_positions.size())
 	return mine_positions;
 
 func count_adjacent_mines(x: int, y: int) -> int:

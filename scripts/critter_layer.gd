@@ -6,7 +6,7 @@ const CRITTER = preload("res://scenes/critter.tscn")
 @export var spawn_delay: float = 0.05
 var animation_duration: float = 2.0
 
-func animate_critters(duration: float, count: int, target_rect: Rect2):
+func animate_critters(duration: float, count: int, target_rect: Rect2, critter_size: float):
 	animation_duration = duration
 	
 	for child in get_children():
@@ -15,16 +15,17 @@ func animate_critters(duration: float, count: int, target_rect: Rect2):
 	# Spawn from random edges
 	for i in range(count):
 		await get_tree().create_timer(spawn_delay).timeout
-		spawn_critter(target_rect)
+		spawn_critter(target_rect, critter_size)
 	
 	# Wait for all critters to spawn
 	await get_tree().create_timer(animation_duration).timeout
 	critters_finished.emit()
 
-func spawn_critter(target_rect: Rect2):
+func spawn_critter(target_rect: Rect2, critter_size: float):
 	var critter = CRITTER.instantiate()
+	var tile_size_setting = Globals.tile_size
+	var custom_critter_size: float = critter_size
 	add_child(critter)
-	
 	
 	# Pick a random edge
 	var edge = randi() % 4
@@ -32,6 +33,9 @@ func spawn_critter(target_rect: Rect2):
 	var end_pos = get_random_point_in_rect(target_rect)
 	var direction = (end_pos - start_pos).angle()
 	
+	if critter_size == 0:
+		custom_critter_size = Globals.TILE_SIZES[tile_size_setting]
+	critter.scale = Vector2(custom_critter_size/256, custom_critter_size/256)
 	critter.position = start_pos
 	critter.rotation = direction
 	
