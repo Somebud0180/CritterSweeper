@@ -148,21 +148,29 @@ func create_grid():
 	calculate_adjacent_mines()
 
 func generate_mine_positions(first_click_position: Vector2i) -> Array:
-	print(num_mines)
+	print("Target mines: ", num_mines)
+	
 	var first_click_positions = []
 	for dy in range(-1, 2):
 		for dx in range(-1, 2):
-			first_click_positions.append(first_click_position + Vector2i(dx, dy))
+			var check_pos = first_click_position + Vector2i(dx, dy)
+			if check_pos.x >= 0 and check_pos.x < columns and check_pos.y >= 0 and check_pos.y < rows:
+				first_click_positions.append(check_pos)
 	
-	randomize()
-	var mine_positions = []
-	while mine_positions.size() < num_mines:
-		var pos = Vector2i(randi() % columns, randi() % rows)
-		if pos not in mine_positions and pos not in first_click_positions:
-			mine_positions.append(pos)
+	var valid_positions = []
+	for y in range(rows):
+		for x in range(columns):
+			var pos = Vector2i(x, y)
+			if pos not in first_click_positions:
+				valid_positions.append(pos)
 	
-	print(mine_positions.size())
-	return mine_positions;
+	var max_possible_mines = valid_positions.size()
+	var mines_to_place = mini(num_mines, max_possible_mines)
+	
+	valid_positions.shuffle()
+	var mine_positions = valid_positions.slice(0, mines_to_place)
+	
+	return mine_positions
 
 func count_adjacent_mines(x: int, y: int) -> int:
 	var count = 0

@@ -55,13 +55,7 @@ func focus_main_menu() -> void:
 		start_button.grab_focus()
 
 func _input(event: InputEvent) -> void:
-	var new_input_type = 0
-	if event is InputEventScreenTouch:
-		new_input_type = 1
-	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
-		new_input_type = 2
-	else:
-		new_input_type = 0
+	var new_input_type = _check_input_type(event)
 	
 	# Reduce unnecessary updates
 	if Globals.input_type != new_input_type:
@@ -84,6 +78,14 @@ func _input(event: InputEvent) -> void:
 				hide_and_show("settings", "main")
 			STATE.DIFFICULTY:
 				hide_and_show("difficulty", "main")
+
+func _check_input_type(event: InputEvent) -> int:
+	if event is InputEventScreenTouch:
+		return 1
+	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
+		return 2
+	else:
+		return 0
 
 # Main Menu Buttons
 func _on_start_button_pressed() -> void:
