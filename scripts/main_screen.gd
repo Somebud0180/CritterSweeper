@@ -40,12 +40,13 @@ func hide_and_show(hide_string: String, show_string: String) -> void:
 func update_flag_mode() -> void:
 	# If Keyboard and Mouse, catch and hide sidebar
 	if Globals.input_type == 0:
-		sidebar_animation_player.play("shared_animations/hide_flag_mode")
+		if sidebar_visible:
+			sidebar_animation_player.play("shared_animations/hide_flag_mode")
 		return
 	
 	if Globals.flag_mode == 0 and sidebar_visible:
 		sidebar_animation_player.play("shared_animations/hide_flag_mode")
-	elif Globals.flag_mode == 1 and in_game and menu_state == STATE.GAME:
+	elif Globals.flag_mode == 1 and menu_state == STATE.GAME and !sidebar_visible:
 		sidebar_animation_player.play("shared_animations/show_flag_mode")
 
 func focus_main_menu() -> void:
@@ -66,14 +67,12 @@ func _input(event: InputEvent) -> void:
 			STATE.MAIN:
 				if in_game:
 					hide_and_show("main", "game")
-					if Globals.input_type != 0 and Globals.flag_mode == 1:
-						sidebar_animation_player.play("shared_animations/show_flag_mode")
+					update_flag_mode()
 			STATE.GAME:
 				# Only open menu if go_back is pressed (affects controllers)
 				if event.is_action_pressed("go_back"):
 					hide_and_show("game", "main")
-					if sidebar_visible:
-						sidebar_animation_player.play("shared_animations/hide_flag_mode")
+					update_flag_mode()
 			STATE.SETTINGS:
 				hide_and_show("settings", "main")
 			STATE.DIFFICULTY:
@@ -85,6 +84,8 @@ func _check_input_type(event: InputEvent) -> int:
 	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
 		return 2
 	else:
+		if event.device == -1:
+			return 1
 		return 0
 
 # Main Menu Buttons
@@ -93,8 +94,7 @@ func _on_start_button_pressed() -> void:
 
 func _on_resume_button_pressed() -> void:
 	hide_and_show("main", "game")
-	if Globals.input_type != 0 and Globals.flag_mode == 1:
-		sidebar_animation_player.play("shared_animations/show_flag_mode")
+	update_flag_mode()
 
 func _on_settings_button_pressed() -> void:
 	hide_and_show("main", "settings")
@@ -121,8 +121,7 @@ func _on_difficulty_button_pressed(difficulty: int) -> void:
 	
 	game_scene.start()
 	hide_and_show("difficulty", "game")
-	if Globals.input_type != 0 and Globals.flag_mode == 1:
-		sidebar_animation_player.play("shared_animations/show_flag_mode")
+	update_flag_mode()
 
 # Settings Functions
 func _on_button_pressed() -> void:

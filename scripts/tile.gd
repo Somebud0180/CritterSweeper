@@ -50,7 +50,28 @@ func _on_gui_input(event: InputEvent) -> void:
 	if disabled:
 		return
 	
-	if event is InputEventJoypadButton and event.is_action("ui_accept") or event.is_action_pressed("ui_cancel"):
+	if event is InputEventScreenTouch:
+		match Globals.flag_mode:
+			0:
+				if event.is_action_pressed("ui_accept"):
+						if flag_mode and !is_revealed:
+							toggle_flagging()
+						elif not flag_mode and !is_flagged :
+							emit_signal("tile_pressed")
+				elif event.is_action_pressed("ui_cancel"):
+						if !is_revealed:
+							toggle_flagging()
+			1:
+				if event.is_action_pressed("ui_accept"):
+					if flag_mode and !is_revealed:
+						toggle_flagging()
+					elif not flag_mode and !is_flagged :
+						emit_signal("tile_pressed")
+		
+		accept_event()
+		return
+	
+	elif event is InputEventJoypadButton and event.is_action("ui_accept") or event.is_action_pressed("ui_cancel"):
 		match Globals.flag_mode:
 			0:
 				if event.pressed:
@@ -75,31 +96,10 @@ func _on_gui_input(event: InputEvent) -> void:
 		
 		return
 	
-	elif event is InputEventScreenTouch and !disabled:
-		match Globals.flag_mode:
-			0:
-				if event.is_action_pressed("ui_accept"):
-						if flag_mode and !is_revealed:
-							toggle_flagging()
-						elif not flag_mode and !is_flagged :
-							emit_signal("tile_pressed")
-				elif event.is_action_pressed("ui_cancel"):
-						if !is_revealed:
-							toggle_flagging()
-			1:
-				if event.is_action_pressed("ui_accept"):
-					if flag_mode and !is_revealed:
-						toggle_flagging()
-					elif not flag_mode and !is_flagged :
-						emit_signal("tile_pressed")
-		
-		accept_event()
-		return
-	
-	elif event is InputEventMouseButton and event.is_pressed() and !disabled:
+	elif event is InputEventMouseButton and event.is_pressed():
 		if event.device == -1:
-			accept_event()
 			return
+			
 		match event.button_index:
 			MOUSE_BUTTON_LEFT:
 				if flag_mode and !is_revealed:
