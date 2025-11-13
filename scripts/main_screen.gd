@@ -61,17 +61,17 @@ func _input(event: InputEvent) -> void:
 	if Globals.input_type != new_input_type:
 		Globals.input_type = new_input_type
 	
+	update_flag_mode()
+	
 	if (event.is_action_pressed("ui_cancel") or event.is_action_pressed("go_back")) and not animation_player.is_playing():
 		match menu_state:
 			STATE.MAIN:
 				if in_game:
 					hide_and_show("main", "game")
-					update_flag_mode()
 			STATE.GAME:
 				# Only open menu if go_back is pressed (affects controllers)
 				if event.is_action_pressed("go_back"):
 					hide_and_show("game", "main")
-					update_flag_mode()
 			STATE.SETTINGS:
 				hide_and_show("settings", "main")
 			STATE.DIFFICULTY:
@@ -93,7 +93,6 @@ func _on_start_button_pressed() -> void:
 
 func _on_resume_button_pressed() -> void:
 	hide_and_show("main", "game")
-	update_flag_mode()
 
 func _on_settings_button_pressed() -> void:
 	hide_and_show("main", "settings")
@@ -120,7 +119,6 @@ func _on_difficulty_button_pressed(difficulty: int) -> void:
 	
 	game_scene.start()
 	hide_and_show("difficulty", "game")
-	update_flag_mode()
 
 # Settings Functions
 func _on_button_pressed() -> void:

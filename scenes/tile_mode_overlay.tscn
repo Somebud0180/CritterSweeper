@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://chm2tu86wl8ae"]
+[gd_scene load_steps=3 format=3 uid="uid://chm2tu86wl8ae"]
 
 [ext_resource type="Theme" uid="uid://bhmyomirsk6vr" path="res://interface/menu.tres" id="1_5k1n5"]
+[ext_resource type="Script" uid="uid://b5xm3wi3yny4o" path="res://scripts/tile_mode_overlay.gd" id="2_vmkur"]
 
 [node name="TileModeOverlay" type="VBoxContainer"]
 modulate = Color(1, 1, 1, 0)
@@ -14,6 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.02, 1.02)
 theme = ExtResource("1_5k1n5")
+script = ExtResource("2_vmkur")
 
 [node name="RevealMode" type="Button" parent="."]
 layout_mode = 2
@@ -22,3 +24,6 @@ text = "R"
 [node name="FlagMode" type="Button" parent="."]
 layout_mode = 2
 text = "F"
+
+[connection signal="pressed" from="RevealMode" to="." method="_on_reveal_mode_pressed"]
+[connection signal="pressed" from="FlagMode" to="." method="_on_flag_mode_pressed"]

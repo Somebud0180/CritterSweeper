@@ -9,7 +9,6 @@ var adjacent_mines: int = 0
 var tile_size: Vector2 = Vector2(32, 32)
 var touch_held: bool = false
 var long_press_triggered: bool = false
-var flag_mode: bool = false
 var original_zindex: int = 0
 
 func _ready() -> void:
@@ -55,9 +54,9 @@ func _on_gui_input(event: InputEvent) -> void:
 			if event.is_pressed():
 				match event.button_index:
 					MOUSE_BUTTON_LEFT:
-						if flag_mode and !is_revealed:
+						if Globals.is_flagging and !is_revealed:
 							toggle_flagging()
-						elif not flag_mode and !is_flagged :
+						elif not Globals.is_flagging and !is_flagged :
 							emit_signal("tile_pressed")
 					MOUSE_BUTTON_RIGHT:
 						if !is_revealed:
@@ -84,9 +83,9 @@ func _on_gui_input(event: InputEvent) -> void:
 						touch_held = false
 						long_press_triggered = false
 				1:
-					if flag_mode and !is_revealed:
+					if Globals.is_flagging and !is_revealed:
 						toggle_flagging()
-					elif not flag_mode and !is_flagged :
+					elif not Globals.is_flagging and !is_flagged :
 						emit_signal("tile_pressed")
 			
 			accept_event()
@@ -97,18 +96,18 @@ func _on_gui_input(event: InputEvent) -> void:
 				match Globals.flag_mode:
 					0:
 						if event.is_action_pressed("ui_accept"):
-								if flag_mode and !is_revealed:
+								if Globals.is_flagging and !is_revealed:
 									toggle_flagging()
-								elif not flag_mode and !is_flagged :
+								elif not Globals.is_flagging and !is_flagged :
 									emit_signal("tile_pressed")
 						elif event.is_action_pressed("ui_cancel"):
 								if !is_revealed:
 									toggle_flagging()
 					1:
 						if event.is_action_pressed("ui_accept"):
-							if flag_mode and !is_revealed:
+							if Globals.is_flagging and !is_revealed:
 								toggle_flagging()
-							elif not flag_mode and !is_flagged :
+							elif not Globals.is_flagging and !is_flagged :
 								emit_signal("tile_pressed")
 				
 				accept_event()

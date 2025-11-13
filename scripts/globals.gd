@@ -31,13 +31,15 @@ var sfx_vol: float:
 		sfx_vol = value
 		_save_config()
 
-## Touch Controls
+## Flag Controls
 var flag_mode: int: # (Not on KBM) 0 - Hold to Flag; 1 - Flag Mode Sidebar
 	set(value):
 		value = mini(1, maxi(value, 0))
 		flag_mode = value
 		get_tree().get_first_node_in_group("MainScreen").update_flag_mode()
 		_save_config()
+
+var is_flagging: bool = false
 
 ## General
 var vibration: bool:
