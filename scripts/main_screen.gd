@@ -57,7 +57,6 @@ func focus_main_menu() -> void:
 
 func _input(event: InputEvent) -> void:
 	var new_input_type = _check_input_type(event)
-	
 	# Reduce unnecessary updates
 	if Globals.input_type != new_input_type:
 		Globals.input_type = new_input_type
@@ -84,7 +83,7 @@ func _check_input_type(event: InputEvent) -> int:
 	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
 		return 2
 	else:
-		if event.device == -1:
+		if event.device == event.DEVICE_ID_EMULATION:
 			return 1
 		return 0
 

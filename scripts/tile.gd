@@ -50,65 +50,69 @@ func _on_gui_input(event: InputEvent) -> void:
 	if disabled:
 		return
 	
-	if event is InputEventScreenTouch:
-		match Globals.flag_mode:
-			0:
-				if event.is_action_pressed("ui_accept"):
+	match Globals.input_type:
+		0: 
+			if event.is_pressed():
+				match event.button_index:
+					MOUSE_BUTTON_LEFT:
 						if flag_mode and !is_revealed:
 							toggle_flagging()
 						elif not flag_mode and !is_flagged :
 							emit_signal("tile_pressed")
-				elif event.is_action_pressed("ui_cancel"):
+					MOUSE_BUTTON_RIGHT:
 						if !is_revealed:
 							toggle_flagging()
-			1:
-				if event.is_action_pressed("ui_accept"):
+				
+				accept_event()
+				return
+		
+		1:
+			match Globals.flag_mode:
+				0:
+					if event.pressed:
+						# Touch started - begin long press timer
+						touch_held = true
+						long_press_triggered = false
+						$Timer.start()
+					else:
+						# Touch released
+						$Timer.stop()
+						if touch_held and !long_press_triggered:
+							# Short tap - reveal tile
+							if !is_flagged:
+								emit_signal("tile_pressed")
+						touch_held = false
+						long_press_triggered = false
+				1:
 					if flag_mode and !is_revealed:
 						toggle_flagging()
 					elif not flag_mode and !is_flagged :
 						emit_signal("tile_pressed")
-		
-		accept_event()
-		return
-	
-	elif event is InputEventJoypadButton and event.is_action("ui_accept") or event.is_action_pressed("ui_cancel"):
-		match Globals.flag_mode:
-			0:
-				if event.pressed:
-					# Touch started - begin long press timer
-					touch_held = true
-					long_press_triggered = false
-					$Timer.start()
-				else:
-					# Touch released
-					$Timer.stop()
-					if touch_held and !long_press_triggered:
-						# Short tap - reveal tile
-						if !is_flagged:
-							emit_signal("tile_pressed")
-					touch_held = false
-					long_press_triggered = false
-			1:
-				if flag_mode and !is_revealed:
-					toggle_flagging()
-				elif not flag_mode and !is_flagged :
-					emit_signal("tile_pressed")
-		
-		return
-	
-	elif event is InputEventMouseButton and event.is_pressed():
-		if event.device == -1:
-			return
 			
-		match event.button_index:
-			MOUSE_BUTTON_LEFT:
-				if flag_mode and !is_revealed:
-					toggle_flagging()
-				elif not flag_mode and !is_flagged :
-					emit_signal("tile_pressed")
-			MOUSE_BUTTON_RIGHT:
-				if !is_revealed:
-					toggle_flagging()
+			accept_event()
+			return
+		
+		2:
+			if event.is_action("ui_accept") or event.is_action_pressed("ui_cancel"):
+				match Globals.flag_mode:
+					0:
+						if event.is_action_pressed("ui_accept"):
+								if flag_mode and !is_revealed:
+									toggle_flagging()
+								elif not flag_mode and !is_flagged :
+									emit_signal("tile_pressed")
+						elif event.is_action_pressed("ui_cancel"):
+								if !is_revealed:
+									toggle_flagging()
+					1:
+						if event.is_action_pressed("ui_accept"):
+							if flag_mode and !is_revealed:
+								toggle_flagging()
+							elif not flag_mode and !is_flagged :
+								emit_signal("tile_pressed")
+				
+				accept_event()
+				return
 
 func _on_timer_timeout() -> void:
 	# Timer expired while still holding - flag the tile
@@ -132,10 +136,12 @@ func _on_focus_exited() -> void:
 
 # Mouse Animation
 func _on_mouse_entered() -> void:
-	_enlarge_button()
+	if Globals.input_type == 0:
+		_enlarge_button()
 
 func _on_mouse_exited() -> void:
-	_normalize_button()
+	if Globals.input_type == 0:
+		_normalize_button()
 
 # Button Press Animation
 func _on_button_down() -> void:
