@@ -10,6 +10,7 @@ var tile_size: Vector2 = Vector2(32, 32)
 var touch_held: bool = false
 var long_press_triggered: bool = false
 var original_zindex: int = 0
+var tween = create_tween()
 
 func _ready() -> void:
 	original_zindex = z_index
@@ -17,10 +18,15 @@ func _ready() -> void:
 	set_tile_size()
 
 func set_tile_size(custom_size: float = 0) -> void:
+	var tween = create_tween()
+	tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	
 	if custom_size != 0:
 		# Size specified by game.gd for dynamic sizing
-		custom_minimum_size = Vector2(custom_size, custom_size)
-		pivot_offset = Vector2(custom_size/2, custom_size/2)
+		tween.tween_property(self, "custom_minimum_size", Vector2(custom_size, custom_size), 0.2)
+		tween.tween_property(self, "pivot_offset", Vector2(custom_size/2, custom_size/2), 0.2)
 	else:
 		var tile_size_setting = Globals.tile_size
 		# Don't set a size when using dynamic sizing (0, 1)
@@ -29,8 +35,8 @@ func set_tile_size(custom_size: float = 0) -> void:
 		else:
 			# Use predefined tile size
 			var custom_tile_size = Globals.TILE_SIZES[tile_size_setting]
-			custom_minimum_size = Vector2(custom_tile_size, custom_tile_size)
-			pivot_offset = Vector2(custom_tile_size/2, custom_tile_size/2)
+			tween.tween_property(self, "custom_minimum_size", Vector2(custom_size, custom_size), 0.2)
+			tween.tween_property(self, "pivot_offset", Vector2(custom_tile_size/2, custom_tile_size/2), 0.2)
 
 func reveal_tile(original_press: bool = false):
 	if is_revealed:
