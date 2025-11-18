@@ -10,7 +10,6 @@ var tile_size: Vector2 = Vector2(32, 32)
 var touch_held: bool = false
 var long_press_triggered: bool = false
 var original_zindex: int = 0
-var tween = create_tween()
 
 func _ready() -> void:
 	original_zindex = z_index
@@ -19,7 +18,6 @@ func _ready() -> void:
 
 func set_tile_size(custom_size: float = 0) -> void:
 	var tween = create_tween()
-	tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_trans(Tween.TRANS_CUBIC)
 	
@@ -57,7 +55,7 @@ func _on_gui_input(event: InputEvent) -> void:
 	
 	match Globals.input_type:
 		0: 
-			if event.is_pressed():
+			if event.is_pressed() and event is InputEventMouseButton:
 				match event.button_index:
 					MOUSE_BUTTON_LEFT:
 						if Globals.is_flagging and !is_revealed:
