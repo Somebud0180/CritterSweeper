@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cgqy54bs5kc5y"]
+[gd_scene load_steps=9 format=3 uid="uid://cgqy54bs5kc5y"]
 
 [ext_resource type="Script" uid="uid://d16hdx4moncic" path="res://scripts/back_button.gd" id="1_mki26"]
 [ext_resource type="Texture2D" uid="uid://c8k80lph4nua8" path="res://interface/textures/ButtonTexture/BackButton.png" id="1_tkpbl"]
+[ext_resource type="Texture2D" uid="uid://3cyixggk1gk1" path="res://interface/textures/ButtonTexture/BackButton_Focus.png" id="2_adig4"]
 
 [sub_resource type="Animation" id="Animation_jy7pm"]
 length = 0.001
@@ -87,6 +88,7 @@ size_flags_vertical = 4
 focus_neighbor_top = NodePath("../Button Container/VBoxContainer/ControlsContainer/Vibration/CheckButton")
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("1_tkpbl")
+texture_focused = ExtResource("2_adig4")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("1_mki26")

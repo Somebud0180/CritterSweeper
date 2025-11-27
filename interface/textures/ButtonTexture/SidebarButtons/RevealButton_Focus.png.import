@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pe3hx6mhd57l"
-path="res://.godot/imported/PauseButton_Pressed.png-bda867306cfc75e7dc9a782fca7e649c.ctex"
+uid="uid://b5rhqtehawijy"
+path="res://.godot/imported/RevealButton_Focus.png-a66e0d683d5bf78f6bbd01a0055c3231.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://interface/textures/ButtonTexture/PauseButton/PauseButton_Pressed.png"
-dest_files=["res://.godot/imported/PauseButton_Pressed.png-bda867306cfc75e7dc9a782fca7e649c.ctex"]
+source_file="res://interface/textures/ButtonTexture/SidebarButtons/RevealButton_Focus.png"
+dest_files=["res://.godot/imported/RevealButton_Focus.png-a66e0d683d5bf78f6bbd01a0055c3231.ctex"]
 
 [params]
 

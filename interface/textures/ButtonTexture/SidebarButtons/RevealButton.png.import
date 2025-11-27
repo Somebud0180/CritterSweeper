@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cp227g2cag6co"
-path="res://.godot/imported/PauseButton_Norm.png-068a5a53a336c8e0ae1d1504d2ce7939.ctex"
+uid="uid://cwdwlq0ls35b"
+path="res://.godot/imported/RevealButton.png-293008e34dd5f91f974850af04475583.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://interface/textures/ButtonTexture/PauseButton/PauseButton_Norm.png"
-dest_files=["res://.godot/imported/PauseButton_Norm.png-068a5a53a336c8e0ae1d1504d2ce7939.ctex"]
+source_file="res://interface/textures/ButtonTexture/SidebarButtons/RevealButton.png"
+dest_files=["res://.godot/imported/RevealButton.png-293008e34dd5f91f974850af04475583.ctex"]
 
 [params]
 
