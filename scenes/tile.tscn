@@ -1,7 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bem5pvemryef6"]
+[gd_scene load_steps=13 format=3 uid="uid://bem5pvemryef6"]
 
 [ext_resource type="Texture2D" uid="uid://ct0fuc6qawnv7" path="res://assets/sprites/minesweeper.png" id="1_ywnoi"]
 [ext_resource type="Script" uid="uid://c0pjp0yar0rba" path="res://scripts/tile.gd" id="2_jy7pm"]
+[ext_resource type="AudioStream" uid="uid://bqna8ty12nh7" path="res://assets/OpenGameArt/UI Sound/Click_Standard_00.wav" id="3_6p3j2"]
+[ext_resource type="AudioStream" uid="uid://dg6gndb328nml" path="res://assets/OpenGameArt/UI Sound/Click_Standard_01.wav" id="4_gtpg2"]
+[ext_resource type="AudioStream" uid="uid://duarc26ywn4l0" path="res://assets/OpenGameArt/UI Sound/Click_Standard_02.wav" id="5_a2bny"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0wfyh"]
 atlas = ExtResource("1_ywnoi")
@@ -82,6 +85,15 @@ _data = {
 &"press": SubResource("Animation_6p3j2")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_284l3"]
+playback_mode = 1
+random_pitch = 2.0
+random_volume_offset_db = 5.0
+streams_count = 3
+stream_0/stream = ExtResource("3_6p3j2")
+stream_1/stream = ExtResource("4_gtpg2")
+stream_2/stream = ExtResource("5_a2bny")
+
 [node name="Tile" type="TextureButton" groups=["Tiles"]]
 custom_minimum_size = Vector2(44, 44)
 anchors_preset = 15
@@ -106,6 +118,9 @@ libraries = {
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.75
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_284l3")
 
 [connection signal="button_down" from="." to="." method="_on_button_down"]
 [connection signal="button_up" from="." to="." method="_on_button_up"]

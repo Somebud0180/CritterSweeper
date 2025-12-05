@@ -29,6 +29,7 @@ func set_tile_size(custom_size: float = 0) -> void:
 		var tile_size_setting = Globals.tile_size
 		# Don't set a size when using dynamic sizing (0, 1)
 		if tile_size_setting <= 1:
+			tween.kill()
 			return
 		else:
 			# Use predefined tile size
@@ -66,6 +67,7 @@ func _on_gui_input(event: InputEvent) -> void:
 						if !is_revealed:
 							toggle_flagging()
 				
+				$AudioStreamPlayer.play()
 				accept_event()
 				return
 		
@@ -92,6 +94,7 @@ func _on_gui_input(event: InputEvent) -> void:
 					elif not Globals.is_flagging and !is_flagged :
 						emit_signal("tile_pressed")
 			
+			$AudioStreamPlayer.play()
 			accept_event()
 			return
 		
@@ -114,6 +117,7 @@ func _on_gui_input(event: InputEvent) -> void:
 							elif not Globals.is_flagging and !is_flagged :
 								emit_signal("tile_pressed")
 				
+				$AudioStreamPlayer.play()
 				accept_event()
 				return
 
