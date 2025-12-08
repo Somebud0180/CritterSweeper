@@ -29,6 +29,7 @@ var music_vol: float:
 var sfx_vol: float:
 	set(value):
 		sfx_vol = value
+		set_sfx_vol()
 		_save_config()
 
 ## Flag Controls
@@ -71,8 +72,8 @@ func _load_config() -> void:
 	
 	# Restore configuration
 	tile_size = config.get_value("Setting", "tile_size", 0)
-	music_vol = config.get_value("Setting", "music_vol", 1.0)
-	sfx_vol = config.get_value("Setting", "sfx_vol", 1.0)
+	music_vol = config.get_value("Setting", "music_vol", 0.8)
+	sfx_vol = config.get_value("Setting", "sfx_vol", 0.8)
 	flag_mode = config.get_value("Setting", "flag_mode", 0)
 	vibration = config.get_value("Setting", "vibration", true)
 	
@@ -100,6 +101,10 @@ func _update_settings_nodes() -> void:
 		node.update_value()
 
 ## Global Functions
+func set_sfx_vol() -> void:
+	for player in get_tree().get_nodes_in_group("SFXPlayer"):
+		player.volume_linear = sfx_vol
+
 func vibrate_stop() -> void:
 	if Globals.input_type == 2:
 		Input.stop_joy_vibration(0)

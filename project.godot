@@ -43,6 +43,7 @@ MainScreen=""
 Tiles=""
 Game=""
 SettingsNode=""
+SFXPlayer=""
 
 [input]
 
