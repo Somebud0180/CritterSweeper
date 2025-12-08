@@ -24,6 +24,7 @@ var tile_size: int:
 var music_vol: float:
 	set(value):
 		music_vol = value
+		set_music_vol()
 		_save_config()
 
 var sfx_vol: float:
@@ -101,6 +102,10 @@ func _update_settings_nodes() -> void:
 		node.update_value()
 
 ## Global Functions
+func set_music_vol() -> void:
+	for player in get_tree().get_nodes_in_group("MusicPlayer"):
+		player.volume_linear = music_vol
+
 func set_sfx_vol() -> void:
 	for player in get_tree().get_nodes_in_group("SFXPlayer"):
 		player.volume_linear = sfx_vol

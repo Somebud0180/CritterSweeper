@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://wxiagu8uy4w4"]
+[gd_scene load_steps=55 format=3 uid="uid://wxiagu8uy4w4"]
 
 [ext_resource type="Theme" uid="uid://bhmyomirsk6vr" path="res://interface/menu.tres" id="1_yqeox"]
 [ext_resource type="Script" uid="uid://xtopgpgymqh0" path="res://scripts/main_screen.gd" id="2_4ytvr"]
@@ -28,6 +28,8 @@
 [ext_resource type="Script" uid="uid://bfw1gn3rff0q0" path="res://scripts/globals_check_button.gd" id="26_x16fv"]
 [ext_resource type="Texture2D" uid="uid://dli166i2uw5ch" path="res://interface/textures/ButtonTexture/DifficultyButtons/Normal_Difficulty.png" id="27_vhsb5"]
 [ext_resource type="Texture2D" uid="uid://cv1hjrhd3hqji" path="res://interface/textures/ButtonTexture/DifficultyButtons/Difficult_Difficulty.png" id="28_hwfsl"]
+[ext_resource type="AudioStream" uid="uid://b6urbdg2jf7pb" path="res://assets/music/CritterSweeper.wav" id="29_hwfsl"]
+[ext_resource type="Script" uid="uid://bxmsbqlbt088g" path="res://scripts/music_player.gd" id="30_a04p5"]
 
 [sub_resource type="Animation" id="Animation_jy7pm"]
 length = 0.001
@@ -893,6 +895,10 @@ _data = {
 &"show_settings": SubResource("Animation_v86rl")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_b5gwo"]
+streams_count = 1
+stream_0/stream = ExtResource("29_hwfsl")
+
 [node name="MainScreen" type="Control" node_paths=PackedStringArray("animation_player", "sidebar_animation_player", "resume_button", "start_button") groups=["MainScreen"]]
 layout_mode = 3
 anchors_preset = 15
@@ -1441,6 +1447,10 @@ libraries = {
 &"": SubResource("AnimationLibrary_13sgg")
 }
 
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." groups=["MusicPlayer"]]
+stream = SubResource("AudioStreamRandomizer_b5gwo")
+script = ExtResource("30_a04p5")
+
 [connection signal="pressed" from="GameLayer/GameOverlay/HBoxContainer/PauseButton" to="GameLayer/GameOverlay/HBoxContainer/PauseButton" method="_on_pressed"]
 [connection signal="pressed" from="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/StartButton" to="." method="_on_start_button_pressed"]
@@ -1454,3 +1464,4 @@ libraries = {
 [connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/SimpleButton" to="." method="_on_difficulty_button_pressed" binds= [0]]
 [connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/NormalButton" to="." method="_on_difficulty_button_pressed" binds= [1]]
 [connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/DifficultButton" to="." method="_on_difficulty_button_pressed" binds= [2]]
+[connection signal="finished" from="MusicPlayer" to="MusicPlayer" method="_on_finished"]

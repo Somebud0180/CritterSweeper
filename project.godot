@@ -44,6 +44,7 @@ Tiles=""
 Game=""
 SettingsNode=""
 SFXPlayer=""
+MusicPlayer=""
 
 [input]
 
