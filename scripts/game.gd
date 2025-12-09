@@ -34,7 +34,7 @@ func start() -> void:
 	grid_aspect.ratio = float(columns) / float(rows)
 	create_grid()
 	
-	# Disabled tiles
+	# Disable tiles
 	for row in tiles:
 		for tile in row:
 			tile.disabled = true
@@ -215,7 +215,8 @@ func check_win_condition():
 func game_over():
 	for row in tiles:
 		for tile in row:
-			tile.disabled = true;
+			tile.disabled = true
+			tile.mouse_default_cursor_shape = CURSOR_FORBIDDEN
 			if tile.is_mine:
 				tile.reveal_tile()
 	
@@ -227,6 +228,7 @@ func game_won():
 	for row in tiles:
 		for tile in row:
 			tile.disabled = true
+			tile.mouse_default_cursor_shape = CURSOR_ARROW
 	label.text = "You Won!"
 	label.visible = true
 	toast.visible = true

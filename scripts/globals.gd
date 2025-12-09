@@ -29,7 +29,7 @@ var music_vol: float:
 
 var sfx_vol: float:
 	set(value):
-		sfx_vol = value
+		sfx_vol = value / 2
 		set_sfx_vol()
 		_save_config()
 
