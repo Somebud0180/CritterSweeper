@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://wxiagu8uy4w4"]
+[gd_scene format=3 uid="uid://wxiagu8uy4w4"]
 
 [ext_resource type="Theme" uid="uid://bhmyomirsk6vr" path="res://interface/menu.tres" id="1_yqeox"]
 [ext_resource type="Script" uid="uid://xtopgpgymqh0" path="res://scripts/main_screen.gd" id="2_4ytvr"]
@@ -899,7 +899,7 @@ _data = {
 streams_count = 1
 stream_0/stream = ExtResource("29_hwfsl")
 
-[node name="MainScreen" type="Control" node_paths=PackedStringArray("animation_player", "sidebar_animation_player", "resume_button", "start_button") groups=["MainScreen"]]
+[node name="MainScreen" type="Control" unique_id=1279794475 node_paths=PackedStringArray("animation_player", "sidebar_animation_player", "resume_button", "start_button") groups=["MainScreen"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -917,11 +917,11 @@ sidebar_animation_player = NodePath("GameLayer/TileModeOverlay/AnimationPlayer")
 resume_button = NodePath("MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/ResumeButton")
 start_button = NodePath("MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/StartButton")
 
-[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+[node name="BackgroundLayer" type="CanvasLayer" parent="." unique_id=573315452]
 unique_name_in_owner = true
 layer = 0
 
-[node name="BackgroundParallax" type="Parallax2D" parent="BackgroundLayer"]
+[node name="BackgroundParallax" type="Parallax2D" parent="BackgroundLayer" unique_id=1727022649]
 scroll_scale = Vector2(0, 0)
 repeat_size = Vector2(1024, 1024)
 repeat_times = 6
@@ -929,11 +929,11 @@ screen_offset = Vector2(1024, 0)
 script = ExtResource("4_mj5lg")
 textures_folder = "res://assets/sprites/backgrounds"
 
-[node name="Sprite2D" type="Sprite2D" parent="BackgroundLayer/BackgroundParallax"]
+[node name="Sprite2D" type="Sprite2D" parent="BackgroundLayer/BackgroundParallax" unique_id=1209157803]
 texture = ExtResource("4_ufwb2")
 centered = false
 
-[node name="ForegroundParallax" type="Parallax2D" parent="BackgroundLayer"]
+[node name="ForegroundParallax" type="Parallax2D" parent="BackgroundLayer" unique_id=306441155]
 scroll_scale = Vector2(0.5, 0.5)
 repeat_size = Vector2(1024, 1024)
 autoscroll = Vector2(50, 50)
@@ -942,14 +942,14 @@ screen_offset = Vector2(1536, 0)
 script = ExtResource("4_mj5lg")
 textures_folder = "res://assets/sprites/foregrounds"
 
-[node name="Sprite2D" type="Sprite2D" parent="BackgroundLayer/ForegroundParallax"]
+[node name="Sprite2D" type="Sprite2D" parent="BackgroundLayer/ForegroundParallax" unique_id=618313150]
 texture = ExtResource("5_mj5lg")
 centered = false
 
-[node name="GameLayer" type="CanvasLayer" parent="."]
+[node name="GameLayer" type="CanvasLayer" parent="." unique_id=324703713]
 unique_name_in_owner = true
 
-[node name="CritterLayer" type="Control" parent="GameLayer"]
+[node name="CritterLayer" type="Control" parent="GameLayer" unique_id=1758650714]
 z_index = -1
 layout_mode = 3
 anchors_preset = 15
@@ -959,14 +959,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("13_lnf0i")
 
-[node name="Game" parent="GameLayer" node_paths=PackedStringArray("label", "toast", "critter_layer") instance=ExtResource("3_g3eks")]
+[node name="Game" parent="GameLayer" unique_id=1767809418 node_paths=PackedStringArray("label", "toast", "critter_layer") instance=ExtResource("3_g3eks")]
 z_index = 1
 pivot_offset = Vector2(288, 336)
 label = NodePath("../GameOverlay/HBoxContainer/Notif Panel/Label")
 toast = NodePath("../GameOverlay/HBoxContainer/Notif Panel")
 critter_layer = NodePath("../CritterLayer")
 
-[node name="GameOverlay" type="MarginContainer" parent="GameLayer"]
+[node name="GameOverlay" type="MarginContainer" parent="GameLayer" unique_id=701115959]
 visible = false
 z_index = 2
 anchors_preset = 10
@@ -985,13 +985,13 @@ theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GameLayer/GameOverlay"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GameLayer/GameOverlay" unique_id=1478528797]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 2
 
-[node name="PauseButton" type="TextureButton" parent="GameLayer/GameOverlay/HBoxContainer"]
+[node name="PauseButton" type="TextureButton" parent="GameLayer/GameOverlay/HBoxContainer" unique_id=1165737538]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -1003,19 +1003,17 @@ ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_mj5lg")
 
-[node name="ButtonAnimations" type="AnimationPlayer" parent="GameLayer/GameOverlay/HBoxContainer/PauseButton"]
-libraries = {
-&"": SubResource("AnimationLibrary_6p3j2")
-}
+[node name="ButtonAnimations" type="AnimationPlayer" parent="GameLayer/GameOverlay/HBoxContainer/PauseButton" unique_id=1594218233]
+libraries/ = SubResource("AnimationLibrary_6p3j2")
 
-[node name="Notif Panel" type="Panel" parent="GameLayer/GameOverlay/HBoxContainer"]
+[node name="Notif Panel" type="Panel" parent="GameLayer/GameOverlay/HBoxContainer" unique_id=1108334582]
 visible = false
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
-[node name="Label" type="Label" parent="GameLayer/GameOverlay/HBoxContainer/Notif Panel"]
+[node name="Label" type="Label" parent="GameLayer/GameOverlay/HBoxContainer/Notif Panel" unique_id=647587070]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -1028,21 +1026,19 @@ label_settings = SubResource("LabelSettings_70i5f")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TileModeOverlay" parent="GameLayer" instance=ExtResource("11_fy8yy")]
+[node name="TileModeOverlay" parent="GameLayer" unique_id=1687817053 instance=ExtResource("11_fy8yy")]
 visible = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="GameLayer/TileModeOverlay"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameLayer/TileModeOverlay" unique_id=920968225]
 root_node = NodePath("../../..")
-libraries = {
-&"": SubResource("AnimationLibrary_ffqrc"),
-&"shared_animations": ExtResource("12_6wigr")
-}
+libraries/ = SubResource("AnimationLibrary_ffqrc")
+libraries/shared_animations = ExtResource("12_6wigr")
 
-[node name="MenuLayer" type="CanvasLayer" parent="."]
+[node name="MenuLayer" type="CanvasLayer" parent="." unique_id=2040524931]
 unique_name_in_owner = true
 layer = 2
 
-[node name="MainMenuContainer" type="PanelContainer" parent="MenuLayer"]
+[node name="MainMenuContainer" type="PanelContainer" parent="MenuLayer" unique_id=1230979846]
 visible = false
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
@@ -1055,21 +1051,21 @@ mouse_filter = 1
 theme = ExtResource("1_yqeox")
 theme_type_variation = &"FadePanelContainer"
 
-[node name="MainMenu" type="MarginContainer" parent="MenuLayer/MainMenuContainer"]
+[node name="MainMenu" type="MarginContainer" parent="MenuLayer/MainMenuContainer" unique_id=625054631]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/MainMenuContainer/MainMenu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/MainMenuContainer/MainMenu" unique_id=1206847348]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer" unique_id=1557789553]
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 texture = ExtResource("2_vjb58")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="HSeparator" type="HSeparator" parent="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/TextureRect"]
+[node name="HSeparator" type="HSeparator" parent="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/TextureRect" unique_id=995437154]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
@@ -1078,12 +1074,12 @@ offset_right = 360.0
 offset_bottom = 12.0
 grow_vertical = 0
 
-[node name="Button Container" type="VBoxContainer" parent="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer"]
+[node name="Button Container" type="VBoxContainer" parent="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer" unique_id=34083045]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="ResumeButton" type="TextureButton" parent="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container"]
+[node name="ResumeButton" type="TextureButton" parent="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container" unique_id=1804043627]
 visible = false
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
@@ -1094,12 +1090,10 @@ ignore_texture_size = true
 stretch_mode = 4
 script = ExtResource("13_oi1it")
 
-[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/ResumeButton"]
-libraries = {
-&"": SubResource("AnimationLibrary_6p3j2")
-}
+[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/ResumeButton" unique_id=1814852933]
+libraries/ = SubResource("AnimationLibrary_6p3j2")
 
-[node name="StartButton" type="TextureButton" parent="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container"]
+[node name="StartButton" type="TextureButton" parent="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container" unique_id=1322000146]
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_vertical = 4
@@ -1109,12 +1103,10 @@ ignore_texture_size = true
 stretch_mode = 4
 script = ExtResource("13_oi1it")
 
-[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/StartButton"]
-libraries = {
-&"": SubResource("AnimationLibrary_6p3j2")
-}
+[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/StartButton" unique_id=100844622]
+libraries/ = SubResource("AnimationLibrary_6p3j2")
 
-[node name="SettingsButton" type="TextureButton" parent="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container"]
+[node name="SettingsButton" type="TextureButton" parent="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container" unique_id=1563634179]
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_vertical = 4
@@ -1124,12 +1116,10 @@ ignore_texture_size = true
 stretch_mode = 4
 script = ExtResource("13_oi1it")
 
-[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/SettingsButton"]
-libraries = {
-&"": SubResource("AnimationLibrary_6p3j2")
-}
+[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/SettingsButton" unique_id=946650812]
+libraries/ = SubResource("AnimationLibrary_6p3j2")
 
-[node name="SettingsContainer" type="AspectRatioContainer" parent="MenuLayer"]
+[node name="SettingsContainer" type="AspectRatioContainer" parent="MenuLayer" unique_id=2039698511]
 visible = false
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
@@ -1141,78 +1131,78 @@ pivot_offset = Vector2(288, 336)
 theme = ExtResource("1_yqeox")
 ratio = 0.8
 
-[node name="Settings" type="MarginContainer" parent="MenuLayer/SettingsContainer"]
+[node name="Settings" type="MarginContainer" parent="MenuLayer/SettingsContainer" unique_id=494783653]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="MenuLayer/SettingsContainer/Settings"]
+[node name="PanelContainer" type="PanelContainer" parent="MenuLayer/SettingsContainer/Settings" unique_id=453378119]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer" unique_id=1239231422]
 layout_mode = 2
 
-[node name="BackButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer" instance=ExtResource("20_g54pe")]
+[node name="BackButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer" unique_id=628942421 instance=ExtResource("20_g54pe")]
 layout_mode = 2
 current_menu = "settings"
 previous_menu = "main"
 
-[node name="TextureRect" type="TextureRect" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer" unique_id=111013678]
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 texture = ExtResource("11_ufwb2")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="HSeparator" type="HSeparator" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer" unique_id=1328556204]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Button Container" type="ScrollContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer"]
+[node name="Button Container" type="ScrollContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer" unique_id=1416057764]
 layout_mode = 2
 size_flags_vertical = 3
 follow_focus = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container" unique_id=383293581]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 12
 
-[node name="VolumeContainer" type="VBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer"]
+[node name="VolumeContainer" type="VBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer" unique_id=209811151]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 alignment = 1
 
-[node name="Volume" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer"]
+[node name="Volume" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer" unique_id=1529221610]
 layout_mode = 2
 theme_type_variation = &"HeaderMedium"
 text = "Volume"
 
-[node name="Sliders" type="VBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer"]
+[node name="Sliders" type="VBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer" unique_id=140587716]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 2
 alignment = 1
 
-[node name="MusicLabel" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders"]
+[node name="MusicLabel" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders" unique_id=2025367081]
 layout_mode = 2
 theme_type_variation = &"HeaderSmall"
 text = "Music:"
 label_settings = ExtResource("21_vhsb5")
 
-[node name="MusicSlider" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders"]
+[node name="MusicSlider" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders" unique_id=1652938786]
 layout_mode = 2
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider"]
+[node name="TextureRect" type="TextureRect" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider" unique_id=86450953]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 texture = ExtResource("3_mhnvy")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="MusicVolume" type="HSlider" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider" groups=["SettingsNode"]]
+[node name="MusicVolume" type="HSlider" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider" unique_id=907355426 groups=["SettingsNode"]]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -1223,28 +1213,28 @@ scrollable = false
 script = ExtResource("23_ffqrc")
 globals_var_name = "music_vol"
 
-[node name="HSeparator" type="HSeparator" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders"]
+[node name="HSeparator" type="HSeparator" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders" unique_id=1205385482]
 layout_mode = 2
 theme_override_constants/separation = 8
 theme_override_styles/separator = SubResource("StyleBoxEmpty_vjb58")
 
-[node name="SFXLabel" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders"]
+[node name="SFXLabel" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders" unique_id=1406376215]
 layout_mode = 2
 theme_type_variation = &"HeaderSmall"
 text = "UI Sounds:"
 label_settings = ExtResource("21_vhsb5")
 
-[node name="SFXSlider" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders"]
+[node name="SFXSlider" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders" unique_id=268847520]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider"]
+[node name="TextureRect" type="TextureRect" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider" unique_id=89630717]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 texture = ExtResource("4_4ytvr")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="SFXVolume" type="HSlider" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider" groups=["SettingsNode"]]
+[node name="SFXVolume" type="HSlider" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider" unique_id=1505556146 groups=["SettingsNode"]]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -1255,26 +1245,26 @@ scrollable = false
 script = ExtResource("23_ffqrc")
 globals_var_name = "sfx_vol"
 
-[node name="InterfaceContainer" type="VBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer"]
+[node name="InterfaceContainer" type="VBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer" unique_id=1792360756]
 layout_mode = 2
 
-[node name="Interface" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/InterfaceContainer"]
+[node name="Interface" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/InterfaceContainer" unique_id=1252945041]
 layout_mode = 2
 theme_type_variation = &"HeaderMedium"
 text = "Interface"
 
-[node name="TileSizeContainer" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/InterfaceContainer"]
+[node name="TileSizeContainer" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/InterfaceContainer" unique_id=2083733357]
 custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 
-[node name="TileSizeLabel" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/InterfaceContainer/TileSizeContainer"]
+[node name="TileSizeLabel" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/InterfaceContainer/TileSizeContainer" unique_id=1284687652]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"HeaderSmall"
 text = "Tile Size:"
 label_settings = ExtResource("21_vhsb5")
 
-[node name="TileSizePicker" type="OptionButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/InterfaceContainer/TileSizeContainer" groups=["SettingsNode"]]
+[node name="TileSizePicker" type="OptionButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/InterfaceContainer/TileSizeContainer" unique_id=991841443 groups=["SettingsNode"]]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_7jp70")
@@ -1296,29 +1286,29 @@ popup/item_4/id = 4
 script = ExtResource("16_mxgkd")
 globals_var_name = "tile_size"
 
-[node name="ControlsContainer" type="VBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer"]
+[node name="ControlsContainer" type="VBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer" unique_id=1863007661]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 alignment = 1
 
-[node name="Controls" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer"]
+[node name="Controls" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer" unique_id=279757059]
 layout_mode = 2
 theme_type_variation = &"HeaderMedium"
 text = "Controls"
 
-[node name="TileModeContainer" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer"]
+[node name="TileModeContainer" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer" unique_id=789722681]
 custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 
-[node name="TileModeLabel" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/TileModeContainer"]
+[node name="TileModeLabel" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/TileModeContainer" unique_id=1534893022]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"HeaderSmall"
 text = "Flagging Mode:"
 label_settings = ExtResource("21_vhsb5")
 
-[node name="TileModePicker" type="OptionButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/TileModeContainer" groups=["SettingsNode"]]
+[node name="TileModePicker" type="OptionButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/TileModeContainer" unique_id=1525297073 groups=["SettingsNode"]]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_7jp70")
@@ -1334,29 +1324,29 @@ popup/item_1/id = 1
 script = ExtResource("16_mxgkd")
 globals_var_name = "flag_mode"
 
-[node name="Vibration" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer"]
+[node name="Vibration" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer" unique_id=1420553456]
 custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 
-[node name="VibrationLabel" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/Vibration"]
+[node name="VibrationLabel" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/Vibration" unique_id=735510411]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"HeaderSmall"
 text = "Vibration:"
 label_settings = ExtResource("21_vhsb5")
 
-[node name="CheckButton" type="CheckButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/Vibration" groups=["SettingsNode"]]
+[node name="CheckButton" type="CheckButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/Vibration" unique_id=666590264 groups=["SettingsNode"]]
 layout_mode = 2
 flat = true
 script = ExtResource("26_x16fv")
-globals_var_name = "vibration"
+globals_var_name = "vibration_enabled"
 
-[node name="Button" type="Button" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer" unique_id=59799474]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../BackButton")
 text = "Return"
 
-[node name="DifficultyPickerContainer" type="PanelContainer" parent="MenuLayer"]
+[node name="DifficultyPickerContainer" type="PanelContainer" parent="MenuLayer" unique_id=804510920]
 visible = false
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
@@ -1369,24 +1359,24 @@ pivot_offset = Vector2(288, 336)
 theme = ExtResource("1_yqeox")
 theme_type_variation = &"FadePanelContainer"
 
-[node name="DifficultyPicker" type="MarginContainer" parent="MenuLayer/DifficultyPickerContainer"]
+[node name="DifficultyPicker" type="MarginContainer" parent="MenuLayer/DifficultyPickerContainer" unique_id=1541573488]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker" unique_id=562649839]
 layout_mode = 2
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer" unique_id=335161816]
 layout_mode = 2
 alignment = 1
 
-[node name="BackButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/HBoxContainer" instance=ExtResource("20_g54pe")]
+[node name="BackButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/HBoxContainer" unique_id=574308611 instance=ExtResource("20_g54pe")]
 layout_mode = 2
 current_menu = "difficulty"
 previous_menu = "main"
 
-[node name="Label" type="Label" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/HBoxContainer" unique_id=374766766]
 custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1396,10 +1386,10 @@ text = "Pick a difficulty"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer" unique_id=205061363]
 layout_mode = 2
 
-[node name="SimpleButton" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer"]
+[node name="SimpleButton" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer" unique_id=1125250236]
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_vertical = 4
@@ -1408,12 +1398,10 @@ ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("13_oi1it")
 
-[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/SimpleButton"]
-libraries = {
-&"": SubResource("AnimationLibrary_6p3j2")
-}
+[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/SimpleButton" unique_id=771971909]
+libraries/ = SubResource("AnimationLibrary_6p3j2")
 
-[node name="NormalButton" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer"]
+[node name="NormalButton" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer" unique_id=341709035]
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_vertical = 4
@@ -1422,12 +1410,10 @@ ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("13_oi1it")
 
-[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/NormalButton"]
-libraries = {
-&"": SubResource("AnimationLibrary_6p3j2")
-}
+[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/NormalButton" unique_id=1230462068]
+libraries/ = SubResource("AnimationLibrary_6p3j2")
 
-[node name="DifficultButton" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer"]
+[node name="DifficultButton" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer" unique_id=1385421853]
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_vertical = 4
@@ -1436,18 +1422,14 @@ ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("13_oi1it")
 
-[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/DifficultButton"]
-libraries = {
-&"": SubResource("AnimationLibrary_6p3j2")
-}
+[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/DifficultButton" unique_id=1388316808]
+libraries/ = SubResource("AnimationLibrary_6p3j2")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." groups=["AnimationPlayer"]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=236843277 groups=["AnimationPlayer"]]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_13sgg")
-}
+libraries/ = SubResource("AnimationLibrary_13sgg")
 
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="." groups=["MusicPlayer"]]
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=539717610 groups=["MusicPlayer"]]
 stream = SubResource("AudioStreamRandomizer_b5gwo")
 script = ExtResource("30_a04p5")
 

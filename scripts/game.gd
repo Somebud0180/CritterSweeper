@@ -18,6 +18,7 @@ var last_focused_tile = []
 var first_click_done = false
 
 func _ready() -> void:
+	scale = Vector2(0.8, 0.8)
 	get_tree().root.connect("size_changed", _on_viewport_size_changed)
 	get_tree().get_first_node_in_group("MainScreen").connect("focus_game", _focus_tile)
 
@@ -25,6 +26,9 @@ func start() -> void:
 	for child in grid.get_children():
 		child.queue_free()
 	tiles.clear()
+	
+	var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(self, "scale", Vector2(0.8, 0.8), 1)
 	
 	label.text = ""
 	label.visible = false
@@ -54,6 +58,9 @@ func start() -> void:
 	
 	critter_layer.animate_critters(animation_speed, num_mines, target_rect, get_tile_size())
 	await critter_layer.critters_finished
+	
+	tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(self, "scale", Vector2(1, 1), 1)
 	
 	# Re-enable tiles
 	for row in tiles: 

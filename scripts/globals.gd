@@ -44,12 +44,12 @@ var flag_mode: int: # (Not on KBM) 0 - Hold to Flag; 1 - Flag Mode Sidebar
 var is_flagging: bool = false
 
 ## General
-var vibration: bool:
+var vibration_enabled: bool:
 	set(value):
-		vibration = value
+		vibration_enabled = value
 		_save_config()
 
-var input_type: int: # 0 - KBM; 1 - Touch; 2 - Controller
+var input_type: int: ## 0 - KBM; 1 - Touch; 2 - Controller
 	set(value):
 		input_type = value
 		get_tree().get_first_node_in_group("MainScreen").update_flag_mode()
@@ -76,7 +76,7 @@ func _load_config() -> void:
 	music_vol = config.get_value("Setting", "music_vol", 0.8)
 	sfx_vol = config.get_value("Setting", "sfx_vol", 0.8)
 	flag_mode = config.get_value("Setting", "flag_mode", 0)
-	vibration = config.get_value("Setting", "vibration", true)
+	vibration_enabled = config.get_value("Setting", "vibration_enabled", true)
 	
 	# Update settings nodes to reflect new value
 	_update_settings_nodes()
@@ -92,7 +92,7 @@ func _save_config() -> void:
 	config.set_value("Setting", "music_vol", music_vol)
 	config.set_value("Setting", "sfx_vol", sfx_vol)
 	config.set_value("Setting", "flag_mode", flag_mode)
-	config.set_value("Setting", "vibration", vibration)
+	config.set_value("Setting", "vibration_enabled", vibration_enabled)
 	
 	# Save Config
 	config.save("user://settings.cfg")
@@ -115,7 +115,7 @@ func vibrate_stop() -> void:
 		Input.stop_joy_vibration(0)
 
 func vibrate_hover(duration: float = 0.1) -> void:
-	if !vibration:
+	if !vibration_enabled:
 		return
 	
 	if Globals.input_type == 1:
@@ -126,7 +126,7 @@ func vibrate_hover(duration: float = 0.1) -> void:
 		Input.start_joy_vibration(0, 0.15, 0.0, duration)
 
 func vibrate_light_press(duration: float = 0.1) -> void:
-	if !vibration:
+	if !vibration_enabled:
 		return
 	
 	if Globals.input_type == 1:
@@ -137,7 +137,7 @@ func vibrate_light_press(duration: float = 0.1) -> void:
 		Input.start_joy_vibration(0, 0.2, 0.0, duration)
 
 func vibrate_hard_press(duration: float = 0.1) -> void:
-	if !vibration:
+	if !vibration_enabled:
 		return
 	
 	if Globals.input_type == 1:

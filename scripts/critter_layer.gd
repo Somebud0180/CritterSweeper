@@ -61,6 +61,6 @@ func get_spawn_position(edge: int) -> Vector2:
 func get_random_point_in_rect(rect: Rect2) -> Vector2:
 	return Vector2(
 		# Pick a random point within the grid (reduced size for margin)
-		rect.position.x + randf() * (rect.size.x * 0.8),
-		rect.position.y + randf() * (rect.size.y * 0.8),
+		rect.position.x + randf() * (rect.size.x * 0.6),
+		rect.position.y + randf() * (rect.size.y * 0.6),
 	)

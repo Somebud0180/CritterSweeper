@@ -12,9 +12,11 @@ var long_press_triggered: bool = false
 var original_zindex: int = 0
 
 func _ready() -> void:
+	$AudioStreamPlayer.volume_linear = Globals.sfx_vol
 	original_zindex = z_index
 	texture_normal = texture_normal.duplicate()
 	set_tile_size()
+	print("Tile _ready() - is_flagged: ", is_flagged, ", is_revealed: ", is_revealed)
 
 func set_tile_size(custom_size: float = 0) -> void:
 	var tween = create_tween()
@@ -89,10 +91,11 @@ func _on_gui_input(event: InputEvent) -> void:
 						touch_held = false
 						long_press_triggered = false
 				1:
-					if Globals.is_flagging and !is_revealed:
-						toggle_flagging()
-					elif not Globals.is_flagging and !is_flagged :
-						emit_signal("tile_pressed")
+					if event is InputEventScreenTouch and event.pressed:
+						if Globals.is_flagging and !is_revealed:
+							toggle_flagging()
+						elif not Globals.is_flagging and !is_flagged:
+							emit_signal("tile_pressed")
 			
 			$AudioStreamPlayer.play()
 			accept_event()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bem5pvemryef6"]
+[gd_scene format=3 uid="uid://bem5pvemryef6"]
 
 [ext_resource type="Texture2D" uid="uid://ct0fuc6qawnv7" path="res://assets/sprites/minesweeper.png" id="1_ywnoi"]
 [ext_resource type="Script" uid="uid://c0pjp0yar0rba" path="res://scripts/tile.gd" id="2_jy7pm"]
@@ -94,7 +94,7 @@ stream_0/stream = ExtResource("3_6p3j2")
 stream_1/stream = ExtResource("4_gtpg2")
 stream_2/stream = ExtResource("5_a2bny")
 
-[node name="Tile" type="TextureButton" groups=["Tiles"]]
+[node name="Tile" type="TextureButton" unique_id=328839149 groups=["Tiles"]]
 custom_minimum_size = Vector2(44, 44)
 anchors_preset = 15
 anchor_right = 1.0
@@ -110,16 +110,14 @@ texture_normal = SubResource("AtlasTexture_0wfyh")
 stretch_mode = 6
 script = ExtResource("2_jy7pm")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_6p3j2")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1837353912]
+libraries/ = SubResource("AnimationLibrary_6p3j2")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=434556573]
 wait_time = 0.75
 one_shot = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." groups=["SFXPlayer"]]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1756636242 groups=["SFXPlayer"]]
 stream = SubResource("AudioStreamRandomizer_284l3")
 
 [connection signal="button_down" from="." to="." method="_on_button_down"]
