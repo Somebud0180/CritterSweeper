@@ -61,11 +61,13 @@ func _on_gui_input(event: InputEvent) -> void:
 			if event.is_pressed() and event is InputEventMouseButton:
 				match event.button_index:
 					MOUSE_BUTTON_LEFT:
+						_press_button()
 						if Globals.is_flagging and !is_revealed:
 							toggle_flagging()
 						elif not Globals.is_flagging and !is_flagged :
 							emit_signal("tile_pressed")
 					MOUSE_BUTTON_RIGHT:
+						_press_button()
 						if !is_revealed:
 							toggle_flagging()
 				
@@ -77,12 +79,14 @@ func _on_gui_input(event: InputEvent) -> void:
 			match Globals.flag_mode:
 				0:
 					if event.pressed:
+						_press_button()
 						# Touch started - begin long press timer
 						touch_held = true
 						long_press_triggered = false
 						$Timer.start()
 					else:
 						# Touch released
+						_normalize_button()
 						$Timer.stop()
 						if touch_held and !long_press_triggered:
 							# Short tap - reveal tile
@@ -92,6 +96,7 @@ func _on_gui_input(event: InputEvent) -> void:
 						long_press_triggered = false
 				1:
 					if event is InputEventScreenTouch and event.pressed:
+						_press_button()
 						if Globals.is_flagging and !is_revealed:
 							toggle_flagging()
 						elif not Globals.is_flagging and !is_flagged:

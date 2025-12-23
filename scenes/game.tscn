@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://mgkqrayegu0x"]
+[gd_scene format=3 uid="uid://mgkqrayegu0x"]
 
 [ext_resource type="Theme" uid="uid://bhmyomirsk6vr" path="res://interface/menu.tres" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://cbmn8aejrmb8d" path="res://scripts/game.gd" id="1_o5qli"]
 
-[node name="Game" type="MarginContainer" node_paths=PackedStringArray("grid", "grid_aspect", "scroll_container") groups=["Game"]]
+[node name="Game" type="MarginContainer" unique_id=1648610376 node_paths=PackedStringArray("grid", "grid_aspect", "scroll_container") groups=["Game"]]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -23,20 +23,20 @@ grid = NodePath("ScrollContainer/CenterContainer/BoardAspect/Grid")
 grid_aspect = NodePath("ScrollContainer/CenterContainer/BoardAspect")
 scroll_container = NodePath("ScrollContainer")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1911070386]
 layout_mode = 2
 follow_focus = true
 horizontal_scroll_mode = 4
 vertical_scroll_mode = 4
 
-[node name="CenterContainer" type="CenterContainer" parent="ScrollContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="ScrollContainer" unique_id=1425383896]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="BoardAspect" type="AspectRatioContainer" parent="ScrollContainer/CenterContainer"]
+[node name="BoardAspect" type="AspectRatioContainer" parent="ScrollContainer/CenterContainer" unique_id=415894499]
 layout_mode = 2
 stretch_mode = 3
 
-[node name="Grid" type="GridContainer" parent="ScrollContainer/CenterContainer/BoardAspect"]
+[node name="Grid" type="GridContainer" parent="ScrollContainer/CenterContainer/BoardAspect" unique_id=1395224933]
 layout_mode = 2
