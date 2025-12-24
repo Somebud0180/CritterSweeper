@@ -102,6 +102,9 @@ func _on_gui_input(event: InputEvent) -> void:
 						elif not Globals.is_flagging and !is_flagged:
 							emit_signal("tile_pressed")
 			
+			if event.is_released():
+				_normalize_button()
+			
 			$AudioStreamPlayer.play()
 			accept_event()
 			return
