@@ -35,6 +35,10 @@ func _ready() -> void:
 func hide_and_show(hide_string: String, show_string: String) -> void:
 	animation_player.play("hide_" + hide_string)
 	await animation_player.animation_finished
+	
+	if show_string == "game":
+		_apply_safe_area_offset()
+	
 	animation_player.play("show_" + show_string)
 
 func update_flag_mode() -> void:
@@ -126,3 +130,34 @@ func _on_difficulty_button_pressed(difficulty: int) -> void:
 # Settings Functions
 func _on_button_pressed() -> void:
 	hide_and_show("settings", "main")
+
+func _has_notch() -> bool:
+	var screen_size = DisplayServer.screen_get_size()
+	var usable_rect = DisplayServer.screen_get_usable_rect()
+	
+	# If usable rect is smaller than screen size, there's a notch or safe area
+	return usable_rect.size != screen_size
+
+func _get_safe_area_offset() -> Vector2:
+	var screen_size = DisplayServer.screen_get_size()
+	var usable_rect = DisplayServer.screen_get_usable_rect()
+	
+	# Calculate padding needed for safe area
+	var offset = Vector2.ZERO
+	
+	# Top padding (most common for notches)
+	if usable_rect.position.y > 0:
+		offset.y = usable_rect.position.y
+	
+	# Left padding
+	if usable_rect.position.x > 0:
+		offset.x = usable_rect.position.x
+	
+	return offset
+
+func _apply_safe_area_offset() -> void:
+	var game_layer = $GameLayer
+	var offset = _get_safe_area_offset()
+	
+	# Apply the offset as a position adjustment
+	game_layer.position = offset
