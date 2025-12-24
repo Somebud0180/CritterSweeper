@@ -7,7 +7,6 @@ func _ready() -> void:
 		_populate_theme_items()
 	
 	selected = Globals.get(globals_var_name)
-	item_selected.connect(_on_item_selected)
 
 func _populate_theme_items() -> void:
 	clear()

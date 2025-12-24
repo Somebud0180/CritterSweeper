@@ -24,6 +24,8 @@ func reload_theme() -> void:
 		background_sprite.texture = background_tex
 	else:
 		push_error("Failed to load background texture for theme: %s" % theme_name)
+		# Fallback: try loading first background if directory reading fails
+		_load_fallback_background(theme_path)
 	
 	# Load foreground
 	var foreground_tex = _get_random_texture_from_folder("%s/foregrounds" % theme_path)
@@ -31,6 +33,8 @@ func reload_theme() -> void:
 		foreground_sprite.texture = foreground_tex
 	else:
 		push_error("Failed to load foreground texture for theme: %s" % theme_name)
+		# Fallback: try loading first foreground if directory reading fails
+		_load_fallback_foreground(theme_path)
 
 func _get_random_texture_from_folder(folder: String) -> Texture2D:
 	var texture_paths = _get_texture_paths_from_folder(folder)
@@ -42,11 +46,31 @@ func _get_random_texture_from_folder(folder: String) -> Texture2D:
 	var idx = rng.randi_range(0, texture_paths.size() - 1)
 	return load(texture_paths[idx])
 
+func _load_fallback_background(theme_path: String) -> void:
+	# Try hardcoded paths for common background file names
+	for i in range(5):
+		var tex_path = "%s/backgrounds/Background%d.png" % [theme_path, i]
+		var tex = load(tex_path)
+		if tex:
+			background_sprite.texture = tex
+			return
+	push_error("Could not load any background for theme using fallback paths")
+
+func _load_fallback_foreground(theme_path: String) -> void:
+	# Try hardcoded paths for common foreground file names
+	for i in range(5):
+		var tex_path = "%s/foregrounds/Foreground%d.png" % [theme_path, i]
+		var tex = load(tex_path)
+		if tex:
+			foreground_sprite.texture = tex
+			return
+	push_error("Could not load any foreground for theme using fallback paths")
+
 func _get_texture_paths_from_folder(folder: String) -> Array:
 	var paths := []
 	var dir = DirAccess.open(folder)
 	if dir == null:
-		push_error("Cannot open folder: %s" % folder)
+		push_warning("Cannot open folder: %s (expected in exported builds, will use fallback)" % folder)
 		return paths
 	
 	dir.list_dir_begin()

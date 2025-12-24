@@ -1029,7 +1029,7 @@ layer = 2
 [node name="MainMenuContainer" type="PanelContainer" parent="MenuLayer" unique_id=1230979846]
 visible = false
 modulate = Color(1, 1, 1, 0)
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -144.0
@@ -1359,7 +1359,7 @@ text = "Return"
 [node name="DifficultyPickerContainer" type="PanelContainer" parent="MenuLayer" unique_id=804510920]
 visible = false
 modulate = Color(1, 1, 1, 0)
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -144.0
