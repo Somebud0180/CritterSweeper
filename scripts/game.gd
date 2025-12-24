@@ -19,6 +19,7 @@ var first_click_done = false
 
 func _ready() -> void:
 	scale = Vector2(0.8, 0.8)
+	_set_safe_area_margins()
 	get_tree().root.connect("size_changed", _on_viewport_size_changed)
 	get_tree().get_first_node_in_group("MainScreen").connect("focus_game", _focus_tile)
 
@@ -256,3 +257,46 @@ func restart_game():
 
 func _on_viewport_size_changed() -> void:
 	update_tile_sizes()
+	_set_safe_area_margins()
+
+func _set_safe_area_margins() -> void:
+	if not (OS.has_feature("ios") or OS.has_feature("android")):
+		return
+	
+	var rect = DisplayServer.get_display_safe_area() # Safe area in screen/physical pixels
+	var screen_size = DisplayServer.screen_get_size() # Entire screen area in screen/physical pixels
+
+	# Calculate how many "logical pixels" correspond to a single physical pixel
+	var aspect_x = size.x / screen_size.x
+	var aspect_y = size.y / screen_size.y
+
+	# Convert the safe-area rect to logical pixel margins
+	var safe_margin_left = rect.position.x * aspect_x
+	var safe_margin_top = rect.position.y * aspect_y
+	var safe_margin_right = (screen_size.x - (rect.position.x + rect.size.x)) * aspect_x
+	var safe_margin_bottom = (screen_size.y - (rect.position.y + rect.size.y)) * aspect_y
+
+	# Get existing margins from scene to preserve them
+	var existing_left = get_theme_constant("margin_left", "MarginContainer")
+	var existing_top = get_theme_constant("margin_top", "MarginContainer")
+	var existing_right = get_theme_constant("margin_right", "MarginContainer")
+	var existing_bottom = get_theme_constant("margin_bottom", "MarginContainer")
+
+	# Apply margins to game container - add safe area to existing margins
+	add_theme_constant_override("margin_left", int(existing_left + safe_margin_left))
+	add_theme_constant_override("margin_top", int(existing_top + safe_margin_top))
+	add_theme_constant_override("margin_right", int(existing_right + safe_margin_right))
+	add_theme_constant_override("margin_bottom", int(existing_bottom + safe_margin_bottom))
+	
+	# Apply margins to overlay as well
+	var overlay = $"../GameOverlay"
+	if overlay:
+		var overlay_left = overlay.get_theme_constant("margin_left", "MarginContainer")
+		var overlay_top = overlay.get_theme_constant("margin_top", "MarginContainer")
+		var overlay_right = overlay.get_theme_constant("margin_right", "MarginContainer")
+		var overlay_bottom = overlay.get_theme_constant("margin_bottom", "MarginContainer")
+		
+		overlay.add_theme_constant_override("margin_left", int(overlay_left + safe_margin_left))
+		overlay.add_theme_constant_override("margin_top", int(overlay_top + safe_margin_top))
+		overlay.add_theme_constant_override("margin_right", int(overlay_right + safe_margin_right))
+		overlay.add_theme_constant_override("margin_bottom", int(overlay_bottom + safe_margin_bottom))

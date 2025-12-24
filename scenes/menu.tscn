@@ -957,7 +957,6 @@ script = ExtResource("13_lnf0i")
 
 [node name="Game" parent="GameLayer" unique_id=1767809418 node_paths=PackedStringArray("label", "toast", "critter_layer") instance=ExtResource("3_g3eks")]
 z_index = 1
-anchors_preset = -1
 pivot_offset = Vector2(288, 336)
 label = NodePath("../GameOverlay/HBoxContainer/Notif Panel/Label")
 toast = NodePath("../GameOverlay/HBoxContainer/Notif Panel")
@@ -966,7 +965,7 @@ critter_layer = NodePath("../CritterLayer")
 [node name="GameOverlay" type="MarginContainer" parent="GameLayer" unique_id=701115959]
 visible = false
 z_index = 2
-anchors_preset = -1
+anchors_preset = 10
 anchor_right = 1.0
 offset_top = -96.0
 offset_bottom = -8.0
