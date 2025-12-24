@@ -2,13 +2,22 @@ extends OptionButton
 @export var globals_var_name: String
 
 func _ready() -> void:
+	# For background_theme, dynamically populate items
+	if globals_var_name == "background_theme":
+		_populate_theme_items()
+	
 	selected = Globals.get(globals_var_name)
+	item_selected.connect(_on_item_selected)
+
+func _populate_theme_items() -> void:
+	clear()
+	var themes = Globals.get_available_themes()
+	for i in range(themes.size()):
+		add_item(themes[i], i)
 
 func _on_item_selected(index: int) -> void:
 	Globals.set(globals_var_name, index)
 
 # Standard function to update from globals
 func update_value() -> void:
-	print(globals_var_name)
-	print(Globals.get(globals_var_name))
 	selected = Globals.get(globals_var_name)

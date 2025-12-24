@@ -256,6 +256,7 @@ func restart_game():
 	create_grid()
 
 func _on_viewport_size_changed() -> void:
+	pivot_offset = Vector2(size.x / 2, size.y / 2)
 	update_tile_sizes()
 	_set_safe_area_margins()
 

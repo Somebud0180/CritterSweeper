@@ -44,6 +44,17 @@ var flag_mode: int: # (Not on KBM) 0 - Hold to Flag; 1 - Flag Mode Sidebar
 var is_flagging: bool = false
 
 ## General
+# Background theme management
+var available_themes: Array = []
+var background_theme: int = 0:
+	set(value):
+		if available_themes.is_empty():
+			_load_available_themes()
+		value = mini(available_themes.size() - 1, maxi(value, 0))
+		background_theme = value
+		_load_background_theme()
+		_save_config()
+
 var vibration_enabled: bool:
 	set(value):
 		vibration_enabled = value
@@ -60,8 +71,9 @@ func _ready() -> void:
 	_load_config()
 
 func _load_config() -> void:
+	_load_available_themes()
+	
 	var config = ConfigFile.new()
-	print(config)
 	
 	# Load data from a file.
 	var err = config.load("user://settings.cfg")
@@ -77,13 +89,12 @@ func _load_config() -> void:
 	sfx_vol = config.get_value("Setting", "sfx_vol", 0.8)
 	flag_mode = config.get_value("Setting", "flag_mode", 0)
 	vibration_enabled = config.get_value("Setting", "vibration_enabled", true)
+	background_theme = config.get_value("Setting", "background_theme", 0)
 	
 	# Update settings nodes to reflect new value
 	_update_settings_nodes()
 
 func _save_config() -> void:
-	print("Saving config")
-	
 	# Create new ConfigFile object.
 	var config = ConfigFile.new()
 	
@@ -93,6 +104,7 @@ func _save_config() -> void:
 	config.set_value("Setting", "sfx_vol", sfx_vol)
 	config.set_value("Setting", "flag_mode", flag_mode)
 	config.set_value("Setting", "vibration_enabled", vibration_enabled)
+	config.set_value("Setting", "background_theme", background_theme)
 	
 	# Save Config
 	config.save("user://settings.cfg")
@@ -146,3 +158,41 @@ func vibrate_hard_press(duration: float = 0.1) -> void:
 	elif Globals.input_type == 2:
 		Input.stop_joy_vibration(0)
 		Input.start_joy_vibration(0, 0.0, 0.3, duration)
+
+## Background Theme Functions
+func _load_available_themes() -> void:
+	available_themes.clear()
+	var themes_dir = DirAccess.open("res://assets/sprites/themes")
+	if themes_dir == null:
+		push_error("Cannot open themes folder: res://assets/sprites/themes")
+		return
+	
+	themes_dir.list_dir_begin()
+	var folder_name = themes_dir.get_next()
+	while folder_name != "":
+		if themes_dir.current_is_dir() and not folder_name.begins_with("."):
+			available_themes.append(folder_name)
+		folder_name = themes_dir.get_next()
+	themes_dir.list_dir_end()
+	
+	available_themes.sort()
+	if available_themes.is_empty():
+		push_warning("No themes found in res://assets/sprites/themes")
+
+func get_available_themes() -> Array:
+	if available_themes.is_empty():
+		_load_available_themes()
+	return available_themes
+
+func get_current_theme_name() -> String:
+	if available_themes.is_empty():
+		_load_available_themes()
+	if background_theme < available_themes.size():
+		return available_themes[background_theme]
+	return ""
+
+func _load_background_theme() -> void:
+	# Notify any listeners (like BackgroundLayer) to update their textures
+	var background_layer = get_tree().get_first_node_in_group("BackgroundLayer")
+	if background_layer and background_layer.has_method("reload_theme"):
+		background_layer.reload_theme()

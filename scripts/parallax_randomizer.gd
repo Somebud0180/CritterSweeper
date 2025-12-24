@@ -1,4 +1,4 @@
-extends Parallax2D
+extends CanvasLayer
 
 @export_dir var textures_folder
 

@@ -16,7 +16,6 @@ func _ready() -> void:
 	original_zindex = z_index
 	texture_normal = texture_normal.duplicate()
 	set_tile_size()
-	print("Tile _ready() - is_flagged: ", is_flagged, ", is_revealed: ", is_revealed)
 
 func set_tile_size(custom_size: float = 0) -> void:
 	var tween = create_tween()

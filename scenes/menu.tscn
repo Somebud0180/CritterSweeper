@@ -6,9 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://mgkqrayegu0x" path="res://scenes/game.tscn" id="3_g3eks"]
 [ext_resource type="Texture2D" uid="uid://bco4bjasej7ri" path="res://interface/textures/MusicSound.png" id="3_mhnvy"]
 [ext_resource type="Texture2D" uid="uid://rqimlliym8t8" path="res://interface/textures/UISound.png" id="4_4ytvr"]
-[ext_resource type="Script" uid="uid://cm8rqrm54087" path="res://scripts/parallax_randomizer.gd" id="4_mj5lg"]
-[ext_resource type="Texture2D" uid="uid://dpvdd4jyhas1v" path="res://assets/sprites/backgrounds/Background0.png" id="4_ufwb2"]
-[ext_resource type="Texture2D" uid="uid://bcgx7w16kxqp2" path="res://assets/sprites/foregrounds/Foreground0.png" id="5_mj5lg"]
+[ext_resource type="Script" uid="uid://cfw7y2t0v6oit" path="res://scripts/background_layer.gd" id="4_vhsb5"]
 [ext_resource type="Script" uid="uid://dx1w2nxwnc5qs" path="res://scripts/pause_button.gd" id="7_mj5lg"]
 [ext_resource type="Texture2D" uid="uid://k24pjf1gc262" path="res://interface/textures/ButtonTexture/PauseButton/PauseButton.png" id="8_vhsb5"]
 [ext_resource type="Texture2D" uid="uid://cqeavkhghepvt" path="res://interface/textures/ButtonTexture/PauseButton/PauseButton_Hover.png" id="9_g6gyw"]
@@ -623,7 +621,7 @@ tracks/2/keys = {
 tracks/3/type = "method"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/SimpleButton")
+tracks/3/path = NodePath("MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/VBoxContainer/SimpleButton")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -916,17 +914,15 @@ start_button = NodePath("MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Butt
 [node name="BackgroundLayer" type="CanvasLayer" parent="." unique_id=573315452]
 unique_name_in_owner = true
 layer = 0
+script = ExtResource("4_vhsb5")
 
 [node name="BackgroundParallax" type="Parallax2D" parent="BackgroundLayer" unique_id=1727022649]
 scroll_scale = Vector2(0, 0)
 repeat_size = Vector2(1024, 1024)
 repeat_times = 6
 screen_offset = Vector2(1024, 0)
-script = ExtResource("4_mj5lg")
-textures_folder = "res://assets/sprites/backgrounds"
 
 [node name="Sprite2D" type="Sprite2D" parent="BackgroundLayer/BackgroundParallax" unique_id=1209157803]
-texture = ExtResource("4_ufwb2")
 centered = false
 
 [node name="ForegroundParallax" type="Parallax2D" parent="BackgroundLayer" unique_id=306441155]
@@ -935,11 +931,8 @@ repeat_size = Vector2(1024, 1024)
 autoscroll = Vector2(50, 50)
 repeat_times = 6
 screen_offset = Vector2(1536, 0)
-script = ExtResource("4_mj5lg")
-textures_folder = "res://assets/sprites/foregrounds"
 
 [node name="Sprite2D" type="Sprite2D" parent="BackgroundLayer/ForegroundParallax" unique_id=618313150]
-texture = ExtResource("5_mj5lg")
 centered = false
 
 [node name="GameLayer" type="CanvasLayer" parent="." unique_id=324703713]
@@ -957,7 +950,6 @@ script = ExtResource("13_lnf0i")
 
 [node name="Game" parent="GameLayer" unique_id=1767809418 node_paths=PackedStringArray("label", "toast", "critter_layer") instance=ExtResource("3_g3eks")]
 z_index = 1
-pivot_offset = Vector2(288, 336)
 label = NodePath("../GameOverlay/HBoxContainer/Notif Panel/Label")
 toast = NodePath("../GameOverlay/HBoxContainer/Notif Panel")
 critter_layer = NodePath("../CritterLayer")
@@ -1037,12 +1029,13 @@ layer = 2
 [node name="MainMenuContainer" type="PanelContainer" parent="MenuLayer" unique_id=1230979846]
 visible = false
 modulate = Color(1, 1, 1, 0)
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -144.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(216, 336)
 mouse_filter = 1
 theme = ExtResource("1_yqeox")
 theme_type_variation = &"FadePanelContainer"
@@ -1282,6 +1275,27 @@ popup/item_4/id = 4
 script = ExtResource("16_mxgkd")
 globals_var_name = "tile_size"
 
+[node name="ThemeContainer" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/InterfaceContainer" unique_id=135689692]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+
+[node name="Background" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/InterfaceContainer/ThemeContainer" unique_id=1918916673]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"HeaderSmall"
+text = "Background Theme:"
+label_settings = ExtResource("21_vhsb5")
+
+[node name="BackgroundPicker" type="OptionButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/InterfaceContainer/ThemeContainer" unique_id=1458630253 groups=["SettingsNode"]]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_7jp70")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mxgkd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_g6gyw")
+theme_override_styles/focus = SubResource("StyleBoxFlat_3dmrc")
+script = ExtResource("16_mxgkd")
+globals_var_name = "background_theme"
+
 [node name="ControlsContainer" type="VBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer" unique_id=1863007661]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1345,27 +1359,26 @@ text = "Return"
 [node name="DifficultyPickerContainer" type="PanelContainer" parent="MenuLayer" unique_id=804510920]
 visible = false
 modulate = Color(1, 1, 1, 0)
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -144.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(288, 336)
+pivot_offset = Vector2(216, 336)
 theme = ExtResource("1_yqeox")
 theme_type_variation = &"FadePanelContainer"
 
 [node name="DifficultyPicker" type="MarginContainer" parent="MenuLayer/DifficultyPickerContainer" unique_id=1541573488]
 layout_mode = 2
+size_flags_horizontal = 0
 mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker" unique_id=562649839]
 layout_mode = 2
-alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer" unique_id=335161816]
 layout_mode = 2
-alignment = 1
 
 [node name="BackButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/HBoxContainer" unique_id=574308611 instance=ExtResource("20_g54pe")]
 layout_mode = 2
@@ -1385,7 +1398,12 @@ vertical_alignment = 1
 [node name="HSeparator" type="HSeparator" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer" unique_id=205061363]
 layout_mode = 2
 
-[node name="SimpleButton" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer" unique_id=1125250236]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer" unique_id=1688465416]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="SimpleButton" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/VBoxContainer" unique_id=1125250236]
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_vertical = 4
@@ -1394,10 +1412,10 @@ ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("13_oi1it")
 
-[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/SimpleButton" unique_id=771971909]
+[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/VBoxContainer/SimpleButton" unique_id=771971909]
 libraries/ = SubResource("AnimationLibrary_6p3j2")
 
-[node name="NormalButton" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer" unique_id=341709035]
+[node name="NormalButton" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/VBoxContainer" unique_id=341709035]
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_vertical = 4
@@ -1406,10 +1424,10 @@ ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("13_oi1it")
 
-[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/NormalButton" unique_id=1230462068]
+[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/VBoxContainer/NormalButton" unique_id=1230462068]
 libraries/ = SubResource("AnimationLibrary_6p3j2")
 
-[node name="DifficultButton" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer" unique_id=1385421853]
+[node name="DifficultButton" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/VBoxContainer" unique_id=1385421853]
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_vertical = 4
@@ -1418,7 +1436,7 @@ ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("13_oi1it")
 
-[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/DifficultButton" unique_id=1388316808]
+[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/VBoxContainer/DifficultButton" unique_id=1388316808]
 libraries/ = SubResource("AnimationLibrary_6p3j2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=236843277 groups=["AnimationPlayer"]]
@@ -1436,10 +1454,11 @@ script = ExtResource("30_a04p5")
 [connection signal="value_changed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider/MusicVolume" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider/MusicVolume" method="_on_value_changed"]
 [connection signal="value_changed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider/SFXVolume" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider/SFXVolume" method="_on_value_changed"]
 [connection signal="item_selected" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/InterfaceContainer/TileSizeContainer/TileSizePicker" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/InterfaceContainer/TileSizeContainer/TileSizePicker" method="_on_item_selected"]
+[connection signal="item_selected" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/InterfaceContainer/ThemeContainer/BackgroundPicker" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/InterfaceContainer/ThemeContainer/BackgroundPicker" method="_on_item_selected"]
 [connection signal="item_selected" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/TileModeContainer/TileModePicker" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/TileModeContainer/TileModePicker" method="_on_item_selected"]
 [connection signal="toggled" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/Vibration/CheckButton" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/Vibration/CheckButton" method="_on_toggled"]
 [connection signal="pressed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/SimpleButton" to="." method="_on_difficulty_button_pressed" binds= [0]]
-[connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/NormalButton" to="." method="_on_difficulty_button_pressed" binds= [1]]
-[connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/DifficultButton" to="." method="_on_difficulty_button_pressed" binds= [2]]
+[connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/VBoxContainer/SimpleButton" to="." method="_on_difficulty_button_pressed" binds= [0]]
+[connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/VBoxContainer/NormalButton" to="." method="_on_difficulty_button_pressed" binds= [1]]
+[connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/VBoxContainer/DifficultButton" to="." method="_on_difficulty_button_pressed" binds= [2]]
 [connection signal="finished" from="MusicPlayer" to="MusicPlayer" method="_on_finished"]
