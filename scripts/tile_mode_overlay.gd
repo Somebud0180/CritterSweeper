@@ -1,9 +1,9 @@
 extends VBoxContainer
 
-const REVEAL_TEXT = preload("res://interface/textures/ButtonTexture/SidebarButtons/RevealButton.png")
-const REVEAL_F_TEXT = preload("res://interface/textures/ButtonTexture/SidebarButtons/RevealButton_Focus.png")
-const FLAG_TEXT = preload("res://interface/textures/ButtonTexture/SidebarButtons/FlagButton.png")
-const FLAG_F_TEXT = preload("res://interface/textures/ButtonTexture/SidebarButtons/FlagButton_Focus.png")
+const REVEAL_TEXT = preload("res://assets/interface/textures/ButtonTexture/SidebarButtons/RevealButton.png")
+const REVEAL_F_TEXT = preload("res://assets/interface/textures/ButtonTexture/SidebarButtons/RevealButton_Focus.png")
+const FLAG_TEXT = preload("res://assets/interface/textures/ButtonTexture/SidebarButtons/FlagButton.png")
+const FLAG_F_TEXT = preload("res://assets/interface/textures/ButtonTexture/SidebarButtons/FlagButton_Focus.png")
 
 func _on_reveal_mode_pressed() -> void:
 	Globals.is_flagging = false

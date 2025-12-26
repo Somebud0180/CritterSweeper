@@ -7,8 +7,8 @@ extends Control
 @export var resume_button: TextureButton
 @export var start_button: TextureButton
 
-const NEW_GAME_BTNTEXT = preload("res://interface/textures/ButtonTexture/MenuButtons/NewGame.png")
-const START_GAME_BTNTEXT = preload("res://interface/textures/ButtonTexture/MenuButtons/StartGame.png")
+const NEW_GAME_BTNTEXT = preload("res://assets/interface/textures/ButtonTexture/MenuButtons/NewGame.png")
+const START_GAME_BTNTEXT = preload("res://assets/interface/textures/ButtonTexture/MenuButtons/StartGame.png")
 const TILE_MODE_OVERLAY = preload("res://scenes/tile_mode_overlay.tscn")
 
 enum STATE { MAIN, GAME, SETTINGS, DIFFICULTY }

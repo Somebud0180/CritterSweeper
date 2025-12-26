@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://07obkqtplowh" path="res://assets/interface/textures/ButtonTexture/ButtonStyle/ButtonStyle_Pressed.png" id="3_jc7xe"]
 [ext_resource type="Texture2D" uid="uid://bgupmpji3jfmh" path="res://assets/interface/textures/MiscStyle/PanelStyle.png" id="4_fmrnt"]
 [ext_resource type="Texture2D" uid="uid://d1rb1upijbf5i" path="res://assets/interface/textures/MiscStyle/label.png" id="4_psl0c"]
+[ext_resource type="Texture2D" uid="uid://btsxjmunnnbfw" path="res://assets/interface/textures/MiscStyle/Fade.png" id="5_11hd0"]
 
 [sub_resource type="FontVariation" id="FontVariation_im3bc"]
 base_font = ExtResource("1_jc7xe")
@@ -41,11 +42,8 @@ axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 region_rect = Rect2(0, 0, 516, 100)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fmrnt"]
-load_path = "res://.godot/imported/Fade.png-52c4666f099eac4ca6c832af34a10c4d.ctex"
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_axvq5"]
-texture = SubResource("CompressedTexture2D_fmrnt")
+texture = ExtResource("5_11hd0")
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_87gl6"]
 color = Color(0.8547833, 0.75756836, 0.90625, 1)

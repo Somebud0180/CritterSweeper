@@ -16,7 +16,7 @@ func reload_theme() -> void:
 		push_warning("No theme available to load")
 		return
 	
-	var theme_path = "res://assets/sprites/themes/%s" % theme_name
+	var theme_path = "res://assets/game/sprites/themes/%s" % theme_name
 	
 	# Load background
 	var background_tex = _get_random_texture_from_folder("%s/backgrounds" % theme_path)
