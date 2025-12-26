@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://bem5pvemryef6"]
 
-[ext_resource type="Texture2D" uid="uid://ct0fuc6qawnv7" path="res://assets/sprites/minesweeper.png" id="1_ywnoi"]
+[ext_resource type="Texture2D" uid="uid://ct0fuc6qawnv7" path="res://assets/game/sprites/minesweeper.png" id="1_ywnoi"]
 [ext_resource type="Script" uid="uid://c0pjp0yar0rba" path="res://scripts/tile.gd" id="2_jy7pm"]
-[ext_resource type="AudioStream" uid="uid://bqna8ty12nh7" path="res://assets/OpenGameArt/UI Sound/Click_Standard_00.wav" id="3_6p3j2"]
-[ext_resource type="AudioStream" uid="uid://dg6gndb328nml" path="res://assets/OpenGameArt/UI Sound/Click_Standard_01.wav" id="4_gtpg2"]
-[ext_resource type="AudioStream" uid="uid://duarc26ywn4l0" path="res://assets/OpenGameArt/UI Sound/Click_Standard_02.wav" id="5_a2bny"]
+[ext_resource type="AudioStream" uid="uid://bqna8ty12nh7" path="res://assets/audio/OpenGameArt/UI Sound/Click_Standard_00.wav" id="3_6p3j2"]
+[ext_resource type="AudioStream" uid="uid://dg6gndb328nml" path="res://assets/audio/OpenGameArt/UI Sound/Click_Standard_01.wav" id="4_gtpg2"]
+[ext_resource type="AudioStream" uid="uid://duarc26ywn4l0" path="res://assets/audio/OpenGameArt/UI Sound/Click_Standard_02.wav" id="5_a2bny"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0wfyh"]
 atlas = ExtResource("1_ywnoi")

@@ -1,8 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgqy54bs5kc5y"]
+[gd_scene format=3 uid="uid://cgqy54bs5kc5y"]
 
 [ext_resource type="Script" uid="uid://d16hdx4moncic" path="res://scripts/back_button.gd" id="1_mki26"]
-[ext_resource type="Texture2D" uid="uid://c8k80lph4nua8" path="res://interface/textures/ButtonTexture/BackButton.png" id="1_tkpbl"]
-[ext_resource type="Texture2D" uid="uid://3cyixggk1gk1" path="res://interface/textures/ButtonTexture/BackButton_Focus.png" id="2_adig4"]
+[ext_resource type="Texture2D" uid="uid://c8k80lph4nua8" path="res://assets/interface/textures/ButtonTexture/BackButton/BackButton.png" id="1_tkpbl"]
+[ext_resource type="Texture2D" uid="uid://3cyixggk1gk1" path="res://assets/interface/textures/ButtonTexture/BackButton/BackButton_Focus.png" id="2_adig4"]
 
 [sub_resource type="Animation" id="Animation_jy7pm"]
 length = 0.001
@@ -79,7 +79,7 @@ _data = {
 &"press": SubResource("Animation_6p3j2")
 }
 
-[node name="BackButton" type="TextureButton"]
+[node name="BackButton" type="TextureButton" unique_id=2067341836]
 custom_minimum_size = Vector2(44, 44)
 offset_right = 44.0
 offset_bottom = 44.0
@@ -93,9 +93,7 @@ ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("1_mki26")
 
-[node name="ButtonAnimations" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_6p3j2")
-}
+[node name="ButtonAnimations" type="AnimationPlayer" parent="." unique_id=677548445]
+libraries/ = SubResource("AnimationLibrary_6p3j2")
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

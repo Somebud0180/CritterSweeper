@@ -1,11 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://chm2tu86wl8ae"]
+[gd_scene format=3 uid="uid://chm2tu86wl8ae"]
 
-[ext_resource type="Theme" uid="uid://bhmyomirsk6vr" path="res://interface/menu.tres" id="1_5k1n5"]
+[ext_resource type="Theme" uid="uid://bhmyomirsk6vr" path="res://assets/interface/menu.tres" id="1_5k1n5"]
 [ext_resource type="Script" uid="uid://b5xm3wi3yny4o" path="res://scripts/tile_mode_overlay.gd" id="2_vmkur"]
-[ext_resource type="Texture2D" uid="uid://cwdwlq0ls35b" path="res://interface/textures/ButtonTexture/SidebarButtons/RevealButton.png" id="3_nngys"]
-[ext_resource type="Texture2D" uid="uid://dwgam72jdy72v" path="res://interface/textures/ButtonTexture/SidebarButtons/FlagButton.png" id="4_62xmh"]
+[ext_resource type="Texture2D" uid="uid://cwdwlq0ls35b" path="res://assets/interface/textures/ButtonTexture/SidebarButtons/RevealButton.png" id="3_nngys"]
+[ext_resource type="Texture2D" uid="uid://dwgam72jdy72v" path="res://assets/interface/textures/ButtonTexture/SidebarButtons/FlagButton.png" id="4_62xmh"]
 
-[node name="TileModeOverlay" type="VBoxContainer"]
+[node name="TileModeOverlay" type="VBoxContainer" unique_id=1392134521]
 modulate = Color(1, 1, 1, 0)
 z_index = 2
 anchors_preset = -1
@@ -19,7 +19,7 @@ scale = Vector2(1.02, 1.02)
 theme = ExtResource("1_5k1n5")
 script = ExtResource("2_vmkur")
 
-[node name="RevealMode" type="TextureButton" parent="."]
+[node name="RevealMode" type="TextureButton" parent="." unique_id=1893986586]
 custom_minimum_size = Vector2(44, 44)
 layout_mode = 2
 size_flags_vertical = 3
@@ -27,7 +27,7 @@ texture_normal = ExtResource("3_nngys")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="FlagMode" type="TextureButton" parent="."]
+[node name="FlagMode" type="TextureButton" parent="." unique_id=2003167738]
 custom_minimum_size = Vector2(44, 44)
 layout_mode = 2
 size_flags_vertical = 3

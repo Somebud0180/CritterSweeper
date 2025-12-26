@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://mgkqrayegu0x"]
 
-[ext_resource type="Theme" uid="uid://bhmyomirsk6vr" path="res://interface/menu.tres" id="1_0wfyh"]
+[ext_resource type="Theme" uid="uid://bhmyomirsk6vr" path="res://assets/interface/menu.tres" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://ouhtebkydqp7" path="res://scripts/game_base.gd" id="2_yqjtg"]
 
 [node name="Game" type="MarginContainer" unique_id=1648610376 groups=["Game"]]
