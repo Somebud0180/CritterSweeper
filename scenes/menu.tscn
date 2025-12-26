@@ -1521,6 +1521,7 @@ libraries/ = SubResource("AnimationLibrary_13sgg")
 stream = SubResource("AudioStreamRandomizer_b5gwo")
 script = ExtResource("30_a04p5")
 
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="pressed" from="GameLayer/GameOverlay/HBoxContainer/PauseButton" to="GameLayer/GameOverlay/HBoxContainer/PauseButton" method="_on_pressed"]
 [connection signal="pressed" from="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/StartButton" to="." method="_on_start_button_pressed"]

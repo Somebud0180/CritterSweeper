@@ -2,6 +2,22 @@ extends Node
 #### Config code copied over from Prims Maze: https://github.com/Somebud0180/Prism-Maze
 
 ### Variables
+# App Config
+var is_fullscreen: bool:
+	set(value):
+		is_fullscreen = value
+		_save_config()
+
+var window_pos: Vector2i:
+	set(value):
+		window_pos = value
+		_save_config()
+
+var window_size: Vector2i:
+	set(value):
+		window_size = value
+		_save_config()
+
 ## Tile Size
 const TILE_SIZES = {
 	0: 0, # Fit to screen
@@ -70,6 +86,13 @@ var input_type: int: ## 0 - KBM; 1 - Touch; 2 - Controller
 func _ready() -> void:
 	_load_config()
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		_save_config()
+		get_tree().quit()
+	elif what == NOTIFICATION_APPLICATION_PAUSED:
+		_save_config()
+
 func _load_config() -> void:
 	_load_available_themes()
 	
@@ -84,13 +107,20 @@ func _load_config() -> void:
 		return
 	
 	# Restore configuration
+	if config.get_value("App", "is_fullscreen", false):
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	
+	DisplayServer.window_set_position(config.get_value("App", "window_pos", Vector2i(0, 0)))
+	DisplayServer.window_set_size(config.get_value("App", "window_size", Vector2i(576, 672)))
+	is_fullscreen = config.get_value("App", "is_fullscreen", false)
 	tile_size = config.get_value("Setting", "tile_size", 0)
 	music_vol = config.get_value("Setting", "music_vol", 0.8)
 	sfx_vol = config.get_value("Setting", "sfx_vol", 0.8)
 	flag_mode = config.get_value("Setting", "flag_mode", 0)
 	vibration_enabled = config.get_value("Setting", "vibration_enabled", true)
-	background_theme = config.get_value("Setting", "background_theme", 0)
+	background_theme = config.get_value("Setting", "background_theme", 1)
 	
+	print(window_pos)
 	# Update settings nodes to reflect new value
 	_update_settings_nodes()
 
@@ -99,6 +129,9 @@ func _save_config() -> void:
 	var config = ConfigFile.new()
 	
 	# Store configuration
+	config.set_value("App", "is_fullscreen", DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN)
+	config.set_value("App", "window_pos", DisplayServer.window_get_position())
+	config.set_value("App", "window_size", DisplayServer.window_get_size())
 	config.set_value("Setting", "tile_size", tile_size)
 	config.set_value("Setting", "music_vol", music_vol)
 	config.set_value("Setting", "sfx_vol", sfx_vol)
@@ -162,9 +195,9 @@ func vibrate_hard_press(duration: float = 0.1) -> void:
 ## Background Theme Functions
 func _load_available_themes() -> void:
 	available_themes.clear()
-	var themes_dir = DirAccess.open("res://assets/sprites/themes")
+	var themes_dir = DirAccess.open("res://assets/game/sprites/themes")
 	if themes_dir == null:
-		push_error("Cannot open themes folder: res://assets/sprites/themes")
+		push_error("Cannot open themes folder: res://assets/game/sprites/themes")
 		return
 	
 	themes_dir.list_dir_begin()
@@ -177,7 +210,7 @@ func _load_available_themes() -> void:
 	
 	available_themes.sort()
 	if available_themes.is_empty():
-		push_warning("No themes found in res://assets/sprites/themes")
+		push_warning("No themes found in res://assets/game/sprites/themes")
 
 func get_available_themes() -> Array:
 	if available_themes.is_empty():
