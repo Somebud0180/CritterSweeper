@@ -27,9 +27,12 @@ func _ready() -> void:
 	get_tree().root.connect("size_changed", _on_viewport_size_changed)
 	get_tree().get_first_node_in_group("MainScreen").connect("focus_game", _focus_tile)
 
-func start(set_mode: GameMode = null) -> void:
-	if game_mode != null:
-		self.game_mode = set_mode
+func start(set_mode: int = 0) -> void:
+	match set_mode:
+		0:
+			game_mode = SweeperMode.new()
+		1:
+			game_mode = SeekerMode.new()
 	
 	for child in grid.get_children():
 		child.queue_free()

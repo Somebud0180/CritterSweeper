@@ -101,7 +101,7 @@ func _on_settings_button_pressed() -> void:
 	hide_and_show("main", "settings")
 
 # Difficulty Buttons
-func _on_difficulty_button_pressed(difficulty: int) -> void:
+func _on_difficulty_button_pressed(difficulty: int, mode: int) -> void:
 	var game_scene = $GameLayer/Game
 	game_scene.first_click_done = false
 	in_game = true
@@ -120,7 +120,7 @@ func _on_difficulty_button_pressed(difficulty: int) -> void:
 			game_scene.columns = 16
 			game_scene.num_mines = 30
 	
-	game_scene.start()
+	game_scene.start(mode)
 	hide_and_show("difficulty", "game")
 
 # Settings Functions

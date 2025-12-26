@@ -1,39 +1,7 @@
 [gd_scene format=3 uid="uid://mgkqrayegu0x"]
 
 [ext_resource type="Theme" uid="uid://bhmyomirsk6vr" path="res://interface/menu.tres" id="1_0wfyh"]
-
-[sub_resource type="GDScript" id="GDScript_uwrxv"]
-script/source = "extends GameMode
-class_name SweeperMode
-
-# Classic minesweeper rules:
-# - First click is protected (no mine there)
-# - Clicking a mine = instant loss
-# - Win when all non-mine tiles are revealed
-
-func should_protect_first_click() -> bool:
-	return true
-
-func mine_reveal_is_original_press() -> bool:
-	return true
-
-func should_end_on_mine_press() -> bool:
-	return true
-
-func is_win_state(tiles: Array) -> bool:
-	for row in tiles:
-		for tile in row:
-			if not tile.is_revealed and not tile.is_mine:
-				return false
-	return true
-
-func is_loss_state(tiles: Array) -> bool:
-	return false
-
-func reveal_tile_on_game_over(tile: TextureButton) -> void:
-	if tile.is_mine:
-		tile.reveal_tile(true)
-"
+[ext_resource type="Script" uid="uid://ouhtebkydqp7" path="res://scripts/game_base.gd" id="2_yqjtg"]
 
 [node name="Game" type="MarginContainer" unique_id=1648610376 groups=["Game"]]
 anchors_preset = 15
@@ -50,7 +18,7 @@ theme_override_constants/margin_left = 22
 theme_override_constants/margin_top = 22
 theme_override_constants/margin_right = 22
 theme_override_constants/margin_bottom = 22
-script = SubResource("GDScript_uwrxv")
+script = ExtResource("2_yqjtg")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1911070386]
 layout_mode = 2
