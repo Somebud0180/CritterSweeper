@@ -29,6 +29,43 @@
 [ext_resource type="AudioStream" uid="uid://b6urbdg2jf7pb" path="res://assets/music/CritterSweeper.wav" id="29_hwfsl"]
 [ext_resource type="Script" uid="uid://bxmsbqlbt088g" path="res://scripts/music_player.gd" id="30_a04p5"]
 
+[sub_resource type="GDScript" id="GDScript_48ryc"]
+script/source = "extends GameMode
+class_name SeekerMode
+
+# Inverse minesweeper rules:
+# - No first click protection
+# - Clicking mines is allowed (they get revealed)
+# - Win when all mines are revealed
+# - Lose when all non-mine tiles are revealed (only mines remain)
+
+func should_protect_first_click() -> bool:
+	return false
+
+func mine_reveal_is_original_press() -> bool:
+	return false
+
+func should_end_on_mine_press() -> bool:
+	return false
+
+func is_win_state(tiles: Array) -> bool:
+	for row in tiles:
+		for tile in row:
+			if not tile.is_revealed and tile.is_mine:
+				return false
+	return true
+
+func is_loss_state(tiles: Array) -> bool:
+	for row in tiles:
+		for tile in row:
+			if not tile.is_revealed and not tile.is_mine:
+				return false
+	return true
+
+func reveal_tile_on_game_over(tile: TextureButton) -> void:
+	tile.reveal_tile(true)
+"
+
 [sub_resource type="Animation" id="Animation_jy7pm"]
 length = 0.001
 tracks/0/type = "value"
@@ -621,7 +658,7 @@ tracks/2/keys = {
 tracks/3/type = "method"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/VBoxContainer/SimpleButton")
+tracks/3/path = NodePath("MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/SimpleButton")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -948,11 +985,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("13_lnf0i")
 
-[node name="Game" parent="GameLayer" unique_id=1767809418 node_paths=PackedStringArray("label", "toast", "critter_layer") instance=ExtResource("3_g3eks")]
+[node name="Game" parent="GameLayer" unique_id=1767809418 instance=ExtResource("3_g3eks")]
 z_index = 1
-label = NodePath("../GameOverlay/HBoxContainer/Notif Panel/Label")
-toast = NodePath("../GameOverlay/HBoxContainer/Notif Panel")
-critter_layer = NodePath("../CritterLayer")
+script = SubResource("GDScript_48ryc")
 
 [node name="GameOverlay" type="MarginContainer" parent="GameLayer" unique_id=701115959]
 visible = false
@@ -1398,12 +1433,20 @@ vertical_alignment = 1
 [node name="HSeparator" type="HSeparator" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer" unique_id=205061363]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer" unique_id=1688465416]
+[node name="ScrollContainer" type="ScrollContainer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer" unique_id=952572473]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="CritterSweeper" type="VBoxContainer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer" unique_id=1688465416]
+layout_mode = 2
+size_flags_horizontal = 3
 alignment = 1
 
-[node name="SimpleButton" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/VBoxContainer" unique_id=1125250236]
+[node name="Label" type="Label" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper" unique_id=1517855559]
+layout_mode = 2
+text = "Sweeper"
+
+[node name="SimpleButton" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper" unique_id=1125250236]
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_vertical = 4
@@ -1412,10 +1455,10 @@ ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("13_oi1it")
 
-[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/VBoxContainer/SimpleButton" unique_id=771971909]
+[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/SimpleButton" unique_id=771971909]
 libraries/ = SubResource("AnimationLibrary_6p3j2")
 
-[node name="NormalButton" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/VBoxContainer" unique_id=341709035]
+[node name="NormalButton" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper" unique_id=341709035]
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_vertical = 4
@@ -1424,10 +1467,10 @@ ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("13_oi1it")
 
-[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/VBoxContainer/NormalButton" unique_id=1230462068]
+[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/NormalButton" unique_id=1230462068]
 libraries/ = SubResource("AnimationLibrary_6p3j2")
 
-[node name="DifficultButton" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/VBoxContainer" unique_id=1385421853]
+[node name="DifficultButton" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper" unique_id=1385421853]
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_vertical = 4
@@ -1436,7 +1479,54 @@ ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("13_oi1it")
 
-[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/VBoxContainer/DifficultButton" unique_id=1388316808]
+[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/DifficultButton" unique_id=1388316808]
+libraries/ = SubResource("AnimationLibrary_6p3j2")
+
+[node name="HSeparator" type="HSeparator" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper" unique_id=166713450]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper" unique_id=1643242480]
+layout_mode = 2
+text = "Seeker
+"
+
+[node name="SimpleButton2" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper" unique_id=2004897117]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("26_48ryc")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("13_oi1it")
+
+[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/SimpleButton2" unique_id=893159282]
+root_node = NodePath("../../SimpleButton2")
+libraries/ = SubResource("AnimationLibrary_6p3j2")
+
+[node name="NormalButton2" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper" unique_id=250841174]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("27_vhsb5")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("13_oi1it")
+
+[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/NormalButton2" unique_id=1195419298]
+root_node = NodePath("../../NormalButton2")
+libraries/ = SubResource("AnimationLibrary_6p3j2")
+
+[node name="DifficultButton2" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper" unique_id=1299215497]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("28_hwfsl")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("13_oi1it")
+
+[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/DifficultButton2" unique_id=887036186]
+root_node = NodePath("../../DifficultButton2")
 libraries/ = SubResource("AnimationLibrary_6p3j2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=236843277 groups=["AnimationPlayer"]]
@@ -1458,7 +1548,7 @@ script = ExtResource("30_a04p5")
 [connection signal="item_selected" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/TileModeContainer/TileModePicker" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/TileModeContainer/TileModePicker" method="_on_item_selected"]
 [connection signal="toggled" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/Vibration/CheckButton" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/Vibration/CheckButton" method="_on_toggled"]
 [connection signal="pressed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/VBoxContainer/SimpleButton" to="." method="_on_difficulty_button_pressed" binds= [0]]
-[connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/VBoxContainer/NormalButton" to="." method="_on_difficulty_button_pressed" binds= [1]]
-[connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/VBoxContainer/DifficultButton" to="." method="_on_difficulty_button_pressed" binds= [2]]
+[connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/SimpleButton" to="." method="_on_difficulty_button_pressed" binds= [0]]
+[connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/NormalButton" to="." method="_on_difficulty_button_pressed" binds= [1]]
+[connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/DifficultButton" to="." method="_on_difficulty_button_pressed" binds= [2]]
 [connection signal="finished" from="MusicPlayer" to="MusicPlayer" method="_on_finished"]

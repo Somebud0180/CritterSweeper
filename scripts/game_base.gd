@@ -1,4 +1,5 @@
 extends Control
+class_name GameBase
 
 # Core minesweeper game is based on the tutorial by Medium
 # https://medium.com/@sergejmoor01/how-to-make-minesweeper-in-godot-4-1a14914d5127
@@ -13,9 +14,12 @@ const TILE_SCENE = preload("res://scenes/tile.tscn")
 @export var grid_aspect: AspectRatioContainer
 @export var scroll_container: ScrollContainer
 @export var critter_layer = Control
+var game_mode: GameMode  # Assign ClassicMode or InverseMode resource in inspector
 var tiles = [] # 2D array to store tile instances
 var last_focused_tile = []
 var first_click_done = false
+var game_finished = false
+var clicks_counted = 0
 
 func _ready() -> void:
 	scale = Vector2(0.8, 0.8)
@@ -23,10 +27,16 @@ func _ready() -> void:
 	get_tree().root.connect("size_changed", _on_viewport_size_changed)
 	get_tree().get_first_node_in_group("MainScreen").connect("focus_game", _focus_tile)
 
-func start() -> void:
+func start(set_mode: GameMode = null) -> void:
+	if game_mode != null:
+		self.game_mode = set_mode
+	
 	for child in grid.get_children():
 		child.queue_free()
 	tiles.clear()
+	first_click_done = false
+	game_finished = false
+	clicks_counted = 0
 	
 	var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(self, "scale", Vector2(0.8, 0.8), 1)
@@ -64,45 +74,12 @@ func start() -> void:
 	tween.tween_property(self, "scale", Vector2(1, 1), 1)
 	
 	# Re-enable tiles
-	for row in tiles: 
+	for row in tiles:
 		for tile in row:
 			tile.disabled = false
 			tile.mouse_default_cursor_shape = CURSOR_POINTING_HAND
 	
 	_focus_tile()
-
-func _save_last_focused() -> void:
-	var focused := get_viewport().gui_get_focus_owner()
-	if focused and grid.is_ancestor_of(focused):
-		last_focused_tile = focused
-
-func _on_tile_focus_entered(tile: Control) -> void:
-	last_focused_tile = tile
-
-func _focus_tile() -> void:
-	if Globals.input_type == 2:
-		if is_instance_valid(last_focused_tile):
-			last_focused_tile.grab_focus()
-		elif tiles.size() > 0 and tiles[0].size() > 0:
-			tiles[0][0].grab_focus()
-
-func _on_tile_pressed(x: int, y: int):
-	var tile = tiles[y][x]
-	if not first_click_done:
-		first_click_done = true
-		# Add mines, excluding the first clicks position
-		var mine_positions = generate_mine_positions(Vector2i(x, y))
-		for pos in mine_positions:
-			tiles[pos.y][pos.x].is_mine = true
-		calculate_adjacent_mines()
-	
-	if tile.is_mine:
-		tile.reveal_tile(true)
-		game_over()
-	else:
-		reveal_tile_and_neighbors(x, y)
-		if check_win_condition():
-			game_won()
 
 func get_tile_size() -> float:
 	# Calculate dynamic tile size if needed
@@ -147,29 +124,38 @@ func create_grid():
 	calculate_adjacent_mines()
 
 func generate_mine_positions(first_click_position: Vector2i) -> Array:
-	print("Target mines: ", num_mines)
-	
-	var first_click_positions = []
-	for dy in range(-1, 2):
-		for dx in range(-1, 2):
-			var check_pos = first_click_position + Vector2i(dx, dy)
-			if check_pos.x >= 0 and check_pos.x < columns and check_pos.y >= 0 and check_pos.y < rows:
-				first_click_positions.append(check_pos)
-	
+	var excluded = get_excluded_positions(first_click_position)
 	var valid_positions = []
 	for y in range(rows):
 		for x in range(columns):
 			var pos = Vector2i(x, y)
-			if pos not in first_click_positions:
-				valid_positions.append(pos)
+			if pos in excluded:
+				continue
+			valid_positions.append(pos)
 	
 	var max_possible_mines = valid_positions.size()
 	var mines_to_place = mini(num_mines, max_possible_mines)
 	
 	valid_positions.shuffle()
-	var mine_positions = valid_positions.slice(0, mines_to_place)
+	return valid_positions.slice(0, mines_to_place)
+
+func get_excluded_positions(first_click_position: Vector2i) -> Array:
+	if not game_mode or not game_mode.should_protect_first_click():
+		return []
 	
-	return mine_positions
+	var excluded = []
+	for dy in range(-1, 2):
+		for dx in range(-1, 2):
+			var check_pos = first_click_position + Vector2i(dx, dy)
+			if check_pos.x >= 0 and check_pos.x < columns and check_pos.y >= 0 and check_pos.y < rows:
+				excluded.append(check_pos)
+	return excluded
+
+func place_mines(first_click_position: Vector2i) -> void:
+	var mine_positions = generate_mine_positions(first_click_position)
+	for pos in mine_positions:
+		tiles[pos.y][pos.x].is_mine = true
+	calculate_adjacent_mines()
 
 func count_adjacent_mines(x: int, y: int) -> int:
 	var count = 0
@@ -212,27 +198,49 @@ func reveal_tile_and_neighbors(x: int, y: int):
 				if dx != 0 or dy != 0:
 					reveal_tile_and_neighbors(x + dx, y + dy)
 
-func check_win_condition():
-	for row in tiles:
-		for tile in row:
-			if not tile.is_revealed and not tile.is_mine:
-				# If any non-mine tile is not revealed, the player hasn't won
-				return false
-	return true # All non-mine tiles are revealed
+func evaluate_end_state() -> void:
+	if game_finished or not game_mode:
+		return
+	if game_mode.is_win_state(tiles):
+		game_won()
+	elif game_mode.is_loss_state(tiles):
+		game_over()
+
+func _on_tile_pressed(x: int, y: int):
+	if game_finished or not game_mode:
+		return
+	
+	clicks_counted += 1
+	var tile = tiles[y][x]
+	if not first_click_done:
+		first_click_done = true
+		place_mines(Vector2i(x, y))
+	
+	if tile.is_mine:
+		tile.reveal_tile(game_mode.mine_reveal_is_original_press())
+		if game_mode.should_end_on_mine_press():
+			game_over()
+			return
+	else:
+		reveal_tile_and_neighbors(x, y)
+	
+	evaluate_end_state()
 
 func game_over():
+	game_finished = true
 	for row in tiles:
 		for tile in row:
 			tile.disabled = true
 			tile.mouse_default_cursor_shape = CURSOR_FORBIDDEN
-			if tile.is_mine:
-				tile.reveal_tile()
+			if game_mode:
+				game_mode.reveal_tile_on_game_over(tile)
 	
 	label.text = "Game Over!"
 	label.visible = true
 	toast.visible = true
-	
+
 func game_won():
+	game_finished = true
 	for row in tiles:
 		for tile in row:
 			tile.disabled = true
@@ -241,19 +249,20 @@ func game_won():
 	label.visible = true
 	toast.visible = true
 
-func restart_game():
-	first_click_done = false
-	last_focused_tile = null
-	
-	for child in grid.get_children():
-		child.queue_free()
-	tiles.clear()
-	
-	label.text = ""
-	label.visible = false
-	toast.visible = false
-	
-	create_grid()
+func _save_last_focused() -> void:
+	var focused := get_viewport().gui_get_focus_owner()
+	if focused and grid.is_ancestor_of(focused):
+		last_focused_tile = focused
+
+func _on_tile_focus_entered(tile: Control) -> void:
+	last_focused_tile = tile
+
+func _focus_tile() -> void:
+	if Globals.input_type == 2:
+		if is_instance_valid(last_focused_tile):
+			last_focused_tile.grab_focus()
+		elif tiles.size() > 0 and tiles[0].size() > 0:
+			tiles[0][0].grab_focus()
 
 func _on_viewport_size_changed() -> void:
 	pivot_offset = Vector2(size.x / 2, size.y / 2)
