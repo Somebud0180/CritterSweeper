@@ -14,6 +14,7 @@ const TILE_SCENE = preload("res://scenes/tile.tscn")
 @export var grid_aspect: AspectRatioContainer
 @export var scroll_container: ScrollContainer
 @export var critter_layer = Control
+var difficulty = 0
 var game_mode: GameMode  # Assign ClassicMode or InverseMode resource in inspector
 var tiles = [] # 2D array to store tile instances
 var last_focused_tile = []
@@ -248,10 +249,10 @@ func game_won():
 	toast.visible = true
 	
 	if game_mode is SweeperMode:
-		Scoreboard.save_sweeper_score(time_elapsed)
+		Scoreboard.save_sweeper_score(difficulty, time_elapsed)
 	elif game_mode is SeekerMode:
 		blocks_remaining = count_unrevealed_blocks()
-		Scoreboard.save_seeker_score(clicks_counted, blocks_remaining, time_elapsed)
+		Scoreboard.save_seeker_score(difficulty, clicks_counted, blocks_remaining, time_elapsed)
 
 ## Tile Functions
 func _on_tile_pressed(x: int, y: int):
