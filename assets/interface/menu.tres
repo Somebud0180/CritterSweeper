@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bgupmpji3jfmh" path="res://assets/interface/textures/MiscStyle/PanelStyle.png" id="4_fmrnt"]
 [ext_resource type="Texture2D" uid="uid://d1rb1upijbf5i" path="res://assets/interface/textures/MiscStyle/label.png" id="4_psl0c"]
 [ext_resource type="Texture2D" uid="uid://btsxjmunnnbfw" path="res://assets/interface/textures/MiscStyle/Fade.png" id="5_11hd0"]
+[ext_resource type="FontFile" uid="uid://cvg7xg5lalb57" path="res://assets/interface/PlaypenSans_Bundle/Variable/PlaypenSans[wght].ttf" id="6_po8y3"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0mtrw"]
 texture = ExtResource("1_87gl6")
@@ -40,6 +41,34 @@ region_rect = Rect2(0, 0, 516, 100)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_axvq5"]
 texture = ExtResource("5_11hd0")
+
+[sub_resource type="FontVariation" id="FontVariation_v42cr"]
+base_font = ExtResource("6_po8y3")
+spacing_top = -6
+spacing_bottom = -6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11hd0"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+bg_color = Color(0.94509804, 0.8, 0.8, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_po8y3"]
+content_margin_left = 16.0
+content_margin_top = 12.0
+content_margin_right = 16.0
+content_margin_bottom = 12.0
+bg_color = Color(0.94509804, 0.8, 0.8, 1)
+corner_radius_top_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v42cr"]
+content_margin_left = 16.0
+content_margin_top = 12.0
+content_margin_right = 16.0
+content_margin_bottom = 12.0
+bg_color = Color(0.94509804, 0.8, 0.8, 1)
+corner_radius_top_right = 12
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_87gl6"]
 color = Color(0.8547833, 0.75756836, 0.90625, 1)
@@ -76,6 +105,13 @@ Button/styles/normal = SubResource("StyleBoxTexture_pw0cd")
 Button/styles/pressed = SubResource("StyleBoxTexture_rukvw")
 FadePanelContainer/base_type = &"PanelContainer"
 FadePanelContainer/styles/panel = SubResource("StyleBoxTexture_axvq5")
+FlatButton/font_sizes/font_size = 16
+FlatButton/fonts/font = SubResource("FontVariation_v42cr")
+FlatButton/styles/normal = SubResource("StyleBoxFlat_11hd0")
+FlatButtonLeft/base_type = &"FlatButton"
+FlatButtonLeft/styles/normal = SubResource("StyleBoxFlat_po8y3")
+FlatButtonRight/base_type = &"FlatButton"
+FlatButtonRight/styles/normal = SubResource("StyleBoxFlat_v42cr")
 GridContainer/constants/h_separation = 0
 GridContainer/constants/v_separation = 0
 HSeparator/constants/separation = 24

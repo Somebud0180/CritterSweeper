@@ -24,7 +24,7 @@ var game_finished = false
 
 # Score Keeping
 var clicks_counted: int = 0    # Amount of clicks done by player (tracked in CritterSeeker)
-var blocks_remaining: int = 0  # Amount of unrevealed blocks remaining (tracked in CritterSeeker)
+var tiles_remaining: int = 0  # Amount of unrevealed blocks remaining (tracked in CritterSeeker)
 var time_elapsed: float = 0    # Amount of time to finish the game
 
 func _ready() -> void:
@@ -51,7 +51,7 @@ func start(set_mode: int = 0) -> void:
 	game_finished = false
 	
 	clicks_counted = 0
-	blocks_remaining = 0
+	tiles_remaining = 0
 	time_elapsed = 0
 	
 	var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
@@ -251,8 +251,8 @@ func game_won():
 	if game_mode is SweeperMode:
 		Scoreboard.save_sweeper_score(difficulty, time_elapsed)
 	elif game_mode is SeekerMode:
-		blocks_remaining = count_unrevealed_blocks()
-		Scoreboard.save_seeker_score(difficulty, clicks_counted, blocks_remaining, time_elapsed)
+		tiles_remaining = count_unrevealed_blocks()
+		Scoreboard.save_seeker_score(difficulty, clicks_counted, tiles_remaining, time_elapsed)
 
 ## Tile Functions
 func _on_tile_pressed(x: int, y: int):

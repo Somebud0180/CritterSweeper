@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://dli166i2uw5ch" path="res://assets/interface/textures/ButtonTexture/DifficultyButtons/Normal_Difficulty.png" id="27_vhsb5"]
 [ext_resource type="Texture2D" uid="uid://dh7coqq5st1un" path="res://assets/interface/textures/titlecards/Seeker_TitleCard.png" id="28_a04p5"]
 [ext_resource type="Texture2D" uid="uid://cv1hjrhd3hqji" path="res://assets/interface/textures/ButtonTexture/DifficultyButtons/Difficult_Difficulty.png" id="28_hwfsl"]
+[ext_resource type="Script" uid="uid://bys3hjetxqlh6" path="res://scripts/interface/scoreboard_container.gd" id="29_a04p5"]
 [ext_resource type="AudioStream" uid="uid://b6urbdg2jf7pb" path="res://assets/audio/music/CritterSweeper.wav" id="29_hwfsl"]
 [ext_resource type="Script" uid="uid://bxmsbqlbt088g" path="res://scripts/helper/music_player.gd" id="30_a04p5"]
 
@@ -399,6 +400,54 @@ tracks/11/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("MenuLayer/ScoreboardContainer:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("MenuLayer/ScoreboardContainer:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("MenuLayer/ScoreboardContainer:scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("MenuLayer/ScoreboardContainer:anchor_bottom")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
 
 [sub_resource type="Animation" id="Animation_70i5f"]
 resource_name = "hide_difficulty"
@@ -523,6 +572,59 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(2, 0.5),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_a04p5"]
+resource_name = "hide_scoreboard"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuLayer/ScoreboardContainer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MenuLayer/ScoreboardContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MenuLayer/ScoreboardContainer:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.099999994),
+"transitions": PackedFloat32Array(2, 2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.02, 1.02)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MenuLayer/ScoreboardContainer:anchor_bottom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.05, 0.25),
+"transitions": PackedFloat32Array(2, 2),
+"update": 0,
+"values": [1.0, 1.1]
 }
 
 [sub_resource type="Animation" id="Animation_i6lef"]
@@ -801,6 +903,87 @@ tracks/4/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_b5gwo"]
+resource_name = "show_scoreboard"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuLayer/ScoreboardContainer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MenuLayer/ScoreboardContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MenuLayer/ScoreboardContainer:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.15, 0.25),
+"transitions": PackedFloat32Array(2, 2),
+"update": 0,
+"values": [Vector2(1.02, 1.02), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MenuLayer/ScoreboardContainer:anchor_bottom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [1.1, 1.0]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"menu_state", 2],
+"method": &"set"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider/MusicVolume")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"grab_focus"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_v86rl"]
 resource_name = "show_settings"
 length = 0.25
@@ -888,10 +1071,12 @@ _data = {
 &"hide_difficulty": SubResource("Animation_70i5f"),
 &"hide_game": SubResource("Animation_6cdou"),
 &"hide_main": SubResource("Animation_13sgg"),
+&"hide_scoreboard": SubResource("Animation_a04p5"),
 &"hide_settings": SubResource("Animation_i6lef"),
 &"show_difficulty": SubResource("Animation_g3eks"),
 &"show_game": SubResource("Animation_mj5lg"),
 &"show_main": SubResource("Animation_ufwb2"),
+&"show_scoreboard": SubResource("Animation_b5gwo"),
 &"show_settings": SubResource("Animation_v86rl")
 }
 
@@ -1506,7 +1691,9 @@ script = ExtResource("13_oi1it")
 libraries/ = SubResource("AnimationLibrary_6p3j2")
 
 [node name="ScoreboardContainer" type="AspectRatioContainer" parent="MenuLayer" unique_id=1569448155]
-anchors_preset = 15
+visible = false
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -1514,6 +1701,7 @@ grow_vertical = 2
 pivot_offset = Vector2(288, 336)
 theme = ExtResource("1_yqeox")
 ratio = 0.8
+script = ExtResource("29_a04p5")
 
 [node name="Scoreboard" type="MarginContainer" parent="MenuLayer/ScoreboardContainer" unique_id=928614533]
 layout_mode = 2
@@ -1528,7 +1716,7 @@ layout_mode = 2
 [node name="BackButton" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer" unique_id=2067341836 instance=ExtResource("20_g54pe")]
 layout_mode = 2
 focus_neighbor_top = NodePath("")
-current_menu = "settings"
+current_menu = "scoreboard"
 previous_menu = "main"
 
 [node name="TextureRect" type="TextureRect" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer" unique_id=1626251741]
@@ -1547,6 +1735,7 @@ layout_mode = 2
 
 [node name="GameModePicker" type="OptionButton" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/HBoxContainer" unique_id=805999741]
 layout_mode = 2
+theme_override_font_sizes/font_size = 18
 selected = 0
 item_count = 2
 popup/item_0/text = "Sweeper:"
@@ -1557,6 +1746,7 @@ popup/item_1/id = 1
 [node name="DifficultyPicker" type="OptionButton" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1060862590]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
 alignment = 1
 selected = 0
 item_count = 3
@@ -1577,6 +1767,31 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 12
+
+[node name="SortContainer" type="HBoxContainer" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer" unique_id=851176954]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Game" type="Button" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer" unique_id=1469199238]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"FlatButtonLeft"
+text = "Game"
+
+[node name="Clicks" type="Button" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer" unique_id=259195789]
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+text = "Clicks"
+
+[node name="Tiles Remaining" type="Button" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer" unique_id=449401747]
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+text = "Tiles Remaining"
+
+[node name="Time" type="Button" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer" unique_id=2093146205]
+layout_mode = 2
+theme_type_variation = &"FlatButtonRight"
+text = "Time"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer" unique_id=839229466]
 layout_mode = 2
@@ -1606,6 +1821,8 @@ script = ExtResource("30_a04p5")
 [connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/SimpleSeekerButton" to="." method="_on_difficulty_button_pressed" binds= [0, 1]]
 [connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/NormalSeekerButton" to="." method="_on_difficulty_button_pressed" binds= [1, 1]]
 [connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/DifficultSeekerButton" to="." method="_on_difficulty_button_pressed" binds= [2, 1]]
+[connection signal="item_selected" from="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/HBoxContainer/GameModePicker" to="MenuLayer/ScoreboardContainer" method="_on_game_mode_picker_item_selected"]
+[connection signal="item_selected" from="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/HBoxContainer/DifficultyPicker" to="MenuLayer/ScoreboardContainer" method="_on_difficulty_picker_item_selected"]
 [connection signal="finished" from="MusicPlayer" to="MusicPlayer" method="_on_finished"]
 
 [editable path="GameLayer/Game"]
