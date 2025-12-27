@@ -1356,11 +1356,6 @@ flat = true
 script = ExtResource("26_x16fv")
 globals_var_name = "vibration_enabled"
 
-[node name="Button" type="Button" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer" unique_id=59799474]
-layout_mode = 2
-focus_neighbor_bottom = NodePath("../BackButton")
-text = "Return"
-
 [node name="DifficultyPickerContainer" type="PanelContainer" parent="MenuLayer" unique_id=804510920]
 visible = false
 modulate = Color(1, 1, 1, 0)
@@ -1510,6 +1505,83 @@ script = ExtResource("13_oi1it")
 [node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/DifficultSeekerButton" unique_id=887036186]
 libraries/ = SubResource("AnimationLibrary_6p3j2")
 
+[node name="ScoreboardContainer" type="AspectRatioContainer" parent="MenuLayer" unique_id=1569448155]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(288, 336)
+theme = ExtResource("1_yqeox")
+ratio = 0.8
+
+[node name="Scoreboard" type="MarginContainer" parent="MenuLayer/ScoreboardContainer" unique_id=928614533]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuLayer/ScoreboardContainer/Scoreboard" unique_id=514279161]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer" unique_id=298514685]
+layout_mode = 2
+
+[node name="BackButton" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer" unique_id=2067341836 instance=ExtResource("20_g54pe")]
+layout_mode = 2
+focus_neighbor_top = NodePath("")
+current_menu = "settings"
+previous_menu = "main"
+
+[node name="TextureRect" type="TextureRect" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer" unique_id=1626251741]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+texture = ExtResource("11_ufwb2")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="HSeparator" type="HSeparator" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer" unique_id=1632774427]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer" unique_id=822261925]
+layout_mode = 2
+
+[node name="GameModePicker" type="OptionButton" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/HBoxContainer" unique_id=805999741]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "Sweeper:"
+popup/item_0/id = 0
+popup/item_1/text = "Seeker:"
+popup/item_1/id = 1
+
+[node name="DifficultyPicker" type="OptionButton" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1060862590]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+selected = 0
+item_count = 3
+popup/item_0/text = "Simple"
+popup/item_0/id = 0
+popup/item_1/text = "Normal"
+popup/item_1/id = 1
+popup/item_2/text = "Difficult"
+popup/item_2/id = 2
+
+[node name="Score Container" type="ScrollContainer" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer" unique_id=18203125]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container" unique_id=229225769]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer" unique_id=839229466]
+layout_mode = 2
+fit_content = true
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=236843277 groups=["AnimationPlayer"]]
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_13sgg")
@@ -1528,7 +1600,6 @@ script = ExtResource("30_a04p5")
 [connection signal="item_selected" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/InterfaceContainer/ThemeContainer/BackgroundPicker" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/InterfaceContainer/ThemeContainer/BackgroundPicker" method="_on_item_selected"]
 [connection signal="item_selected" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/TileModeContainer/TileModePicker" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/TileModeContainer/TileModePicker" method="_on_item_selected"]
 [connection signal="toggled" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/Vibration/CheckButton" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/Vibration/CheckButton" method="_on_toggled"]
-[connection signal="pressed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/SimpleSweeperButton" to="." method="_on_difficulty_button_pressed" binds= [0, 0]]
 [connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/NormalSweeperButton" to="." method="_on_difficulty_button_pressed" binds= [1, 0]]
 [connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/DifficultSweeperButton" to="." method="_on_difficulty_button_pressed" binds= [2, 0]]

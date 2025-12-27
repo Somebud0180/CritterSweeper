@@ -1,0 +1,11 @@
+[gd_resource type="FontVariation" format=3 uid="uid://1rkcebas8m7w"]
+
+[ext_resource type="FontFile" uid="uid://cvg7xg5lalb57" path="res://assets/interface/PlaypenSans_Bundle/Variable/PlaypenSans[wght].ttf" id="1_5hjrx"]
+
+[resource]
+base_font = ExtResource("1_5hjrx")
+variation_opentype = {
+2003265652: 600
+}
+spacing_top = -6
+spacing_bottom = -6
