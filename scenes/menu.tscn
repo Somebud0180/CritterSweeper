@@ -1,35 +1,35 @@
 [gd_scene format=3 uid="uid://wxiagu8uy4w4"]
 
 [ext_resource type="Theme" uid="uid://bhmyomirsk6vr" path="res://assets/interface/menu.tres" id="1_yqeox"]
-[ext_resource type="Script" uid="uid://xtopgpgymqh0" path="res://scripts/main_screen.gd" id="2_4ytvr"]
+[ext_resource type="Script" uid="uid://xtopgpgymqh0" path="res://scripts/interface/main_screen.gd" id="2_4ytvr"]
 [ext_resource type="Texture2D" uid="uid://8mi331kcfci" path="res://assets/interface/textures/titlecards/CritterSweeper.png" id="2_vjb58"]
 [ext_resource type="PackedScene" uid="uid://mgkqrayegu0x" path="res://scenes/game.tscn" id="3_g3eks"]
 [ext_resource type="Texture2D" uid="uid://bco4bjasej7ri" path="res://assets/interface/textures/glyphs/MusicSound.png" id="3_mhnvy"]
 [ext_resource type="Texture2D" uid="uid://rqimlliym8t8" path="res://assets/interface/textures/glyphs/UISound.png" id="4_4ytvr"]
-[ext_resource type="Script" uid="uid://cfw7y2t0v6oit" path="res://scripts/background_layer.gd" id="4_vhsb5"]
-[ext_resource type="Script" uid="uid://dx1w2nxwnc5qs" path="res://scripts/pause_button.gd" id="7_mj5lg"]
+[ext_resource type="Script" uid="uid://cfw7y2t0v6oit" path="res://scripts/interface/background_layer.gd" id="4_vhsb5"]
+[ext_resource type="Script" uid="uid://dx1w2nxwnc5qs" path="res://scripts/interface/pause_button.gd" id="7_mj5lg"]
 [ext_resource type="Texture2D" uid="uid://k24pjf1gc262" path="res://assets/interface/textures/ButtonTexture/PauseButton/PauseButton.png" id="8_vhsb5"]
 [ext_resource type="Texture2D" uid="uid://cqeavkhghepvt" path="res://assets/interface/textures/ButtonTexture/PauseButton/PauseButton_Hover.png" id="9_g6gyw"]
 [ext_resource type="PackedScene" uid="uid://chm2tu86wl8ae" path="res://scenes/tile_mode_overlay.tscn" id="11_fy8yy"]
 [ext_resource type="Texture2D" uid="uid://vfjnytyscp85" path="res://assets/interface/textures/titlecards/Settings_TitleCard.png" id="11_ufwb2"]
 [ext_resource type="AnimationLibrary" uid="uid://ikbf1v8drsm7" path="res://assets/interface/shared_animations.res" id="12_6wigr"]
 [ext_resource type="Texture2D" uid="uid://c6f10arg2qu1a" path="res://assets/interface/textures/ButtonTexture/MenuButtons/Resume.png" id="12_81l6r"]
-[ext_resource type="Script" uid="uid://cptukuhpxwgkw" path="res://scripts/critter_layer.gd" id="13_lnf0i"]
-[ext_resource type="Script" uid="uid://dbhl7y6g0pb5s" path="res://scripts/button_animation.gd" id="13_oi1it"]
+[ext_resource type="Script" uid="uid://cptukuhpxwgkw" path="res://scripts/game/critter_layer.gd" id="13_lnf0i"]
+[ext_resource type="Script" uid="uid://dbhl7y6g0pb5s" path="res://scripts/interface/button_animation.gd" id="13_oi1it"]
 [ext_resource type="Texture2D" uid="uid://dx04omoqdkew8" path="res://assets/interface/textures/ButtonTexture/MenuButtons/NewGame.png" id="13_rsfmq"]
 [ext_resource type="Texture2D" uid="uid://dndsd2ke1gy78" path="res://assets/interface/textures/ButtonTexture/MenuButtons/Settings.png" id="14_oi1it"]
-[ext_resource type="Script" uid="uid://c8ywq5j56nj1o" path="res://scripts/globals_picker.gd" id="16_mxgkd"]
+[ext_resource type="Script" uid="uid://c8ywq5j56nj1o" path="res://scripts/globals/globals_picker.gd" id="16_mxgkd"]
 [ext_resource type="PackedScene" uid="uid://cgqy54bs5kc5y" path="res://scenes/back_button.tscn" id="20_g54pe"]
 [ext_resource type="LabelSettings" uid="uid://td4nyqueb2lu" path="res://assets/interface/settings_label.tres" id="21_vhsb5"]
-[ext_resource type="Script" uid="uid://58xr8yxuyjby" path="res://scripts/globals_slider.gd" id="23_ffqrc"]
+[ext_resource type="Script" uid="uid://58xr8yxuyjby" path="res://scripts/globals/globals_slider.gd" id="23_ffqrc"]
 [ext_resource type="Texture2D" uid="uid://cb6ccosbjyh4x" path="res://assets/interface/textures/titlecards/Sweeper_TitleCard.png" id="24_hwfsl"]
 [ext_resource type="Texture2D" uid="uid://ilra7n38yjn3" path="res://assets/interface/textures/ButtonTexture/DifficultyButtons/Simple_Difficulty.png" id="26_48ryc"]
-[ext_resource type="Script" uid="uid://bfw1gn3rff0q0" path="res://scripts/globals_check_button.gd" id="26_x16fv"]
+[ext_resource type="Script" uid="uid://bfw1gn3rff0q0" path="res://scripts/globals/globals_check_button.gd" id="26_x16fv"]
 [ext_resource type="Texture2D" uid="uid://dli166i2uw5ch" path="res://assets/interface/textures/ButtonTexture/DifficultyButtons/Normal_Difficulty.png" id="27_vhsb5"]
 [ext_resource type="Texture2D" uid="uid://dh7coqq5st1un" path="res://assets/interface/textures/titlecards/Seeker_TitleCard.png" id="28_a04p5"]
 [ext_resource type="Texture2D" uid="uid://cv1hjrhd3hqji" path="res://assets/interface/textures/ButtonTexture/DifficultyButtons/Difficult_Difficulty.png" id="28_hwfsl"]
 [ext_resource type="AudioStream" uid="uid://b6urbdg2jf7pb" path="res://assets/audio/music/CritterSweeper.wav" id="29_hwfsl"]
-[ext_resource type="Script" uid="uid://bxmsbqlbt088g" path="res://scripts/music_player.gd" id="30_a04p5"]
+[ext_resource type="Script" uid="uid://bxmsbqlbt088g" path="res://scripts/helper/music_player.gd" id="30_a04p5"]
 
 [sub_resource type="Animation" id="Animation_jy7pm"]
 length = 0.001
@@ -623,7 +623,7 @@ tracks/2/keys = {
 tracks/3/type = "method"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/SimpleButton")
+tracks/3/path = NodePath("MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/SimpleSweeperButton")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -1424,7 +1424,7 @@ stretch_mode = 4
 layout_mode = 2
 text = "Good ol' Minesweeper"
 
-[node name="SimpleButton" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper" unique_id=1125250236]
+[node name="SimpleSweeperButton" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper" unique_id=1125250236]
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_vertical = 4
@@ -1433,10 +1433,10 @@ ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("13_oi1it")
 
-[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/SimpleButton" unique_id=771971909]
+[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/SimpleSweeperButton" unique_id=771971909]
 libraries/ = SubResource("AnimationLibrary_6p3j2")
 
-[node name="NormalButton" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper" unique_id=341709035]
+[node name="NormalSweeperButton" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper" unique_id=341709035]
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_vertical = 4
@@ -1445,10 +1445,10 @@ ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("13_oi1it")
 
-[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/NormalButton" unique_id=1230462068]
+[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/NormalSweeperButton" unique_id=1230462068]
 libraries/ = SubResource("AnimationLibrary_6p3j2")
 
-[node name="DifficultButton" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper" unique_id=1385421853]
+[node name="DifficultSweeperButton" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper" unique_id=1385421853]
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_vertical = 4
@@ -1457,7 +1457,7 @@ ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("13_oi1it")
 
-[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/DifficultButton" unique_id=1388316808]
+[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/DifficultSweeperButton" unique_id=1388316808]
 libraries/ = SubResource("AnimationLibrary_6p3j2")
 
 [node name="HSeparator" type="HSeparator" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper" unique_id=166713450]
@@ -1474,7 +1474,7 @@ stretch_mode = 4
 layout_mode = 2
 text = "Find the critters!"
 
-[node name="SimpleButton2" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper" unique_id=2004897117]
+[node name="SimpleSeekerButton" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper" unique_id=2004897117]
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_vertical = 4
@@ -1483,11 +1483,10 @@ ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("13_oi1it")
 
-[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/SimpleButton2" unique_id=893159282]
-root_node = NodePath("../../SimpleButton2")
+[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/SimpleSeekerButton" unique_id=893159282]
 libraries/ = SubResource("AnimationLibrary_6p3j2")
 
-[node name="NormalButton2" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper" unique_id=250841174]
+[node name="NormalSeekerButton" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper" unique_id=250841174]
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_vertical = 4
@@ -1496,11 +1495,10 @@ ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("13_oi1it")
 
-[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/NormalButton2" unique_id=1195419298]
-root_node = NodePath("../../NormalButton2")
+[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/NormalSeekerButton" unique_id=1195419298]
 libraries/ = SubResource("AnimationLibrary_6p3j2")
 
-[node name="DifficultButton2" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper" unique_id=1299215497]
+[node name="DifficultSeekerButton" type="TextureButton" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper" unique_id=1299215497]
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_vertical = 4
@@ -1509,8 +1507,7 @@ ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("13_oi1it")
 
-[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/DifficultButton2" unique_id=887036186]
-root_node = NodePath("../../DifficultButton2")
+[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/DifficultSeekerButton" unique_id=887036186]
 libraries/ = SubResource("AnimationLibrary_6p3j2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=236843277 groups=["AnimationPlayer"]]
@@ -1521,7 +1518,6 @@ libraries/ = SubResource("AnimationLibrary_13sgg")
 stream = SubResource("AudioStreamRandomizer_b5gwo")
 script = ExtResource("30_a04p5")
 
-[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="pressed" from="GameLayer/GameOverlay/HBoxContainer/PauseButton" to="GameLayer/GameOverlay/HBoxContainer/PauseButton" method="_on_pressed"]
 [connection signal="pressed" from="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/StartButton" to="." method="_on_start_button_pressed"]
@@ -1533,12 +1529,12 @@ script = ExtResource("30_a04p5")
 [connection signal="item_selected" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/TileModeContainer/TileModePicker" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/TileModeContainer/TileModePicker" method="_on_item_selected"]
 [connection signal="toggled" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/Vibration/CheckButton" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/Vibration/CheckButton" method="_on_toggled"]
 [connection signal="pressed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/SimpleButton" to="." method="_on_difficulty_button_pressed" binds= [0, 0]]
-[connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/NormalButton" to="." method="_on_difficulty_button_pressed" binds= [1, 0]]
-[connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/DifficultButton" to="." method="_on_difficulty_button_pressed" binds= [2, 0]]
-[connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/SimpleButton2" to="." method="_on_difficulty_button_pressed" binds= [0, 1]]
-[connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/NormalButton2" to="." method="_on_difficulty_button_pressed" binds= [1, 1]]
-[connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/DifficultButton2" to="." method="_on_difficulty_button_pressed" binds= [2, 1]]
+[connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/SimpleSweeperButton" to="." method="_on_difficulty_button_pressed" binds= [0, 0, true]]
+[connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/NormalSweeperButton" to="." method="_on_difficulty_button_pressed" binds= [1, 0]]
+[connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/DifficultSweeperButton" to="." method="_on_difficulty_button_pressed" binds= [2, 0]]
+[connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/SimpleSeekerButton" to="." method="_on_difficulty_button_pressed" binds= [0, 1]]
+[connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/NormalSeekerButton" to="." method="_on_difficulty_button_pressed" binds= [1, 1]]
+[connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/DifficultSeekerButton" to="." method="_on_difficulty_button_pressed" binds= [2, 1]]
 [connection signal="finished" from="MusicPlayer" to="MusicPlayer" method="_on_finished"]
 
 [editable path="GameLayer/Game"]

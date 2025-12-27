@@ -22,7 +22,8 @@ config/icon="uid://xx3cd5k8ocov"
 
 [autoload]
 
-Globals="*res://scripts/globals.gd"
+Globals="*res://scripts/globals/globals.gd"
+Scoreboard="*uid://dsrq74d61pjs7"
 
 [display]
 

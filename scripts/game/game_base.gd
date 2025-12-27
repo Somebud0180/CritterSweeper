@@ -18,14 +18,23 @@ var game_mode: GameMode  # Assign ClassicMode or InverseMode resource in inspect
 var tiles = [] # 2D array to store tile instances
 var last_focused_tile = []
 var first_click_done = false
+var is_time_counting = false
 var game_finished = false
-var clicks_counted = 0
+
+# Score Keeping
+var clicks_counted: int = 0    # Amount of clicks done by player (tracked in CritterSeeker)
+var blocks_remaining: int = 0  # Amount of unrevealed blocks remaining (tracked in CritterSeeker)
+var time_elapsed: float = 0    # Amount of time to finish the game
 
 func _ready() -> void:
 	scale = Vector2(0.8, 0.8)
 	_set_safe_area_margins()
 	get_tree().root.connect("size_changed", _on_viewport_size_changed)
 	get_tree().get_first_node_in_group("MainScreen").connect("focus_game", _focus_tile)
+
+func _process(delta: float) -> void:
+	if is_time_counting:
+		time_elapsed += delta
 
 func start(set_mode: int = 0) -> void:
 	match set_mode:
@@ -39,7 +48,10 @@ func start(set_mode: int = 0) -> void:
 	tiles.clear()
 	first_click_done = false
 	game_finished = false
+	
 	clicks_counted = 0
+	blocks_remaining = 0
+	time_elapsed = 0
 	
 	var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(self, "scale", Vector2(0.8, 0.8), 1)
@@ -83,6 +95,7 @@ func start(set_mode: int = 0) -> void:
 			tile.mouse_default_cursor_shape = CURSOR_POINTING_HAND
 	
 	_focus_tile()
+	is_time_counting = true
 
 func get_tile_size() -> float:
 	# Calculate dynamic tile size if needed
@@ -209,6 +222,38 @@ func evaluate_end_state() -> void:
 	elif game_mode.is_loss_state(tiles):
 		game_over()
 
+func game_over():
+	is_time_counting = false
+	game_finished = true
+	for row in tiles:
+		for tile in row:
+			tile.disabled = true
+			tile.mouse_default_cursor_shape = CURSOR_FORBIDDEN
+			if game_mode:
+				game_mode.reveal_tile_on_game_over(tile)
+	
+	label.text = "Game Over!"
+	label.visible = true
+	toast.visible = true
+
+func game_won():
+	is_time_counting = false
+	game_finished = true
+	for row in tiles:
+		for tile in row:
+			tile.disabled = true
+			tile.mouse_default_cursor_shape = CURSOR_ARROW
+	label.text = "You Won!"
+	label.visible = true
+	toast.visible = true
+	
+	if game_mode is SweeperMode:
+		Scoreboard.save_sweeper_score(time_elapsed)
+	elif game_mode is SeekerMode:
+		blocks_remaining = count_unrevealed_blocks()
+		Scoreboard.save_seeker_score(clicks_counted, blocks_remaining, time_elapsed)
+
+## Tile Functions
 func _on_tile_pressed(x: int, y: int):
 	if game_finished or not game_mode:
 		return
@@ -229,29 +274,15 @@ func _on_tile_pressed(x: int, y: int):
 	
 	evaluate_end_state()
 
-func game_over():
-	game_finished = true
+func count_unrevealed_blocks() -> int:
+	var count = 0
 	for row in tiles:
 		for tile in row:
-			tile.disabled = true
-			tile.mouse_default_cursor_shape = CURSOR_FORBIDDEN
-			if game_mode:
-				game_mode.reveal_tile_on_game_over(tile)
-	
-	label.text = "Game Over!"
-	label.visible = true
-	toast.visible = true
+			if !tile.is_revealed:
+				count += 1
+	return count
 
-func game_won():
-	game_finished = true
-	for row in tiles:
-		for tile in row:
-			tile.disabled = true
-			tile.mouse_default_cursor_shape = CURSOR_ARROW
-	label.text = "You Won!"
-	label.visible = true
-	toast.visible = true
-
+## Focus Functions
 func _save_last_focused() -> void:
 	var focused := get_viewport().gui_get_focus_owner()
 	if focused and grid.is_ancestor_of(focused):
@@ -267,6 +298,7 @@ func _focus_tile() -> void:
 		elif tiles.size() > 0 and tiles[0].size() > 0:
 			tiles[0][0].grab_focus()
 
+## Viewport Functions
 func _on_viewport_size_changed() -> void:
 	pivot_offset = Vector2(size.x / 2, size.y / 2)
 	update_tile_sizes()

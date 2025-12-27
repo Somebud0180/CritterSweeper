@@ -1,5 +1,5 @@
 extends Node
-#### Config code copied over from Prims Maze: https://github.com/Somebud0180/Prism-Maze
+#### Config code copied over from Prism Maze: https://github.com/Somebud0180/Prism-Maze
 
 ### Variables
 # App Config
