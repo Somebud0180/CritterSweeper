@@ -46,6 +46,7 @@ Game=""
 SettingsNode=""
 SFXPlayer=""
 MusicPlayer=""
+ScoreSortButton=""
 
 [input]
 

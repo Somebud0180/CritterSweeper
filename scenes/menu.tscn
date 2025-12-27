@@ -1772,25 +1772,33 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="Game" type="Button" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer" unique_id=1469199238]
+[node name="Game" type="Button" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer" unique_id=1469199238 groups=["ScoreSortButton"]]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"FlatButtonLeft"
+toggle_mode = true
+action_mode = 0
 text = "Game"
 
-[node name="Clicks" type="Button" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer" unique_id=259195789]
+[node name="Clicks" type="Button" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer" unique_id=259195789 groups=["ScoreSortButton"]]
 layout_mode = 2
 theme_type_variation = &"FlatButton"
+toggle_mode = true
+action_mode = 0
 text = "Clicks"
 
-[node name="Tiles Remaining" type="Button" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer" unique_id=449401747]
+[node name="Tiles Remaining" type="Button" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer" unique_id=449401747 groups=["ScoreSortButton"]]
 layout_mode = 2
 theme_type_variation = &"FlatButton"
+toggle_mode = true
+action_mode = 0
 text = "Tiles Remaining"
 
-[node name="Time" type="Button" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer" unique_id=2093146205]
+[node name="Time" type="Button" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer" unique_id=2093146205 groups=["ScoreSortButton"]]
 layout_mode = 2
 theme_type_variation = &"FlatButtonRight"
+toggle_mode = true
+action_mode = 0
 text = "Time"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer" unique_id=839229466]
@@ -1823,6 +1831,10 @@ script = ExtResource("30_a04p5")
 [connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/DifficultSeekerButton" to="." method="_on_difficulty_button_pressed" binds= [2, 1]]
 [connection signal="item_selected" from="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/HBoxContainer/GameModePicker" to="MenuLayer/ScoreboardContainer" method="_on_game_mode_picker_item_selected"]
 [connection signal="item_selected" from="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/HBoxContainer/DifficultyPicker" to="MenuLayer/ScoreboardContainer" method="_on_difficulty_picker_item_selected"]
+[connection signal="pressed" from="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer/Game" to="MenuLayer/ScoreboardContainer" method="_on_sort_button_pressed" binds= [0]]
+[connection signal="pressed" from="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer/Clicks" to="MenuLayer/ScoreboardContainer" method="_on_sort_button_pressed" binds= [1]]
+[connection signal="pressed" from="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer/Tiles Remaining" to="MenuLayer/ScoreboardContainer" method="_on_sort_button_pressed" binds= [2]]
+[connection signal="pressed" from="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer/Time" to="MenuLayer/ScoreboardContainer" method="_on_sort_button_pressed" binds= [3]]
 [connection signal="finished" from="MusicPlayer" to="MusicPlayer" method="_on_finished"]
 
 [editable path="GameLayer/Game"]
