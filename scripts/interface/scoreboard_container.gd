@@ -6,6 +6,7 @@ extends AspectRatioContainer
 @onready var TilesSortButton = $"Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer/Tiles Remaining"
 @onready var TimeSortButton = $"Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer/Time"
 
+var last_sort_option: int = 0
 var game_mode: int = 0
 var difficulty: int = 0
 var sort_by: Scoreboard.SORT_BY = Scoreboard.SORT_BY.TIME
@@ -25,6 +26,9 @@ func _on_difficulty_picker_item_selected(index: int) -> void:
 	difficulty = index
 
 func _on_sort_button_pressed(sort_option: int) -> void:
+	if sort_option == last_sort_option:
+		descending = !descending
+	
 	for button in get_tree().get_nodes_in_group("ScoreSortButton"):
 		button.button_pressed = false
 	
@@ -42,4 +46,6 @@ func _on_sort_button_pressed(sort_option: int) -> void:
 			TimeSortButton.button_pressed = true
 			sort_by = Scoreboard.SORT_BY.TIME
 	
+	last_sort_option = sort_option
+	descending = false
 	_display_score()

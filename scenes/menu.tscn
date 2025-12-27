@@ -31,6 +31,7 @@
 [ext_resource type="Script" uid="uid://bys3hjetxqlh6" path="res://scripts/interface/scoreboard_container.gd" id="29_a04p5"]
 [ext_resource type="AudioStream" uid="uid://b6urbdg2jf7pb" path="res://assets/audio/music/CritterSweeper.wav" id="29_hwfsl"]
 [ext_resource type="Script" uid="uid://bxmsbqlbt088g" path="res://scripts/helper/music_player.gd" id="30_a04p5"]
+[ext_resource type="Texture2D" uid="uid://c537ai3rcsj5q" path="res://assets/interface/textures/titlecards/Scoreboard_TitleCard.png" id="30_b5gwo"]
 
 [sub_resource type="Animation" id="Animation_jy7pm"]
 length = 0.001
@@ -1722,7 +1723,7 @@ previous_menu = "main"
 [node name="TextureRect" type="TextureRect" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer" unique_id=1626251741]
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
-texture = ExtResource("11_ufwb2")
+texture = ExtResource("30_b5gwo")
 expand_mode = 3
 stretch_mode = 5
 
