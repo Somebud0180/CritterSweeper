@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://dbhl7y6g0pb5s" path="res://scripts/interface/button_animation.gd" id="13_oi1it"]
 [ext_resource type="Texture2D" uid="uid://dx04omoqdkew8" path="res://assets/interface/textures/ButtonTexture/MenuButtons/NewGame.png" id="13_rsfmq"]
 [ext_resource type="Texture2D" uid="uid://dndsd2ke1gy78" path="res://assets/interface/textures/ButtonTexture/MenuButtons/Settings.png" id="14_oi1it"]
+[ext_resource type="Texture2D" uid="uid://poagg5br4yeg" path="res://assets/interface/textures/ButtonTexture/MenuButtons/Scoreboard.png" id="16_0ndyk"]
 [ext_resource type="Script" uid="uid://c8ywq5j56nj1o" path="res://scripts/globals/globals_picker.gd" id="16_mxgkd"]
 [ext_resource type="PackedScene" uid="uid://cgqy54bs5kc5y" path="res://scenes/back_button.tscn" id="20_g54pe"]
 [ext_resource type="LabelSettings" uid="uid://td4nyqueb2lu" path="res://assets/interface/settings_label.tres" id="21_vhsb5"]
@@ -966,14 +967,14 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [&"menu_state", 2],
+"args": [&"menu_state", 4],
 "method": &"set"
 }]
 }
 tracks/5/type = "method"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider/MusicVolume")
+tracks/5/path = NodePath("MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/HBoxContainer/GameModePicker")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -1297,6 +1298,19 @@ stretch_mode = 4
 script = ExtResource("13_oi1it")
 
 [node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/SettingsButton" unique_id=946650812]
+libraries/ = SubResource("AnimationLibrary_6p3j2")
+
+[node name="ScoreboardButton" type="TextureButton" parent="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container" unique_id=215118298]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("16_0ndyk")
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("13_oi1it")
+
+[node name="ButtonAnimations" type="AnimationPlayer" parent="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/ScoreboardButton" unique_id=1994863680]
 libraries/ = SubResource("AnimationLibrary_6p3j2")
 
 [node name="SettingsContainer" type="AspectRatioContainer" parent="MenuLayer" unique_id=2039698511]
@@ -1778,29 +1792,42 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"FlatButtonLeft"
 toggle_mode = true
+button_pressed = true
 action_mode = 0
 text = "Game"
+icon_alignment = 2
+expand_icon = true
 
 [node name="Clicks" type="Button" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer" unique_id=259195789 groups=["ScoreSortButton"]]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_type_variation = &"FlatButton"
 toggle_mode = true
 action_mode = 0
 text = "Clicks"
+icon_alignment = 2
+expand_icon = true
 
 [node name="Tiles Remaining" type="Button" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer" unique_id=449401747 groups=["ScoreSortButton"]]
+custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 theme_type_variation = &"FlatButton"
 toggle_mode = true
 action_mode = 0
 text = "Tiles Remaining"
+icon_alignment = 2
+expand_icon = true
 
 [node name="Time" type="Button" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer" unique_id=2093146205 groups=["ScoreSortButton"]]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_type_variation = &"FlatButtonRight"
 toggle_mode = true
 action_mode = 0
 text = "Time"
+icon_alignment = 2
+expand_icon = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer" unique_id=839229466]
 layout_mode = 2
@@ -1818,6 +1845,7 @@ script = ExtResource("30_a04p5")
 [connection signal="pressed" from="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/ScoreboardButton" to="." method="_on_scoreboard_button_pressed"]
 [connection signal="value_changed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider/MusicVolume" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider/MusicVolume" method="_on_value_changed"]
 [connection signal="value_changed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider/SFXVolume" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider/SFXVolume" method="_on_value_changed"]
 [connection signal="item_selected" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/InterfaceContainer/TileSizeContainer/TileSizePicker" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/InterfaceContainer/TileSizeContainer/TileSizePicker" method="_on_item_selected"]

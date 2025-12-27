@@ -11,7 +11,7 @@ const NEW_GAME_BTNTEXT = preload("res://assets/interface/textures/ButtonTexture/
 const START_GAME_BTNTEXT = preload("res://assets/interface/textures/ButtonTexture/MenuButtons/StartGame.png")
 const TILE_MODE_OVERLAY = preload("res://scenes/tile_mode_overlay.tscn")
 
-enum STATE { MAIN, GAME, SETTINGS, DIFFICULTY }
+enum STATE { MAIN, GAME, SETTINGS, DIFFICULTY, SCOREBOARD }
 var menu_state: STATE:
 	get:
 		return menu_state
@@ -75,6 +75,8 @@ func _input(event: InputEvent) -> void:
 				hide_and_show("settings", "main")
 			STATE.DIFFICULTY:
 				hide_and_show("difficulty", "main")
+			STATE.SCOREBOARD:
+				hide_and_show("scoreboard", "main")
 
 func _check_input_type(event: InputEvent) -> int:
 	if event is InputEventScreenTouch or event is InputEventScreenDrag:
@@ -100,6 +102,9 @@ func _on_resume_button_pressed() -> void:
 func _on_settings_button_pressed() -> void:
 	hide_and_show("main", "settings")
 
+func _on_scoreboard_button_pressed() -> void:
+	hide_and_show("main", "scoreboard")
+
 # Difficulty Buttons
 func _on_difficulty_button_pressed(difficulty: int, mode: int) -> void:
 	var game_scene = $GameLayer/Game
@@ -122,7 +127,3 @@ func _on_difficulty_button_pressed(difficulty: int, mode: int) -> void:
 	
 	game_scene.start(mode)
 	hide_and_show("difficulty", "game")
-
-# Settings Functions
-func _on_button_pressed() -> void:
-	hide_and_show("settings", "main")
