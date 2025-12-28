@@ -35,7 +35,7 @@ func set_tile_size(custom_size: float = 0) -> void:
 		else:
 			# Use predefined tile size
 			var custom_tile_size = Globals.TILE_SIZES[tile_size_setting]
-			tween.tween_property(self, "custom_minimum_size", Vector2(custom_size, custom_size), 0.2)
+			tween.tween_property(self, "custom_minimum_size", Vector2(custom_tile_size, custom_tile_size), 0.2)
 			tween.tween_property(self, "pivot_offset", Vector2(custom_tile_size/2, custom_tile_size/2), 0.2)
 
 func reveal_tile(original_press: bool = false):

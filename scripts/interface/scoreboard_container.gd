@@ -37,7 +37,7 @@ func _display_score() -> void:
 			1:
 				new_score_label.game_number = score[0]
 				new_score_label.clicks = score[1]
-				new_score_label.remaining = score[2]
+				new_score_label.tiles_remaining = score[2]
 				new_score_label.time = score[3]
 		
 		ScoreContainer.add_child(new_score_label)

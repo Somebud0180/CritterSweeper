@@ -8,15 +8,17 @@ func _ready() -> void:
 	
 	selected = Globals.get(globals_var_name)
 
+func _on_item_selected(index: int) -> void:
+	var item_id = get_item_id(index)
+	Globals.set(globals_var_name, item_id)
+
+# Standard function to update from globals
+func update_value() -> void:
+	selected = Globals.get(globals_var_name)
+
+## Theme Picker Functions
 func _populate_theme_items() -> void:
 	clear()
 	var themes = Globals.get_available_themes()
 	for i in range(themes.size()):
 		add_item(themes[i], i)
-
-func _on_item_selected(index: int) -> void:
-	Globals.set(globals_var_name, index)
-
-# Standard function to update from globals
-func update_value() -> void:
-	selected = Globals.get(globals_var_name)

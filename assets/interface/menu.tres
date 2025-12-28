@@ -245,6 +245,7 @@ PanelContainer/styles/panel = SubResource("StyleBoxTexture_im3bc")
 PopupMenu/colors/font_color = Color(1, 1, 1, 1)
 PopupMenu/colors/font_hover_color = Color(0, 0, 0, 1)
 PopupMenu/constants/h_separation = 8
+PopupMenu/constants/item_start_padding = 6
 PopupMenu/fonts/font = SubResource("FontVariation_po8y3")
 PopupMenu/fonts/title_font = ExtResource("1_11hd0")
 PopupMenu/styles/hover = SubResource("StyleBoxFlat_55d67")
