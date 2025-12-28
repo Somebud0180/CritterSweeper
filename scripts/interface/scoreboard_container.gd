@@ -17,7 +17,7 @@ var last_sort_option: int = 0
 var game_mode: int = 0
 var difficulty: int = 0
 var sort_by: Scoreboard.SORT_BY = Scoreboard.SORT_BY.TIME
-var descending: bool = false
+var descending: bool = true
 
 # Internal Functions
 func _ready() -> void:
@@ -48,8 +48,12 @@ func _display_score() -> void:
 ## Picker Functions
 func _on_game_mode_picker_item_selected(index: int) -> void:
 	# Reset sort on game mode change
-	sort_by = Scoreboard.SORT_BY.TIME
+	descending = true
 	game_mode = index
+	
+	if sort_by == Scoreboard.SORT_BY.CLICKS or sort_by == Scoreboard.SORT_BY.TILES:
+		_on_sort_button_pressed(3)
+	
 	_display_score()
 	
 	match game_mode:
@@ -62,6 +66,7 @@ func _on_game_mode_picker_item_selected(index: int) -> void:
 
 func _on_difficulty_picker_item_selected(index: int) -> void:
 	difficulty = index
+	descending = true
 	_display_score()
 
 func _on_sort_button_pressed(sort_option: int) -> void:
@@ -69,7 +74,6 @@ func _on_sort_button_pressed(sort_option: int) -> void:
 	if same_as_last:
 		descending = !descending
 	else:
-		descending = false
 		last_sort_option = sort_option
 	
 	for button in get_tree().get_nodes_in_group("ScoreSortButton"):

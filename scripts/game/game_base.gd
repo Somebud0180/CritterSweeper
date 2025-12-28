@@ -204,7 +204,7 @@ func reveal_tile_and_neighbors(x: int, y: int):
 		return
 	
 	var tile = tiles[y][x]
-	if tile.is_revealed or tile.is_mine:
+	if tile.is_revealed or tile.is_mine or (tile.is_flagged and game_mode is SeekerMode):
 		return
 	
 	tile.reveal_tile()

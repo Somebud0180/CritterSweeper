@@ -112,13 +112,13 @@ func _get_next_game_number(game_mode: int, difficulty: int) -> int:
 		0:
 			for score in sweeper_scores:
 				if score.difficulty != difficulty:
-					pass
+					continue
 				if score.game_number > max_number:
 					max_number = score.game_number
 		1:
 			for score in seeker_scores:
 				if score.difficulty != difficulty:
-					pass
+					continue
 				if score.game_number > max_number:
 					max_number = score.game_number
 	
