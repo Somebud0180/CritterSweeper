@@ -25,10 +25,10 @@ func _ready() -> void:
 	_load_config()
 
 func _read_sweeper_score(score: SweeperScore) -> Array:
-	return [score.game_number, score.difficulty,  score.time_elapsed]
+	return [score.game_number, score.time_elapsed]
 
 func _read_seeker_score(score: SeekerScore) -> Array:
-	return [score.game_number, score.difficulty, score.clicks_counted, score.tiles_remaining, score.time_elapsed]
+	return [score.game_number, score.clicks_counted, score.tiles_remaining, score.time_elapsed]
 
 func _load_config() -> void:
 	var config = ConfigFile.new()
@@ -133,6 +133,10 @@ func save_seeker_score(difficulty: int, clicks_counted: int, tiles_remaining: in
 	seeker_scores.sort_custom(_sort_by_game_number)
 	_save_config()
 
+## Returns an Array of score rows; each row is:
+## - Sweeper: [game_number, time_elapsed]
+## - Seeker: [game_number, clicks_counted, tiles_remaining, time_elapsed]
+## Sorted by `sort_by` (GAME/TIME for sweeper; GAME/CLICKS/TILES/TIME for seeker), and reversed when `descending` is true.
 func get_scores(game_mode: int, difficulty: int, sort_by: SORT_BY, descending: bool) -> Array:
 	var filtered_scores: Array
 	match game_mode:
@@ -140,14 +144,20 @@ func get_scores(game_mode: int, difficulty: int, sort_by: SORT_BY, descending: b
 			for score in sweeper_scores:
 				if score.difficulty == difficulty:
 					filtered_scores.append(_read_sweeper_score(score))
-			# Sort sweeper scores by time (only relevant sort for sweeper mode)
-			filtered_scores.sort_custom(func(a, b): return a[1] < b[1])
+			# Sort sweeper scores based on sort_by parameter
+			match sort_by:
+				SORT_BY.GAME:
+					filtered_scores.sort_custom(func(a, b): return a[0] < b[0])
+				SORT_BY.TIME:
+					filtered_scores.sort_custom(func(a, b): return a[1] < b[1])
 		1:
 			for score in seeker_scores:
 				if score.difficulty == difficulty:
 					filtered_scores.append(_read_seeker_score(score))
 			# Sort seeker scores based on sort_by parameter
 			match sort_by:
+				SORT_BY.GAME:
+					filtered_scores.sort_custom(func(a, b): return a[0] < b[0])
 				SORT_BY.CLICKS:
 					filtered_scores.sort_custom(func(a, b): return a[1] < b[1])
 				SORT_BY.TILES:
@@ -155,7 +165,7 @@ func get_scores(game_mode: int, difficulty: int, sort_by: SORT_BY, descending: b
 				SORT_BY.TIME:
 					filtered_scores.sort_custom(func(a, b): return a[3] < b[3])
 	
-	# Reverse array if descending order is requested
+	# Reverse array if sorting by descending order
 	if descending:
 		filtered_scores.reverse()
 	

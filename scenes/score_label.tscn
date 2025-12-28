@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://bqw256ynmfbpj"]
+
+[ext_resource type="Theme" uid="uid://bhmyomirsk6vr" path="res://assets/interface/menu.tres" id="1_1kqdx"]
+[ext_resource type="Script" uid="uid://smj8lp5ibcwr" path="res://scripts/score_label.gd" id="2_rkbmc"]
+
+[node name="Score" type="HBoxContainer" unique_id=425805373]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -192.0
+offset_bottom = -647.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_1kqdx")
+theme_override_constants/separation = 0
+script = ExtResource("2_rkbmc")
+
+[node name="Game #" type="Label" parent="." unique_id=1596252685]
+custom_minimum_size = Vector2(83, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ScoreLabel"
+text = "Game #"
+horizontal_alignment = 1
+
+[node name="Clicks" type="Label" parent="." unique_id=1123713925]
+custom_minimum_size = Vector2(84, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ScoreLabel"
+text = "Clicks"
+horizontal_alignment = 1
+
+[node name="Remaining" type="Label" parent="." unique_id=1348401161]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ScoreLabel"
+text = "Remaining"
+horizontal_alignment = 1
+
+[node name="Time" type="Label" parent="." unique_id=651267567]
+custom_minimum_size = Vector2(84, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ScoreLabel"
+text = "Time"
+horizontal_alignment = 1

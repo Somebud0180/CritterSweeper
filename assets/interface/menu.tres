@@ -154,6 +154,16 @@ texture_margin_bottom = 32.0
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hga1j"]
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.8, 0.64000005, 0.64000005, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_38p3r"]
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.94509804, 0.8, 0.8, 1)
+
 [resource]
 Button/colors/font_color = Color(0, 0, 0, 1)
 Button/colors/font_focus_color = Color(0, 0, 0, 1)
@@ -196,6 +206,11 @@ OptionButton/constants/modulate_arrow = 1
 Panel/styles/panel = SubResource("StyleBoxTexture_psl0c")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_im3bc")
 RichTextLabel/fonts/normal_font = ExtResource("1_11hd0")
+ScoreLabel/base_type = &"Label"
+ScoreLabel/colors/font_color = Color(0, 0, 0, 1)
+ScoreLabel/font_sizes/font_size = 12
+ScoreLabel/styles/focus = SubResource("StyleBoxFlat_hga1j")
+ScoreLabel/styles/normal = SubResource("StyleBoxFlat_38p3r")
 ScrollContainer/constants/scrollbar_h_separation = 16
 ScrollContainer/constants/scrollbar_v_separation = 16
 VBoxContainer/constants/separation = 8

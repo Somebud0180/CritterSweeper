@@ -33,6 +33,7 @@
 [ext_resource type="AudioStream" uid="uid://b6urbdg2jf7pb" path="res://assets/audio/music/CritterSweeper.wav" id="29_hwfsl"]
 [ext_resource type="Script" uid="uid://bxmsbqlbt088g" path="res://scripts/helper/music_player.gd" id="30_a04p5"]
 [ext_resource type="Texture2D" uid="uid://c537ai3rcsj5q" path="res://assets/interface/textures/titlecards/Scoreboard_TitleCard.png" id="30_b5gwo"]
+[ext_resource type="PackedScene" uid="uid://bqw256ynmfbpj" path="res://scenes/score_label.tscn" id="32_0qewb"]
 
 [sub_resource type="Animation" id="Animation_jy7pm"]
 length = 0.001
@@ -1708,7 +1709,7 @@ libraries/ = SubResource("AnimationLibrary_6p3j2")
 [node name="ScoreboardContainer" type="AspectRatioContainer" parent="MenuLayer" unique_id=1569448155]
 visible = false
 modulate = Color(1, 1, 1, 0)
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -1772,22 +1773,17 @@ popup/item_1/id = 1
 popup/item_2/text = "Difficult"
 popup/item_2/id = 2
 
-[node name="Score Container" type="ScrollContainer" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer" unique_id=18203125]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer" unique_id=1960629381]
 layout_mode = 2
 size_flags_vertical = 3
-follow_focus = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container" unique_id=229225769]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 12
-
-[node name="SortContainer" type="HBoxContainer" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer" unique_id=851176954]
-layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="Game" type="Button" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer" unique_id=1469199238 groups=["ScoreSortButton"]]
+[node name="SortContainer" type="HBoxContainer" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/VBoxContainer" unique_id=851176954]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Game" type="Button" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/VBoxContainer/SortContainer" unique_id=1469199238 groups=["ScoreSortButton"]]
+custom_minimum_size = Vector2(85, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"FlatButtonLeft"
@@ -1798,7 +1794,8 @@ text = "Game"
 icon_alignment = 2
 expand_icon = true
 
-[node name="Clicks" type="Button" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer" unique_id=259195789 groups=["ScoreSortButton"]]
+[node name="Clicks" type="Button" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/VBoxContainer/SortContainer" unique_id=259195789 groups=["ScoreSortButton"]]
+custom_minimum_size = Vector2(86, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"FlatButton"
@@ -1808,7 +1805,7 @@ text = "Clicks"
 icon_alignment = 2
 expand_icon = true
 
-[node name="Tiles Remaining" type="Button" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer" unique_id=449401747 groups=["ScoreSortButton"]]
+[node name="Tiles Remaining" type="Button" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/VBoxContainer/SortContainer" unique_id=449401747 groups=["ScoreSortButton"]]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1819,7 +1816,8 @@ text = "Tiles Remaining"
 icon_alignment = 2
 expand_icon = true
 
-[node name="Time" type="Button" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer" unique_id=2093146205 groups=["ScoreSortButton"]]
+[node name="Time" type="Button" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/VBoxContainer/SortContainer" unique_id=2093146205 groups=["ScoreSortButton"]]
+custom_minimum_size = Vector2(86, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"FlatButtonRight"
@@ -1829,9 +1827,20 @@ text = "Time"
 icon_alignment = 2
 expand_icon = true
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer" unique_id=839229466]
+[node name="Score Container" type="ScrollContainer" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/VBoxContainer" unique_id=18203125]
 layout_mode = 2
-fit_content = true
+size_flags_vertical = 3
+follow_focus = true
+
+[node name="ScoreVBox" type="VBoxContainer" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/VBoxContainer/Score Container" unique_id=229225769]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 1
+
+[node name="Score" parent="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/VBoxContainer/Score Container/ScoreVBox" unique_id=425805373 instance=ExtResource("32_0qewb")]
+custom_minimum_size = Vector2(384, 24)
+layout_mode = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=236843277 groups=["AnimationPlayer"]]
 unique_name_in_owner = true
@@ -1860,10 +1869,10 @@ script = ExtResource("30_a04p5")
 [connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/DifficultSeekerButton" to="." method="_on_difficulty_button_pressed" binds= [2, 1]]
 [connection signal="item_selected" from="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/HBoxContainer/GameModePicker" to="MenuLayer/ScoreboardContainer" method="_on_game_mode_picker_item_selected"]
 [connection signal="item_selected" from="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/HBoxContainer/DifficultyPicker" to="MenuLayer/ScoreboardContainer" method="_on_difficulty_picker_item_selected"]
-[connection signal="pressed" from="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer/Game" to="MenuLayer/ScoreboardContainer" method="_on_sort_button_pressed" binds= [0]]
-[connection signal="pressed" from="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer/Clicks" to="MenuLayer/ScoreboardContainer" method="_on_sort_button_pressed" binds= [1]]
-[connection signal="pressed" from="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer/Tiles Remaining" to="MenuLayer/ScoreboardContainer" method="_on_sort_button_pressed" binds= [2]]
-[connection signal="pressed" from="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer/Time" to="MenuLayer/ScoreboardContainer" method="_on_sort_button_pressed" binds= [3]]
+[connection signal="pressed" from="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/VBoxContainer/SortContainer/Game" to="MenuLayer/ScoreboardContainer" method="_on_sort_button_pressed" binds= [0]]
+[connection signal="pressed" from="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/VBoxContainer/SortContainer/Clicks" to="MenuLayer/ScoreboardContainer" method="_on_sort_button_pressed" binds= [1]]
+[connection signal="pressed" from="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/VBoxContainer/SortContainer/Tiles Remaining" to="MenuLayer/ScoreboardContainer" method="_on_sort_button_pressed" binds= [2]]
+[connection signal="pressed" from="MenuLayer/ScoreboardContainer/Scoreboard/PanelContainer/VBoxContainer/VBoxContainer/SortContainer/Time" to="MenuLayer/ScoreboardContainer" method="_on_sort_button_pressed" binds= [3]]
 [connection signal="finished" from="MusicPlayer" to="MusicPlayer" method="_on_finished"]
 
 [editable path="GameLayer/Game"]

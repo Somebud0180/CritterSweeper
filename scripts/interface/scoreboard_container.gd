@@ -1,11 +1,12 @@
 extends AspectRatioContainer
 
-@onready var ScoreLabel = $"Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/RichTextLabel"
-@onready var GameSortButton = $"Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer/Game"
-@onready var ClicksSortButton = $"Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer/Clicks"
-@onready var TilesSortButton = $"Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer/Tiles Remaining"
-@onready var TimeSortButton = $"Scoreboard/PanelContainer/VBoxContainer/Score Container/VBoxContainer/SortContainer/Time"
+@onready var ScoreContainer = $"Scoreboard/PanelContainer/VBoxContainer/VBoxContainer/Score Container/ScoreVBox"
+@onready var GameSortButton = $Scoreboard/PanelContainer/VBoxContainer/VBoxContainer/SortContainer/Game
+@onready var ClicksSortButton = $Scoreboard/PanelContainer/VBoxContainer/VBoxContainer/SortContainer/Clicks
+@onready var TilesSortButton = $"Scoreboard/PanelContainer/VBoxContainer/VBoxContainer/SortContainer/Tiles Remaining"
+@onready var TimeSortButton = $Scoreboard/PanelContainer/VBoxContainer/VBoxContainer/SortContainer/Time
 
+const SCORE_LABEL = preload("res://scenes/score_label.tscn")
 const CHEVRON_UP_TEX = preload("res://assets/interface/textures/glyphs/ChevronUp.png")
 const CHEVRON_DOWN_TEX = preload("res://assets/interface/textures/glyphs/ChevronDown.png")
 
@@ -17,19 +18,48 @@ var descending: bool = false
 
 # Internal Functions
 func _ready() -> void:
+	_on_game_mode_picker_item_selected(0)
 	_on_sort_button_pressed(0)
 
 func _display_score() -> void:
+	for child in ScoreContainer.get_children():
+		child.queue_free()
+	
 	var scores = Scoreboard.get_scores(game_mode, difficulty, sort_by, descending)
+	for score in scores:
+		var new_score_label = SCORE_LABEL.instantiate()
+		new_score_label.game_mode = game_mode
+		
+		match game_mode:
+			0:
+				new_score_label.game_number = score[0]
+				new_score_label.time = score[1]
+			1:
+				new_score_label.game_number = score[0]
+				new_score_label.clicks = score[1]
+				new_score_label.remaining = score[2]
+				new_score_label.time = score[3]
+		
+		ScoreContainer.add_child(new_score_label)
 
 ## Picker Functions
 func _on_game_mode_picker_item_selected(index: int) -> void:
 	# Reset sort on game mode change
 	sort_by = Scoreboard.SORT_BY.TIME
 	game_mode = index
+	_display_score()
+	
+	match game_mode:
+		0:
+			ClicksSortButton.visible = false
+			TilesSortButton.visible = false
+		1:
+			ClicksSortButton.visible = true
+			TilesSortButton.visible = true
 
 func _on_difficulty_picker_item_selected(index: int) -> void:
 	difficulty = index
+	_display_score()
 
 func _on_sort_button_pressed(sort_option: int) -> void:
 	var same_as_last = sort_option == last_sort_option
