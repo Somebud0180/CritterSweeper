@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dykr4q016im2u" path="res://assets/interface/textures/ButtonTexture/ButtonStyle/ButtonStyle_Hover.png" id="1_87gl6"]
 [ext_resource type="Texture2D" uid="uid://j40lxsro70gl" path="res://assets/interface/textures/ButtonTexture/ButtonStyle/ButtonStyle.png" id="2_psl0c"]
 [ext_resource type="Texture2D" uid="uid://07obkqtplowh" path="res://assets/interface/textures/ButtonTexture/ButtonStyle/ButtonStyle_Pressed.png" id="3_jc7xe"]
-[ext_resource type="Texture2D" uid="uid://bgupmpji3jfmh" path="res://assets/interface/textures/MiscStyle/PanelStyle.png" id="4_fmrnt"]
+[ext_resource type="Texture2D" uid="uid://cjroxg5wfi7w" path="res://assets/interface/textures/MiscStyle/PanelStyle.png" id="4_fmrnt"]
 [ext_resource type="Texture2D" uid="uid://d1rb1upijbf5i" path="res://assets/interface/textures/MiscStyle/label.png" id="4_psl0c"]
 [ext_resource type="Texture2D" uid="uid://btsxjmunnnbfw" path="res://assets/interface/textures/MiscStyle/Fade.png" id="5_11hd0"]
 [ext_resource type="FontFile" uid="uid://cvg7xg5lalb57" path="res://assets/interface/PlaypenSans_Bundle/Variable/PlaypenSans[wght].ttf" id="6_po8y3"]
@@ -147,12 +147,47 @@ region_rect = Rect2(0, 0, 256, 256)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_im3bc"]
 texture = ExtResource("4_fmrnt")
-texture_margin_left = 32.0
-texture_margin_top = 32.0
-texture_margin_right = 32.0
-texture_margin_bottom = 32.0
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 26.0
+texture_margin_bottom = 26.0
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
+
+[sub_resource type="FontVariation" id="FontVariation_po8y3"]
+base_font = ExtResource("6_po8y3")
+spacing_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_55d67"]
+bg_color = Color(0.95, 0.76, 0.76, 1)
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3sql2"]
+bg_color = Color(0.5372549, 0.44313726, 0.5882353, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.99215686, 0.90588236, 0.90588236, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jkmjn"]
+bg_color = Color(0.94509804, 0.8, 0.8, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.5372549, 0.44313726, 0.5882353, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hga1j"]
 content_margin_top = 8.0
@@ -200,11 +235,15 @@ MarginContainer/constants/margin_bottom = 44
 MarginContainer/constants/margin_left = 44
 MarginContainer/constants/margin_right = 44
 MarginContainer/constants/margin_top = 44
-OptionButton/constants/arrow_margin = 12
-OptionButton/constants/h_separation = 8
-OptionButton/constants/modulate_arrow = 1
 Panel/styles/panel = SubResource("StyleBoxTexture_psl0c")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_im3bc")
+PopupMenu/colors/font_color = Color(1, 1, 1, 1)
+PopupMenu/constants/h_separation = 8
+PopupMenu/fonts/font = SubResource("FontVariation_po8y3")
+PopupMenu/fonts/title_font = ExtResource("1_11hd0")
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_55d67")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_3sql2")
+PopupPanel/styles/panel = SubResource("StyleBoxFlat_jkmjn")
 RichTextLabel/fonts/normal_font = ExtResource("1_11hd0")
 ScoreLabel/base_type = &"Label"
 ScoreLabel/colors/font_color = Color(0, 0, 0, 1)

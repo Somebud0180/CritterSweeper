@@ -1056,7 +1056,7 @@ tracks/4/keys = {
 tracks/5/type = "method"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider/MusicVolume")
+tracks/5/path = NodePath("MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/VolumeContainer/Sliders/MusicSlider/MusicVolume")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -1338,6 +1338,7 @@ layout_mode = 2
 
 [node name="BackButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer" unique_id=628942421 instance=ExtResource("20_g54pe")]
 layout_mode = 2
+focus_neighbor_top = NodePath("../SettingsContainer/VBoxContainer/ControlsContainer/Vibration/CheckButton")
 current_menu = "settings"
 previous_menu = "main"
 
@@ -1352,52 +1353,53 @@ stretch_mode = 5
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Button Container" type="ScrollContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer" unique_id=1416057764]
+[node name="SettingsContainer" type="ScrollContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer" unique_id=1416057764]
 layout_mode = 2
 size_flags_vertical = 3
 follow_focus = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container" unique_id=383293581]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer" unique_id=383293581]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 12
+theme_override_constants/separation = 16
 
-[node name="VolumeContainer" type="VBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer" unique_id=209811151]
+[node name="VolumeContainer" type="VBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer" unique_id=209811151]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
+theme_override_constants/separation = 4
 alignment = 1
 
-[node name="Volume" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer" unique_id=1529221610]
+[node name="Volume" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/VolumeContainer" unique_id=1529221610]
 layout_mode = 2
 theme_type_variation = &"HeaderMedium"
 text = "Volume"
 
-[node name="Sliders" type="VBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer" unique_id=140587716]
+[node name="Sliders" type="VBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/VolumeContainer" unique_id=140587716]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 2
 alignment = 1
 
-[node name="MusicLabel" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders" unique_id=2025367081]
+[node name="MusicLabel" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/VolumeContainer/Sliders" unique_id=2025367081]
 layout_mode = 2
 theme_type_variation = &"HeaderSmall"
 text = "Music:"
 label_settings = ExtResource("21_vhsb5")
 
-[node name="MusicSlider" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders" unique_id=1652938786]
+[node name="MusicSlider" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/VolumeContainer/Sliders" unique_id=1652938786]
 layout_mode = 2
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider" unique_id=86450953]
+[node name="TextureRect" type="TextureRect" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/VolumeContainer/Sliders/MusicSlider" unique_id=86450953]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 texture = ExtResource("3_mhnvy")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="MusicVolume" type="HSlider" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider" unique_id=907355426 groups=["SettingsNode"]]
+[node name="MusicVolume" type="HSlider" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/VolumeContainer/Sliders/MusicSlider" unique_id=907355426 groups=["SettingsNode"]]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -1408,28 +1410,28 @@ scrollable = false
 script = ExtResource("23_ffqrc")
 globals_var_name = "music_vol"
 
-[node name="HSeparator" type="HSeparator" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders" unique_id=1205385482]
+[node name="HSeparator" type="HSeparator" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/VolumeContainer/Sliders" unique_id=1205385482]
 layout_mode = 2
 theme_override_constants/separation = 8
 theme_override_styles/separator = SubResource("StyleBoxEmpty_vjb58")
 
-[node name="SFXLabel" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders" unique_id=1406376215]
+[node name="SFXLabel" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/VolumeContainer/Sliders" unique_id=1406376215]
 layout_mode = 2
 theme_type_variation = &"HeaderSmall"
 text = "UI Sounds:"
 label_settings = ExtResource("21_vhsb5")
 
-[node name="SFXSlider" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders" unique_id=268847520]
+[node name="SFXSlider" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/VolumeContainer/Sliders" unique_id=268847520]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider" unique_id=89630717]
+[node name="TextureRect" type="TextureRect" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/VolumeContainer/Sliders/SFXSlider" unique_id=89630717]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 texture = ExtResource("4_4ytvr")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="SFXVolume" type="HSlider" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider" unique_id=1505556146 groups=["SettingsNode"]]
+[node name="SFXVolume" type="HSlider" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/VolumeContainer/Sliders/SFXSlider" unique_id=1505556146 groups=["SettingsNode"]]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -1440,26 +1442,27 @@ scrollable = false
 script = ExtResource("23_ffqrc")
 globals_var_name = "sfx_vol"
 
-[node name="InterfaceContainer" type="VBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer" unique_id=1792360756]
+[node name="InterfaceContainer" type="VBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer" unique_id=1792360756]
 layout_mode = 2
+theme_override_constants/separation = 4
 
-[node name="Interface" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/InterfaceContainer" unique_id=1252945041]
+[node name="Interface" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/InterfaceContainer" unique_id=1252945041]
 layout_mode = 2
 theme_type_variation = &"HeaderMedium"
 text = "Interface"
 
-[node name="TileSizeContainer" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/InterfaceContainer" unique_id=2083733357]
+[node name="TileSizeContainer" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/InterfaceContainer" unique_id=2083733357]
 custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 
-[node name="TileSizeLabel" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/InterfaceContainer/TileSizeContainer" unique_id=1284687652]
+[node name="TileSizeLabel" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/InterfaceContainer/TileSizeContainer" unique_id=1284687652]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"HeaderSmall"
 text = "Tile Size:"
 label_settings = ExtResource("21_vhsb5")
 
-[node name="TileSizePicker" type="OptionButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/InterfaceContainer/TileSizeContainer" unique_id=991841443 groups=["SettingsNode"]]
+[node name="TileSizePicker" type="OptionButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/InterfaceContainer/TileSizeContainer" unique_id=991841443 groups=["SettingsNode"]]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_7jp70")
@@ -1481,18 +1484,18 @@ popup/item_4/id = 4
 script = ExtResource("16_mxgkd")
 globals_var_name = "tile_size"
 
-[node name="ThemeContainer" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/InterfaceContainer" unique_id=135689692]
+[node name="ThemeContainer" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/InterfaceContainer" unique_id=135689692]
 custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 
-[node name="Background" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/InterfaceContainer/ThemeContainer" unique_id=1918916673]
+[node name="Background" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/InterfaceContainer/ThemeContainer" unique_id=1918916673]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"HeaderSmall"
 text = "Background Theme:"
 label_settings = ExtResource("21_vhsb5")
 
-[node name="BackgroundPicker" type="OptionButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/InterfaceContainer/ThemeContainer" unique_id=1458630253 groups=["SettingsNode"]]
+[node name="BackgroundPicker" type="OptionButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/InterfaceContainer/ThemeContainer" unique_id=1458630253 groups=["SettingsNode"]]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_7jp70")
@@ -1502,29 +1505,30 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_3dmrc")
 script = ExtResource("16_mxgkd")
 globals_var_name = "background_theme"
 
-[node name="ControlsContainer" type="VBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer" unique_id=1863007661]
+[node name="ControlsContainer" type="VBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer" unique_id=1863007661]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
+theme_override_constants/separation = 4
 alignment = 1
 
-[node name="Controls" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer" unique_id=279757059]
+[node name="Controls" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/ControlsContainer" unique_id=279757059]
 layout_mode = 2
 theme_type_variation = &"HeaderMedium"
 text = "Controls"
 
-[node name="TileModeContainer" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer" unique_id=789722681]
+[node name="TileModeContainer" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/ControlsContainer" unique_id=789722681]
 custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 
-[node name="TileModeLabel" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/TileModeContainer" unique_id=1534893022]
+[node name="TileModeLabel" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/ControlsContainer/TileModeContainer" unique_id=1534893022]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"HeaderSmall"
 text = "Flagging Mode:"
 label_settings = ExtResource("21_vhsb5")
 
-[node name="TileModePicker" type="OptionButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/TileModeContainer" unique_id=1525297073 groups=["SettingsNode"]]
+[node name="TileModePicker" type="OptionButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/ControlsContainer/TileModeContainer" unique_id=1525297073 groups=["SettingsNode"]]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_7jp70")
@@ -1540,18 +1544,18 @@ popup/item_1/id = 1
 script = ExtResource("16_mxgkd")
 globals_var_name = "flag_mode"
 
-[node name="Vibration" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer" unique_id=1420553456]
+[node name="Vibration" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/ControlsContainer" unique_id=1420553456]
 custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 
-[node name="VibrationLabel" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/Vibration" unique_id=735510411]
+[node name="VibrationLabel" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/ControlsContainer/Vibration" unique_id=735510411]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"HeaderSmall"
 text = "Vibration:"
 label_settings = ExtResource("21_vhsb5")
 
-[node name="CheckButton" type="CheckButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/Vibration" unique_id=666590264 groups=["SettingsNode"]]
+[node name="CheckButton" type="CheckButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/ControlsContainer/Vibration" unique_id=666590264 groups=["SettingsNode"]]
 layout_mode = 2
 flat = true
 script = ExtResource("26_x16fv")
@@ -1855,12 +1859,12 @@ script = ExtResource("30_a04p5")
 [connection signal="pressed" from="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="MenuLayer/MainMenuContainer/MainMenu/VBoxContainer/Button Container/ScoreboardButton" to="." method="_on_scoreboard_button_pressed"]
-[connection signal="value_changed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider/MusicVolume" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/MusicSlider/MusicVolume" method="_on_value_changed"]
-[connection signal="value_changed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider/SFXVolume" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/VolumeContainer/Sliders/SFXSlider/SFXVolume" method="_on_value_changed"]
-[connection signal="item_selected" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/InterfaceContainer/TileSizeContainer/TileSizePicker" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/InterfaceContainer/TileSizeContainer/TileSizePicker" method="_on_item_selected"]
-[connection signal="item_selected" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/InterfaceContainer/ThemeContainer/BackgroundPicker" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/InterfaceContainer/ThemeContainer/BackgroundPicker" method="_on_item_selected"]
-[connection signal="item_selected" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/TileModeContainer/TileModePicker" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/TileModeContainer/TileModePicker" method="_on_item_selected"]
-[connection signal="toggled" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/Vibration/CheckButton" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/Button Container/VBoxContainer/ControlsContainer/Vibration/CheckButton" method="_on_toggled"]
+[connection signal="value_changed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/VolumeContainer/Sliders/MusicSlider/MusicVolume" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/VolumeContainer/Sliders/MusicSlider/MusicVolume" method="_on_value_changed"]
+[connection signal="value_changed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/VolumeContainer/Sliders/SFXSlider/SFXVolume" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/VolumeContainer/Sliders/SFXSlider/SFXVolume" method="_on_value_changed"]
+[connection signal="item_selected" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/InterfaceContainer/TileSizeContainer/TileSizePicker" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/InterfaceContainer/TileSizeContainer/TileSizePicker" method="_on_item_selected"]
+[connection signal="item_selected" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/InterfaceContainer/ThemeContainer/BackgroundPicker" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/InterfaceContainer/ThemeContainer/BackgroundPicker" method="_on_item_selected"]
+[connection signal="item_selected" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/ControlsContainer/TileModeContainer/TileModePicker" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/ControlsContainer/TileModeContainer/TileModePicker" method="_on_item_selected"]
+[connection signal="toggled" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/ControlsContainer/Vibration/CheckButton" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/ControlsContainer/Vibration/CheckButton" method="_on_toggled"]
 [connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/SimpleSweeperButton" to="." method="_on_difficulty_button_pressed" binds= [0, 0]]
 [connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/NormalSweeperButton" to="." method="_on_difficulty_button_pressed" binds= [1, 0]]
 [connection signal="pressed" from="MenuLayer/DifficultyPickerContainer/DifficultyPicker/VBoxContainer/ScrollContainer/CritterSweeper/DifficultSweeperButton" to="." method="_on_difficulty_button_pressed" binds= [2, 0]]
