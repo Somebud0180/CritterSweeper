@@ -57,6 +57,11 @@ var flag_mode: int: # (Not on KBM) 0 - Hold to Flag; 1 - Flag Mode Sidebar
 		get_tree().get_first_node_in_group("MainScreen").update_flag_mode()
 		_save_config()
 
+var flag_overlay_position: int: # 0 - Right; 1 - Bottom
+	set(value):
+		flag_overlay_position = value
+		_save_config()
+
 var is_flagging: bool = false
 
 ## General
@@ -117,6 +122,7 @@ func _load_config() -> void:
 	music_vol = config.get_value("Setting", "music_vol", 0.8)
 	sfx_vol = config.get_value("Setting", "sfx_vol", 0.8)
 	flag_mode = config.get_value("Setting", "flag_mode", 0)
+	flag_overlay_position = config.get_value("Setting", "flag_overlay_position", 0)
 	vibration_enabled = config.get_value("Setting", "vibration_enabled", true)
 	background_theme = config.get_value("Setting", "background_theme", 1)
 	
@@ -136,6 +142,7 @@ func _save_config() -> void:
 	config.set_value("Setting", "music_vol", music_vol)
 	config.set_value("Setting", "sfx_vol", sfx_vol)
 	config.set_value("Setting", "flag_mode", flag_mode)
+	config.set_value("Setting", "flag_overlay_position", flag_overlay_position)
 	config.set_value("Setting", "vibration_enabled", vibration_enabled)
 	config.set_value("Setting", "background_theme", background_theme)
 	

@@ -17,7 +17,7 @@ var last_sort_option: int = 0
 var game_mode: int = 0
 var difficulty: int = 0
 var sort_by: Scoreboard.SORT_BY = Scoreboard.SORT_BY.TIME
-var descending: bool = true
+var descending: bool = false
 
 # Internal Functions
 func _ready() -> void:
@@ -66,7 +66,7 @@ func _on_game_mode_picker_item_selected(index: int) -> void:
 
 func _on_difficulty_picker_item_selected(index: int) -> void:
 	difficulty = index
-	descending = true
+	descending = false
 	_display_score()
 
 func _on_sort_button_pressed(sort_option: int) -> void:

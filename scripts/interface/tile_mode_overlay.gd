@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends GridContainer
 
 const REVEAL_TEXT = preload("res://assets/interface/textures/ButtonTexture/SidebarButtons/RevealButton.png")
 const REVEAL_F_TEXT = preload("res://assets/interface/textures/ButtonTexture/SidebarButtons/RevealButton_Focus.png")
@@ -21,6 +21,8 @@ func _input(event: InputEvent) -> void:
 
 func _ready() -> void:
 	_update_button_text()
+	_recalculate_pivot_offset()
+	get_tree().root.connect("size_changed", _recalculate_pivot_offset)
 
 func _update_button_text() -> void:
 	if Globals.is_flagging:
@@ -29,3 +31,7 @@ func _update_button_text() -> void:
 	else:
 		$RevealMode.texture_normal = REVEAL_F_TEXT
 		$FlagMode.texture_normal = FLAG_TEXT
+
+## Viewport Functions
+func _recalculate_pivot_offset() -> void:
+	pivot_offset = Vector2(size.x / 2, size.y / 2)

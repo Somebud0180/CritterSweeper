@@ -5,3 +5,7 @@
 
 # OS generated files
 .DS_Store
+
+# Xcode
+/certs
+.p8

@@ -39,15 +39,20 @@ func hide_and_show(hide_string: String, show_string: String) -> void:
 
 func update_flag_mode() -> void:
 	# If Keyboard and Mouse, catch and hide sidebar
+	var hide_flag_mode_animation = "shared_animations/hide_flag_mode_vertical" if Globals.flag_overlay_position == 0 else "shared_animations/hide_flag_mode_horizontal"
+	var show_flag_mode_animation = "shared_animations/show_flag_mode_vertical" if Globals.flag_overlay_position == 0 else "shared_animations/show_flag_mode_horizontal"
+	
 	if Globals.input_type == 0:
 		if sidebar_visible:
-			sidebar_animation_player.play("shared_animations/hide_flag_mode")
+			sidebar_animation_player.play(hide_flag_mode_animation)
 		return
 	
-	if Globals.flag_mode == 0 and sidebar_visible:
-		sidebar_animation_player.play("shared_animations/hide_flag_mode")
-	elif Globals.flag_mode == 1 and menu_state == STATE.GAME and !sidebar_visible:
-		sidebar_animation_player.play("shared_animations/show_flag_mode")
+	if Globals.flag_mode == 1 and menu_state == STATE.GAME and !sidebar_visible:
+		sidebar_animation_player.play(show_flag_mode_animation)
+		print(Globals.flag_overlay_position)
+		print(show_flag_mode_animation)
+	elif Globals.flag_mode == 0 or sidebar_visible:
+		sidebar_animation_player.play(hide_flag_mode_animation)
 
 func focus_main_menu() -> void:
 	if in_game:
@@ -87,6 +92,11 @@ func _check_input_type(event: InputEvent) -> int:
 		# Check if mouse event is emulated from touch
 		if event.device == InputEvent.DEVICE_ID_EMULATION:
 			return 1
+		
+		# Check if joypad is connected while mouse was moved
+		if !Input.get_connected_joypads().is_empty():
+			return 2
+		
 		return 0
 	else:
 		# Unknown event type - maintain current input type
