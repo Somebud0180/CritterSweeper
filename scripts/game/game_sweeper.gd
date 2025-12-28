@@ -22,6 +22,7 @@ func is_win_state(tiles: Array) -> bool:
 				return false
 	return true
 
+@warning_ignore("unused_parameter")
 func is_loss_state(tiles: Array) -> bool:
 	return false
 

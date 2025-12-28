@@ -13,9 +13,11 @@ func mine_reveal_is_original_press() -> bool:
 func should_end_on_mine_press() -> bool:
 	return false
 
+@warning_ignore("unused_parameter")
 func is_win_state(tiles: Array) -> bool:
 	return false
 
+@warning_ignore("unused_parameter")
 func is_loss_state(tiles: Array) -> bool:
 	return false
 

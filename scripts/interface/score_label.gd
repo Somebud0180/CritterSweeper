@@ -30,7 +30,10 @@ var tiles_remaining: int = 0:
 var time: float = 0:
 	set(value):
 		time = value
+		
+		@warning_ignore("integer_division")
 		var minutes = int(time) / 60
 		var seconds = int(time) % 60
 		var milliseconds = int((time - int(time)) * 100)
+		
 		$Time.text = "%02d:%02d.%02d" % [minutes, seconds, milliseconds]
