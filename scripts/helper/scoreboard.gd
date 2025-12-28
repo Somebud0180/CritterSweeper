@@ -24,6 +24,11 @@ var seeker_scores: Array[SeekerScore] = []
 func _ready() -> void:
 	_load_config()
 
+func _update_scoreboard() -> void:
+	var scoreboard_container = get_tree().get_first_node_in_group("ScoreboardContainer")
+	if scoreboard_container:
+		scoreboard_container.emit_signal("update_score")
+
 func _read_sweeper_score(score: SweeperScore) -> Array:
 	return [score.game_number, score.time_elapsed]
 
@@ -100,30 +105,40 @@ func _save_config() -> void:
 func _sort_by_game_number(a, b) -> bool:
 	return a.game_number < b.game_number
 
-func _get_next_game_number() -> int:
+func _get_next_game_number(game_mode: int, difficulty: int) -> int:
 	var max_number = 0
-	for score in sweeper_scores:
-		if score.game_number > max_number:
-			max_number = score.game_number
-	for score in seeker_scores:
-		if score.game_number > max_number:
-			max_number = score.game_number
+	
+	match game_mode:
+		0:
+			for score in sweeper_scores:
+				if score.difficulty != difficulty:
+					pass
+				if score.game_number > max_number:
+					max_number = score.game_number
+		1:
+			for score in seeker_scores:
+				if score.difficulty != difficulty:
+					pass
+				if score.game_number > max_number:
+					max_number = score.game_number
+	
 	return max_number + 1
 
 ## Global Functions
 func save_sweeper_score(difficulty: int, time_elapsed: float) -> void:
 	var new_score = SweeperScore.new()
-	new_score.game_number = _get_next_game_number()
+	new_score.game_number = _get_next_game_number(0, difficulty)
 	new_score.difficulty = difficulty
 	new_score.time_elapsed = snapped(time_elapsed, 0.01)
 	
 	sweeper_scores.append(new_score)
 	sweeper_scores.sort_custom(_sort_by_game_number)
+	_update_scoreboard()
 	_save_config()
 
 func save_seeker_score(difficulty: int, clicks_counted: int, tiles_remaining: int, time_elapsed: float) -> void:
 	var new_score = SeekerScore.new()
-	new_score.game_number = _get_next_game_number()
+	new_score.game_number = _get_next_game_number(1, difficulty)
 	new_score.difficulty = difficulty
 	new_score.clicks_counted = clicks_counted
 	new_score.tiles_remaining = tiles_remaining
@@ -131,6 +146,7 @@ func save_seeker_score(difficulty: int, clicks_counted: int, tiles_remaining: in
 	
 	seeker_scores.append(new_score)
 	seeker_scores.sort_custom(_sort_by_game_number)
+	_update_scoreboard()
 	_save_config()
 
 ## Returns an Array of score rows; each row is:

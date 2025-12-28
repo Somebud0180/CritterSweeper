@@ -1,5 +1,8 @@
 extends AspectRatioContainer
 
+@warning_ignore("unused_signal")
+signal update_score
+
 @onready var ScoreContainer = $"Scoreboard/PanelContainer/VBoxContainer/VBoxContainer/Score Container/ScoreVBox"
 @onready var GameSortButton = $Scoreboard/PanelContainer/VBoxContainer/VBoxContainer/SortContainer/Game
 @onready var ClicksSortButton = $Scoreboard/PanelContainer/VBoxContainer/VBoxContainer/SortContainer/Clicks
@@ -91,4 +94,7 @@ func _on_sort_button_pressed(sort_option: int) -> void:
 			TimeSortButton.button_pressed = true
 			sort_by = Scoreboard.SORT_BY.TIME
 	
+	_display_score()
+
+func _on_update_score() -> void:
 	_display_score()

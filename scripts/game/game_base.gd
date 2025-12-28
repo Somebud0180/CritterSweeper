@@ -28,6 +28,7 @@ var tiles_remaining: int = 0  # Amount of unrevealed blocks remaining (tracked i
 var time_elapsed: float = 0    # Amount of time to finish the game
 
 func _ready() -> void:
+	pivot_offset = Vector2(size.x / 2, size.y / 2)
 	scale = Vector2(0.8, 0.8)
 	_set_safe_area_margins()
 	get_tree().root.connect("size_changed", _on_viewport_size_changed)
