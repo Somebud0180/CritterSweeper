@@ -2,6 +2,9 @@ extends TextureButton
 
 signal tile_pressed
 
+const REGULAR_TILES = preload("res://assets/game/sprites/minesweeper.png")
+const DARK_TILES = preload("res://assets/game/sprites/minesweeper_dark.png")
+
 var is_mine: bool = false
 var is_flagged: bool = false
 var is_revealed: bool = false
@@ -12,10 +15,19 @@ var long_press_triggered: bool = false
 var original_zindex: int = 0
 
 func _ready() -> void:
+	update_tile_theme()
 	$AudioStreamPlayer.volume_linear = Globals.sfx_vol
 	original_zindex = z_index
 	texture_normal = texture_normal.duplicate()
 	set_tile_size()
+
+func update_tile_theme() -> void:
+	if Globals.dark_tiles:
+		texture_normal.atlas = DARK_TILES
+	else:
+		texture_normal.atlas = REGULAR_TILES
+	
+	texture_normal = texture_normal.duplicate()
 
 func set_tile_size(custom_size: float = 0) -> void:
 	var tween = create_tween()

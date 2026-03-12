@@ -76,6 +76,13 @@ var background_theme: int = 0:
 		_load_background_theme()
 		_save_config()
 
+var dark_tiles: bool:
+	set(value):
+		dark_tiles = value
+		for tile in get_tree().get_nodes_in_group("Tiles"):
+			tile.update_tile_theme()
+		_save_config()
+
 var vibration_enabled: bool:
 	set(value):
 		vibration_enabled = value
@@ -125,6 +132,7 @@ func _load_config() -> void:
 	flag_overlay_position = config.get_value("Setting", "flag_overlay_position", 0)
 	vibration_enabled = config.get_value("Setting", "vibration_enabled", true)
 	background_theme = config.get_value("Setting", "background_theme", 1)
+	dark_tiles = config.get_value("Settings", "dark_tiles", false)
 	
 	print(window_pos)
 	# Update settings nodes to reflect new value
@@ -145,6 +153,7 @@ func _save_config() -> void:
 	config.set_value("Setting", "flag_overlay_position", flag_overlay_position)
 	config.set_value("Setting", "vibration_enabled", vibration_enabled)
 	config.set_value("Setting", "background_theme", background_theme)
+	config.set_value("Settings", "dark_tiles", dark_tiles)
 	
 	# Save Config
 	config.save("user://settings.cfg")

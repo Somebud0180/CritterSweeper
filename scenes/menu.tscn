@@ -1551,6 +1551,23 @@ layout_mode = 2
 script = ExtResource("16_mxgkd")
 globals_var_name = "background_theme"
 
+[node name="DarkContainer" type="HBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/InterfaceContainer" unique_id=263610988]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+
+[node name="DarkTiles" type="Label" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/InterfaceContainer/DarkContainer" unique_id=610608352]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"HeaderSmall"
+text = "Dark Tiles:"
+label_settings = ExtResource("21_vhsb5")
+
+[node name="CheckButton" type="CheckButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/InterfaceContainer/DarkContainer" unique_id=1251700611 groups=["SettingsNode"]]
+layout_mode = 2
+flat = true
+script = ExtResource("26_x16fv")
+globals_var_name = "dark_tiles"
+
 [node name="ControlsContainer" type="VBoxContainer" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer" unique_id=1863007661]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1932,6 +1949,7 @@ script = ExtResource("30_a04p5")
 [connection signal="value_changed" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/VolumeContainer/Sliders/SFXSlider/SFXVolume" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/VolumeContainer/Sliders/SFXSlider/SFXVolume" method="_on_value_changed"]
 [connection signal="item_selected" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/InterfaceContainer/TileSizeContainer/TileSizePicker" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/InterfaceContainer/TileSizeContainer/TileSizePicker" method="_on_item_selected"]
 [connection signal="item_selected" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/InterfaceContainer/ThemeContainer/BackgroundPicker" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/InterfaceContainer/ThemeContainer/BackgroundPicker" method="_on_item_selected"]
+[connection signal="toggled" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/InterfaceContainer/DarkContainer/CheckButton" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/InterfaceContainer/DarkContainer/CheckButton" method="_on_toggled"]
 [connection signal="item_selected" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/ControlsContainer/FlagModeContainer/FlagModePicker" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/ControlsContainer/FlagModeContainer/FlagModePicker" method="_on_item_selected"]
 [connection signal="item_selected" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/ControlsContainer/ModePositionContainer/ModePositionPicker" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/ControlsContainer/ModePositionContainer/ModePositionPicker" method="_on_item_selected"]
 [connection signal="toggled" from="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/ControlsContainer/Vibration/CheckButton" to="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/ControlsContainer/Vibration/CheckButton" method="_on_toggled"]
