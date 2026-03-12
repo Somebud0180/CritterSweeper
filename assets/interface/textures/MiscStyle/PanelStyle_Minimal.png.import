@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjroxg5wfi7w"
-path="res://.godot/imported/PanelStyle.png-14a611bd12e50df0cc2938551666228f.ctex"
+uid="uid://bndas777atupl"
+path="res://.godot/imported/PanelStyle_Minimal.png-334c35be0efc2d05d366cf29ed3bc44a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/interface/textures/MiscStyle/PanelStyle.png"
-dest_files=["res://.godot/imported/PanelStyle.png-14a611bd12e50df0cc2938551666228f.ctex"]
+source_file="res://assets/interface/textures/MiscStyle/PanelStyle_Minimal.png"
+dest_files=["res://.godot/imported/PanelStyle_Minimal.png-334c35be0efc2d05d366cf29ed3bc44a.ctex"]
 
 [params]
 

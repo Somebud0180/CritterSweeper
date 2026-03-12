@@ -18,6 +18,8 @@ func reload_theme() -> void:
 	
 	var theme_path = "res://assets/game/sprites/themes/%s" % theme_name
 	
+	_load_theme_from_folder(theme_path)
+	
 	# Load background
 	var background_tex = _get_random_texture_from_folder("%s/backgrounds" % theme_path)
 	if background_tex:
@@ -65,6 +67,38 @@ func _load_fallback_foreground(theme_path: String) -> void:
 			foreground_sprite.texture = tex
 			return
 	push_error("Could not load any foreground for theme using fallback paths")
+
+func _load_theme_from_folder(folder: String) -> void:
+	var theme_path: String = ""
+	var dir = DirAccess.open(folder)
+	if dir == null:
+		push_warning("Cannot open folder: %s (expected in exported builds, will use fallback)" % folder)
+	
+	dir.list_dir_begin()
+	var fname = dir.get_next()
+	var file_path
+	while fname != "":
+		if not dir.current_is_dir():
+			var lower = fname.to_lower()
+			if lower == "theme.txt":
+				file_path = FileAccess.open(folder.path_join(fname), FileAccess.READ)
+	
+	if file_path:
+		var theme = file_path.get_as_text()
+		theme_path = "res://assets/interface/" + theme + ".tres"
+		
+		var theme_file = FileAccess.open(theme_path, FileAccess.READ)
+		
+		_set_all_theme(theme_file)
+
+func _set_all_theme(theme: FileAccess) -> void:
+	$"../GameLayer/Game".theme = theme
+	$"../GameLayer/GameOverlay".theme = theme
+	$"../GameLayer/TileModeOverlay".theme = theme
+	$"../MenuLayer/MainMenuContainer".theme = theme
+	$"../MenuLayer/SettingsContainer".theme = theme
+	$"../MenuLayer/DifficultyPickerContainer".theme = theme
+	$"../MenuLayer/ScoreboardContainer".theme = theme
 
 func _get_texture_paths_from_folder(folder: String) -> Array:
 	var paths := []

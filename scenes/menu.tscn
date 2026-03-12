@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://wxiagu8uy4w4"]
 
+[ext_resource type="Theme" uid="uid://s87o3xeokyf2" path="res://assets/interface/menu_minimal.tres" id="1_d3h35"]
 [ext_resource type="Theme" uid="uid://bhmyomirsk6vr" path="res://assets/interface/menu.tres" id="1_yqeox"]
 [ext_resource type="Script" uid="uid://xtopgpgymqh0" path="res://scripts/interface/main_screen.gd" id="2_4ytvr"]
 [ext_resource type="Texture2D" uid="uid://8mi331kcfci" path="res://assets/interface/textures/titlecards/CritterSweeper.png" id="2_vjb58"]
@@ -1193,7 +1194,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_yqeox")
+theme = ExtResource("1_d3h35")
 script = ExtResource("2_4ytvr")
 animation_player = NodePath("AnimationPlayer")
 sidebar_animation_player = NodePath("GameLayer/TileModeOverlay/AnimationPlayer")
@@ -1239,6 +1240,7 @@ script = ExtResource("13_lnf0i")
 
 [node name="Game" parent="GameLayer" unique_id=1767809418 node_paths=PackedStringArray("label", "toast", "grid", "grid_aspect", "scroll_container", "critter_layer") instance=ExtResource("3_g3eks")]
 z_index = 1
+theme = ExtResource("1_yqeox")
 label = NodePath("../GameOverlay/HBoxContainer/Notif Panel/Label")
 toast = NodePath("../GameOverlay/HBoxContainer/Notif Panel")
 grid = NodePath("ScrollContainer/CenterContainer/BoardAspect/Grid")
@@ -1311,6 +1313,7 @@ visible = false
 modulate = Color(1, 1, 1, 0)
 grow_vertical = 0
 pivot_offset = Vector2(44, 88)
+theme = ExtResource("1_yqeox")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="GameLayer/TileModeOverlay" unique_id=920968225]
 root_node = NodePath("../../..")
