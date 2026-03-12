@@ -48,6 +48,7 @@ SFXPlayer=""
 MusicPlayer=""
 ScoreSortButton=""
 ScoreboardContainer=""
+BackgroundLayer=""
 
 [input]
 
