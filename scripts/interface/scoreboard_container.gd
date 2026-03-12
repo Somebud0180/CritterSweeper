@@ -11,7 +11,9 @@ signal update_score
 
 const SCORE_LABEL = preload("res://scenes/score_label.tscn")
 const CHEVRON_UP_TEX = preload("res://assets/interface/textures/glyphs/ChevronUp.png")
+const CHEVRON_UP_WHITE_TEX = preload("res://assets/interface/textures/glyphs/ChevronUp_White.png")
 const CHEVRON_DOWN_TEX = preload("res://assets/interface/textures/glyphs/ChevronDown.png")
+const CHEVRON_DOWN_WHITE_TEX = preload("res://assets/interface/textures/glyphs/ChevronDown_White.png")
 
 var last_sort_option: int = 0
 var game_mode: int = 0
@@ -23,6 +25,10 @@ var descending: bool = false
 func _ready() -> void:
 	_on_game_mode_picker_item_selected(0)
 	_on_sort_button_pressed(0)
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_THEME_CHANGED:
+		_refresh_sort_icons()
 
 func _display_score() -> void:
 	for child in ScoreContainer.get_children():
@@ -76,29 +82,52 @@ func _on_sort_button_pressed(sort_option: int) -> void:
 	else:
 		last_sort_option = sort_option
 	
-	for button in get_tree().get_nodes_in_group("ScoreSortButton"):
-		button.icon = null
-		button.button_pressed = false
-	
 	match sort_option:
 		0:
-			GameSortButton.icon = CHEVRON_UP_TEX if descending else CHEVRON_DOWN_TEX
-			GameSortButton.button_pressed = true
 			sort_by = Scoreboard.SORT_BY.GAME
 		1:
-			ClicksSortButton.icon = CHEVRON_UP_TEX if descending else CHEVRON_DOWN_TEX
-			ClicksSortButton.button_pressed = true
 			sort_by = Scoreboard.SORT_BY.CLICKS
 		2:
-			TilesSortButton.icon = CHEVRON_UP_TEX if descending else CHEVRON_DOWN_TEX
-			TilesSortButton.button_pressed = true
 			sort_by = Scoreboard.SORT_BY.TILES
 		3:
-			TimeSortButton.icon = CHEVRON_UP_TEX if descending else CHEVRON_DOWN_TEX
-			TimeSortButton.button_pressed = true
 			sort_by = Scoreboard.SORT_BY.TIME
+
+	_refresh_sort_icons()
 	
 	_display_score()
 
 func _on_update_score() -> void:
 	_display_score()
+
+func _refresh_sort_icons() -> void:
+	await get_tree().process_frame
+	
+	var chevron_up = _get_chevron_up_texture()
+	var chevron_down = _get_chevron_down_texture()
+	
+	for button in get_tree().get_nodes_in_group("ScoreSortButton"):
+		button.icon = null
+		button.button_pressed = false
+	
+	match sort_by:
+		Scoreboard.SORT_BY.GAME:
+			GameSortButton.icon = chevron_up if descending else chevron_down
+			GameSortButton.button_pressed = true
+		Scoreboard.SORT_BY.CLICKS:
+			ClicksSortButton.icon = chevron_up if descending else chevron_down
+			ClicksSortButton.button_pressed = true
+		Scoreboard.SORT_BY.TILES:
+			TilesSortButton.icon = chevron_up if descending else chevron_down
+			TilesSortButton.button_pressed = true
+		Scoreboard.SORT_BY.TIME:
+			TimeSortButton.icon = chevron_up if descending else chevron_down
+			TimeSortButton.button_pressed = true
+
+func _get_chevron_up_texture() -> Texture2D:
+	return CHEVRON_UP_WHITE_TEX if _is_dark_theme() else CHEVRON_UP_TEX
+
+func _get_chevron_down_texture() -> Texture2D:
+	return CHEVRON_DOWN_WHITE_TEX if _is_dark_theme() else CHEVRON_DOWN_TEX
+
+func _is_dark_theme() -> bool:
+	return Globals.get_current_theme_name() == "Purp"

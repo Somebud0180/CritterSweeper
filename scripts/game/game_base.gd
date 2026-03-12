@@ -39,8 +39,7 @@ func _process(delta: float) -> void:
 		time_elapsed += delta
 
 func start(set_mode: int = 0) -> void:
-	var background_layer = get_tree().get_first_node_in_group("BackgroundLayer")
-	background_layer.reload_theme()
+	Globals._load_background_theme()
 	
 	match set_mode:
 		0:

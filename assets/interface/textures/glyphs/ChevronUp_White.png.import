@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://07obkqtplowh"
-path="res://.godot/imported/ButtonStyle_Pressed.png-882715af14c26b48f2c24d9bf8bc04fc.ctex"
+uid="uid://qmciifdkv5kq"
+path="res://.godot/imported/ChevronUp_White.png-d4a15392b18c0a5859526d4fb4367eb4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/interface/textures/ButtonTexture/ButtonStyle/ButtonStyle_Pressed.png"
-dest_files=["res://.godot/imported/ButtonStyle_Pressed.png-882715af14c26b48f2c24d9bf8bc04fc.ctex"]
+source_file="res://assets/interface/textures/glyphs/ChevronUp_White.png"
+dest_files=["res://.godot/imported/ChevronUp_White.png-d4a15392b18c0a5859526d4fb4367eb4.ctex"]
 
 [params]
 

@@ -110,6 +110,7 @@ func _set_all_theme(theme: Theme) -> void:
 		push_warning("Cannot apply null theme")
 		return
 	
+	$"..".theme = theme
 	$"../GameLayer/Game".theme = theme
 	$"../GameLayer/GameOverlay".theme = theme
 	$"../GameLayer/TileModeOverlay".theme = theme

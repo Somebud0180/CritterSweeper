@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://mgkqrayegu0x"]
 
-[ext_resource type="Theme" uid="uid://bhmyomirsk6vr" path="res://assets/interface/menu.tres" id="1_0wfyh"]
+[ext_resource type="Theme" uid="uid://s87o3xeokyf2" path="res://assets/interface/menu_minimal.tres" id="1_yqjtg"]
 [ext_resource type="Script" uid="uid://ouhtebkydqp7" path="res://scripts/game/game_base.gd" id="2_yqjtg"]
 
 [node name="Game" type="MarginContainer" unique_id=1648610376 groups=["Game"]]
@@ -13,7 +13,7 @@ grow_vertical = 2
 pivot_offset = Vector2(288, 288)
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource("1_0wfyh")
+theme = ExtResource("1_yqjtg")
 theme_override_constants/margin_left = 22
 theme_override_constants/margin_top = 22
 theme_override_constants/margin_right = 22

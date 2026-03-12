@@ -36,6 +36,7 @@
 [ext_resource type="Script" uid="uid://bxmsbqlbt088g" path="res://scripts/helper/music_player.gd" id="30_a04p5"]
 [ext_resource type="Texture2D" uid="uid://c537ai3rcsj5q" path="res://assets/interface/textures/titlecards/Scoreboard_TitleCard.png" id="30_b5gwo"]
 [ext_resource type="PackedScene" uid="uid://bqw256ynmfbpj" path="res://scenes/score_label.tscn" id="32_0qewb"]
+[ext_resource type="Theme" uid="uid://fb3nqg0ln71e" path="res://assets/interface/menu_purp.tres" id="32_ruys5"]
 [ext_resource type="AudioStream" uid="uid://ca2tqem3dvlju" path="res://assets/audio/music/Critty Critters.wav" id="34_mhjd8"]
 
 [sub_resource type="Animation" id="Animation_jy7pm"]
@@ -297,62 +298,6 @@ _data = {
 }
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjb58"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7jp70"]
-content_margin_left = 12.0
-content_margin_right = 12.0
-bg_color = Color(0.94509804, 0.8, 0.8, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mxgkd"]
-content_margin_left = 12.0
-content_margin_right = 12.0
-bg_color = Color(0.7921569, 0.6627451, 0.6627451, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.2, 0.2, 0.2, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g6gyw"]
-content_margin_left = 12.0
-content_margin_right = 12.0
-bg_color = Color(0.94509804, 0.8, 0.8, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(1, 0.6392157, 0.6392157, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3dmrc"]
-content_margin_left = 12.0
-content_margin_right = 12.0
-bg_color = Color(0.94509804, 0.8, 0.8, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(1, 0.6392157, 0.6392157, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
 
 [sub_resource type="Animation" id="Animation_4ytvr"]
 resource_name = "RESET"
@@ -1571,10 +1516,6 @@ label_settings = ExtResource("21_vhsb5")
 [node name="TileSizePicker" type="OptionButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/InterfaceContainer/TileSizeContainer" unique_id=991841443 groups=["SettingsNode"]]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_7jp70")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_mxgkd")
-theme_override_styles/hover = SubResource("StyleBoxFlat_g6gyw")
-theme_override_styles/focus = SubResource("StyleBoxFlat_3dmrc")
 selected = 0
 item_count = 6
 popup/item_0/text = "Fit to Screen"
@@ -1607,10 +1548,6 @@ label_settings = ExtResource("21_vhsb5")
 [node name="BackgroundPicker" type="OptionButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/InterfaceContainer/ThemeContainer" unique_id=1458630253 groups=["SettingsNode"]]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_7jp70")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_mxgkd")
-theme_override_styles/hover = SubResource("StyleBoxFlat_g6gyw")
-theme_override_styles/focus = SubResource("StyleBoxFlat_3dmrc")
 script = ExtResource("16_mxgkd")
 globals_var_name = "background_theme"
 
@@ -1640,10 +1577,6 @@ label_settings = ExtResource("21_vhsb5")
 [node name="FlagModePicker" type="OptionButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/ControlsContainer/FlagModeContainer" unique_id=1525297073 groups=["SettingsNode"]]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_7jp70")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_mxgkd")
-theme_override_styles/hover = SubResource("StyleBoxFlat_g6gyw")
-theme_override_styles/focus = SubResource("StyleBoxFlat_3dmrc")
 selected = 0
 item_count = 2
 popup/item_0/text = "Hold to Flag"
@@ -1667,10 +1600,6 @@ label_settings = ExtResource("21_vhsb5")
 [node name="ModePositionPicker" type="OptionButton" parent="MenuLayer/SettingsContainer/Settings/PanelContainer/VBoxContainer/SettingsContainer/VBoxContainer/ControlsContainer/ModePositionContainer" unique_id=190523914 groups=["SettingsNode"]]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_7jp70")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_mxgkd")
-theme_override_styles/hover = SubResource("StyleBoxFlat_g6gyw")
-theme_override_styles/focus = SubResource("StyleBoxFlat_3dmrc")
 selected = 0
 item_count = 2
 popup/item_0/text = "Right"
@@ -1859,7 +1788,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(288, 336)
-theme = ExtResource("1_yqeox")
+theme = ExtResource("32_ruys5")
 ratio = 0.8
 script = ExtResource("29_a04p5")
 
