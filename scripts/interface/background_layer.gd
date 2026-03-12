@@ -69,29 +69,47 @@ func _load_fallback_foreground(theme_path: String) -> void:
 	push_error("Could not load any foreground for theme using fallback paths")
 
 func _load_theme_from_folder(folder: String) -> void:
-	var theme_path: String = ""
 	var dir = DirAccess.open(folder)
 	if dir == null:
 		push_warning("Cannot open folder: %s (expected in exported builds, will use fallback)" % folder)
+		return
 	
+	var theme_file: FileAccess = null
 	dir.list_dir_begin()
 	var fname = dir.get_next()
-	var file_path
 	while fname != "":
-		if not dir.current_is_dir():
-			var lower = fname.to_lower()
-			if lower == "theme.txt":
-				file_path = FileAccess.open(folder.path_join(fname), FileAccess.READ)
+		if not dir.current_is_dir() and fname.to_lower() == "theme.txt":
+			theme_file = FileAccess.open(folder.path_join(fname), FileAccess.READ)
+			break
+		fname = dir.get_next()
+	dir.list_dir_end()
 	
-	if file_path:
-		var theme = file_path.get_as_text()
-		theme_path = "res://assets/interface/" + theme + ".tres"
-		
-		var theme_file = FileAccess.open(theme_path, FileAccess.READ)
-		
-		_set_all_theme(theme_file)
+	var theme_name = theme_file.get_as_text().strip_edges()
+	if theme_file == null:
+		push_warning("theme.txt not found in folder: %s, will use fallback" % folder)
+		# Provide fallback theme
+		theme_name = "menu"
+	
+	if theme_name.is_empty():
+		push_warning("theme.txt is empty in folder: %s, will use fallback" % folder)
+		# Provide fallback theme
+		theme_name = "menu"
+	
+	var theme_path = "res://assets/interface/%s.tres" % theme_name
+	var theme_resource := load(theme_path) as Theme
+	if theme_resource == null:
+		push_warning("Failed to load Theme resource: %s, will use fallback." % theme_path)
+		# Load fallback theme
+		theme_path = "res://assets/interface/menu.tres"
+		theme_resource = load(theme_path) as Theme
+	
+	_set_all_theme(theme_resource)
 
-func _set_all_theme(theme: FileAccess) -> void:
+func _set_all_theme(theme: Theme) -> void:
+	if theme == null:
+		push_warning("Cannot apply null theme")
+		return
+	
 	$"../GameLayer/Game".theme = theme
 	$"../GameLayer/GameOverlay".theme = theme
 	$"../GameLayer/TileModeOverlay".theme = theme
