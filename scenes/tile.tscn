@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://bqna8ty12nh7" path="res://assets/audio/OpenGameArt/UI Sound/Click_Standard_00.wav" id="3_6p3j2"]
 [ext_resource type="AudioStream" uid="uid://dg6gndb328nml" path="res://assets/audio/OpenGameArt/UI Sound/Click_Standard_01.wav" id="4_gtpg2"]
 [ext_resource type="AudioStream" uid="uid://duarc26ywn4l0" path="res://assets/audio/OpenGameArt/UI Sound/Click_Standard_02.wav" id="5_a2bny"]
+[ext_resource type="Texture2D" uid="uid://dnvldoueyu2os" path="res://assets/game/sprites/bah.png" id="6_gtpg2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0wfyh"]
 atlas = ExtResource("1_ywnoi")
@@ -96,7 +97,7 @@ stream_2/stream = ExtResource("5_a2bny")
 
 [node name="Tile" type="TextureButton" unique_id=328839149 groups=["Tiles"]]
 custom_minimum_size = Vector2(44, 44)
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -448.0
@@ -119,6 +120,26 @@ one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1756636242 groups=["SFXPlayer"]]
 stream = SubResource("AudioStreamRandomizer_284l3")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=666369709]
+visible = false
+
+[node name="Sparkle" type="TextureRect" parent="CanvasLayer" unique_id=898312372]
+unique_name_in_owner = true
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -448.0
+offset_bottom = -544.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(64, 64)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("6_gtpg2")
+expand_mode = 3
+stretch_mode = 5
 
 [connection signal="button_down" from="." to="." method="_on_button_down"]
 [connection signal="button_up" from="." to="." method="_on_button_up"]

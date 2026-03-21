@@ -4,6 +4,9 @@ signal tile_pressed
 
 const REGULAR_TILES = preload("res://assets/game/sprites/minesweeper.png")
 const DARK_TILES = preload("res://assets/game/sprites/minesweeper_dark.png")
+const SPARKLE_SCALE: float = 1.2
+
+@onready var sparkle: TextureRect = %Sparkle
 
 var is_mine: bool = false
 var is_flagged: bool = false
@@ -19,7 +22,26 @@ func _ready() -> void:
 	$AudioStreamPlayer.volume_linear = Globals.sfx_vol
 	original_zindex = z_index
 	texture_normal = texture_normal.duplicate()
+	set_notify_transform(true)
 	set_tile_size()
+	_sync_sparkle_to_tile()
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_TRANSFORM_CHANGED or what == NOTIFICATION_RESIZED:
+		_sync_sparkle_to_tile()
+
+func _sync_sparkle_to_tile() -> void:
+	if not is_node_ready():
+		return
+
+	var tile_rect = get_global_rect()
+	var sparkle_size = tile_rect.size * SPARKLE_SCALE
+	var size_offset = (sparkle_size - tile_rect.size) * 0.5
+
+	sparkle.set_anchors_preset(Control.PRESET_TOP_LEFT)
+	sparkle.size = sparkle_size
+	sparkle.pivot_offset = sparkle_size * 0.5
+	sparkle.global_position = tile_rect.position - size_offset
 
 func update_tile_theme() -> void:
 	if Globals.dark_tiles:
@@ -38,17 +60,20 @@ func set_tile_size(custom_size: float = 0) -> void:
 		# Size specified by game.gd for dynamic sizing
 		tween.tween_property(self, "custom_minimum_size", Vector2(custom_size, custom_size), 0.2)
 		tween.tween_property(self, "pivot_offset", Vector2(custom_size/2, custom_size/2), 0.2)
+		tween.tween_callback(_sync_sparkle_to_tile)
 	else:
 		var tile_size_setting = Globals.tile_size
 		# Don't set a size when using dynamic sizing (0, 1)
 		if tile_size_setting <= 1:
 			tween.kill()
+			_sync_sparkle_to_tile()
 			return
 		else:
 			# Use predefined tile size
 			var custom_tile_size = Globals.TILE_SIZES[tile_size_setting]
 			tween.tween_property(self, "custom_minimum_size", Vector2(custom_tile_size, custom_tile_size), 0.2)
 			tween.tween_property(self, "pivot_offset", Vector2(custom_tile_size/2, custom_tile_size/2), 0.2)
+			tween.tween_callback(_sync_sparkle_to_tile)
 
 func reveal_tile(original_press: bool = false):
 	if is_revealed:
@@ -85,7 +110,10 @@ func _on_gui_input(event: InputEvent) -> void:
 				$AudioStreamPlayer.play()
 				accept_event()
 				return
-		
+			elif event.is_released() and event is InputEventMouseButton:
+				match event.button_index:
+					MOUSE_BUTTON_LEFT, MOUSE_BUTTON_RIGHT:
+						_normalize_button()
 		1:
 			match Globals.flag_mode:
 				0:
@@ -132,12 +160,16 @@ func _on_gui_input(event: InputEvent) -> void:
 						elif event.is_action_pressed("ui_cancel"):
 								if !is_revealed:
 									toggle_flagging()
+						elif event.is_released():
+							_normalize_button()
 					1:
 						if event.is_action_pressed("ui_accept"):
 							if Globals.is_flagging and !is_revealed:
 								toggle_flagging()
 							elif not Globals.is_flagging and !is_flagged :
 								emit_signal("tile_pressed")
+						elif event.is_released():
+							_normalize_button()
 				
 				$AudioStreamPlayer.play()
 				accept_event()
@@ -189,6 +221,7 @@ func _enlarge_button() -> void:
 
 func _normalize_button() -> void:
 	$AnimationPlayer.play("normalize")
+	$CanvasLayer.visible = false
 	await $AnimationPlayer.animation_finished
 	z_index = original_zindex
 
@@ -197,6 +230,7 @@ func _press_button() -> void:
 		return
 	
 	$AnimationPlayer.play("press")
+	$CanvasLayer.visible = true
 	Globals.vibrate_light_press()
 	
 	await $AnimationPlayer.animation_finished
