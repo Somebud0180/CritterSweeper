@@ -23,7 +23,9 @@ func is_win_state(tiles: Array) -> bool:
 				return false
 	return true
 
-func is_loss_state(tiles: Array) -> bool:
+func is_loss_state(tiles: Array, clicks_left: int = 0) -> bool:
+	if clicks_left < 1:
+		return true
 	for row in tiles:
 		for tile in row:
 			if not tile.is_revealed and not tile.is_mine:

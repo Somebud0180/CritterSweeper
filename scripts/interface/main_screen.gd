@@ -126,14 +126,17 @@ func _on_difficulty_button_pressed(difficulty: int, mode: int) -> void:
 			game_scene.rows = 9
 			game_scene.columns = 9
 			game_scene.num_mines = 10
+			game_scene.clicks_remaining = 15
 		1:
 			game_scene.rows = 16
 			game_scene.columns = 16
 			game_scene.num_mines = 20
+			game_scene.clicks_remaining = 20
 		2:
 			game_scene.rows = 30
 			game_scene.columns = 16
 			game_scene.num_mines = 30
+			game_scene.clicks_remaining = 20
 	
 	game_scene.start(mode)
 	hide_and_show("difficulty", "game")

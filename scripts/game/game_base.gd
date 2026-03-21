@@ -24,7 +24,8 @@ var game_finished = false
 
 # Score Keeping
 var clicks_counted: int = 0    # Amount of clicks done by player (tracked in CritterSeeker)
-var tiles_remaining: int = 0  # Amount of unrevealed blocks remaining (tracked in CritterSeeker)
+var clicks_remaining: int = 0  # Amount of clicks remaining (tracked in CritterSeeker)
+var tiles_remaining: int = 0   # Amount of unrevealed blocks remaining (tracked in CritterSeeker)
 var time_elapsed: float = 0    # Amount of time to finish the game
 
 func _ready() -> void:
@@ -67,6 +68,7 @@ func start(set_mode: int = 0) -> void:
 	grid.columns = columns
 	grid_aspect.ratio = float(columns) / float(rows)
 	create_grid()
+	_update_clicks_remaining_label()
 	
 	# Disable tiles
 	for row in tiles:
@@ -223,7 +225,7 @@ func evaluate_end_state() -> void:
 		return
 	if game_mode.is_win_state(tiles):
 		game_won()
-	elif game_mode.is_loss_state(tiles):
+	elif game_mode.is_loss_state(tiles, clicks_remaining):
 		game_over()
 
 func game_over():
@@ -236,6 +238,7 @@ func game_over():
 			if game_mode:
 				game_mode.reveal_tile_on_game_over(tile)
 	
+	label.label_settings.font_size = 44
 	label.text = "Game Over!"
 	label.visible = true
 	toast.visible = true
@@ -247,6 +250,8 @@ func game_won():
 		for tile in row:
 			tile.disabled = true
 			tile.mouse_default_cursor_shape = CURSOR_ARROW
+	
+	label.label_settings.font_size = 44
 	label.text = "You Won!"
 	label.visible = true
 	toast.visible = true
@@ -256,6 +261,18 @@ func game_won():
 	elif game_mode is SeekerMode:
 		tiles_remaining = count_unrevealed_blocks()
 		Scoreboard.save_seeker_score(difficulty, clicks_counted, tiles_remaining, time_elapsed)
+
+func _update_clicks_remaining_label() -> void:
+	if game_finished or not game_mode:
+		return
+	
+	if game_mode is SeekerMode:
+		label.label_settings.font_size = 32
+		label.text = "Attempts Remaining: " + str(clicks_remaining)
+		toast.visible = true
+		label.visible = true
+	else:
+		label.label_settings.font_size = 44
 
 ## Tile Functions
 func _on_tile_pressed(x: int, y: int):
@@ -274,8 +291,11 @@ func _on_tile_pressed(x: int, y: int):
 			game_over()
 			return
 	else:
+		if !tile.is_revealed:
+			clicks_remaining -= 1
 		reveal_tile_and_neighbors(x, y)
 	
+	_update_clicks_remaining_label()
 	evaluate_end_state()
 
 func count_unrevealed_blocks() -> int:

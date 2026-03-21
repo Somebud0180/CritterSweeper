@@ -1258,7 +1258,6 @@ visible = false
 modulate = Color(1, 1, 1, 0)
 grow_vertical = 0
 pivot_offset = Vector2(44, 88)
-theme = ExtResource("1_yqeox")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="GameLayer/TileModeOverlay" unique_id=920968225]
 root_node = NodePath("../../..")
